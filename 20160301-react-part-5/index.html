@@ -78,7 +78,7 @@ InputButton.defaultProps = { initialCount: 0 };</code></pre></div>
 		return { initialCount: 0 };
 	}</code></pre></div>
 <h4>propTypes的写法</h4>
-<p>在<a href="http://twomeetings.github.io/2016/02/10/React%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0%E4%B9%8B%E4%B8%80%EF%BC%8D%E5%BC%80%E7%AF%87/">此系列文章第一篇</a>我们提到了propTypes，它可以对组件所需要的属性做验证，从而让组件的调用方了解如何正确使用该组件，当时的React写法是：</p>
+<p>在<a href="/20150712-react-part-1">此系列文章第一篇</a>)我们提到了propTypes，它可以对组件所需要的属性做验证，从而让组件的调用方了解如何正确使用该组件，当时的React写法是：</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">propTypes:{
     year: PropTypes.number.isRequired
   }</code></pre></div>
@@ -88,7 +88,7 @@ InputButton.propTypes = {
 	year: PropTypes.number.isRequired
 };</code></pre></div>
 <h4>对mixin的支持</h4>
-<p><a href="http://twomeetings.github.io/2016/03/06/React%E7%B3%BB%E5%88%97%E4%B9%8B%E5%9B%9B%EF%BC%8Dref%E5%92%8Cmixin/">上篇文章</a>中，我们用React写法创建的组件中通过设置mixins属性，添加了mixin功能，让两个不相干的类之间也能共享属性和方法。</p>
+<p><a href="/20160104-react-part-4">上篇文章</a>中，我们用React写法创建的组件中通过设置mixins属性，添加了mixin功能，让两个不相干的类之间也能共享属性和方法。</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">var InputButton=React.createClass({
   mixins:[mixinObject],
   getInitialState(){

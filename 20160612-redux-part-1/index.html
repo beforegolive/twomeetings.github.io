@@ -10,7 +10,7 @@ _hmt.push(['_setAccount', '7d972948fda682a44dfb490ed2060bb6']);
 <p>针对双向绑定的问题，Flux就应运而生了，这种框架包含4个部分，如果与MVC相对照的看，Model变成成了Store，Controller变成了Dispatcher和Action，View依然是View。除了各个概念与MVC有略微差异外，Flux最大的特点就是数据的单向流动，极大的提高了逻辑的可预测性，从而让架构变的简洁，易于维护。</p>
 <p><img src="http://7xtbg7.com2.z0.glb.clouddn.com/redux1-2.png"></p>
 <h3>简易示例</h3>
-<p>现在让我们用redux创建一个实例，比官方示例更加简单的计数器，内容是点击一下按钮，对应的数值加1。示例的框架使用了webpack＋react＋redux的形势，如果对webpack和react不熟悉，则可以先阅读我之前所写的<a href="http://twomeetings.github.io/2016/05/08/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E6%96%87%E6%B1%87%E6%80%BB/">react系列文章</a>。</p>
+<p>现在让我们用redux创建一个实例，比官方示例更加简单的计数器，内容是点击一下按钮，对应的数值加1。示例的框架使用了webpack＋react＋redux的形势，如果对webpack和react不熟悉，则可以先阅读我之前所写的<a href="/20150712-react-part-1">react系列文章</a>。</p>
 <p>搭建好项目，安装好webpack和react的相关的安装包后，要记得安装redux，命令如下：</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">npm install redux --save</code></pre></div>
 <h3>View－呈现数据</h3>

@@ -7,7 +7,7 @@ _hmt.push(['_setAccount', '7d972948fda682a44dfb490ed2060bb6']);
 	type: &#39;SOMETHING&#39;,
 	//...
 }</code></pre></div>
-<p>发送指令需调用Store的方法dispatch，比如在<a href="http://twomeetings.github.io/2016/04/18/Redux%E7%B3%BB%E5%88%97%E4%B9%8B%E4%BA%8C%20%EF%BC%8D%20combineReducers/">前文</a>的示例中，三个Counter组件通过dispatch分别发生了不同类别的指令：INCREMENT, OTHER<em>INCREMENT, DOUBLE</em>INCREMENT。相关代码如下：</p>
+<p>发送指令需调用Store的方法dispatch，比如在<a href="/20161104-redux-part-2">前文</a>的示例中，三个Counter组件通过dispatch分别发生了不同类别的指令：INCREMENT, OTHER<em>INCREMENT, DOUBLE</em>INCREMENT。相关代码如下：</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">		&lt;Counter
         value = {state.counterReducer.value}
         handleClick={()=&gt; store.dispatch({type:&#39;INCREMENT&#39;})}

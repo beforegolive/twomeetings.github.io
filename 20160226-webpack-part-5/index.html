@@ -25,7 +25,7 @@ _hmt.push(['_setAccount', '7d972948fda682a44dfb490ed2060bb6']);
   }
 };</code></pre></div>
 <blockquote>
-<p>配置文件内各节点的含义可查阅<a href="http://twomeetings.github.io/2016/01/15/webpack%E7%B3%BB%E5%88%97%E4%BA%8C%20%EF%BC%8D%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">系列文章第二篇</a></p>
+<p>配置文件内各节点的含义可查阅<a href="/20160115-webpack-part-2">系列文章第二篇</a></p>
 </blockquote>
 <h3>安装react相关的组件</h3>
 <p>为了让react能运作正常，除了加载器babel-loader，还需要另外两个插件babel-preset-es2015，babel-preset-react，前者用来支持ES6语法，后者则是支持react语法，安装命令如下：</p>
@@ -60,7 +60,7 @@ ReactDOM.render(
   &lt;HelloWorld /&gt;,
   document.getElementById(&#39;react-div&#39;)
 )	</code></pre></div>
-<p>现在只需一个包含id为react-div元素的html页面就可以看到最终效果，我们可以手动添加，也可以利用<a href="http://twomeetings.github.io/2016/01/19/webpack%E7%B3%BB%E5%88%97%E4%B9%8B%E4%B8%89%EF%BC%8Dplugin%E6%8F%92%E4%BB%B6/">系列文章第三篇</a>中谈及的模板插件来创建页面。</p>
+<p>现在只需一个包含id为react-div元素的html页面就可以看到最终效果，我们可以手动添加，也可以利用<a href="/20160119-webpack-part-3">系列文章第三篇</a>中谈及的模板插件来创建页面。</p>
 <h3>模版插件添加HTML页面</h3>
 <p>安装模版插件html-webpack-plugin，因为其依赖webpack，所以要一并安装，执行命令如下：</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">npm install webpack html-webpack-plugin --save</code></pre></div>
