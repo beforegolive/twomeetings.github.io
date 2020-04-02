@@ -1,8 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Tech blog]]></title><description><![CDATA[A starter blog demonstrating what Gatsby can do.]]></description><link>https://gatsby-starter-blog-demo.netlify.com</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 02 Apr 2020 23:06:25 GMT</lastBuildDate><item><title><![CDATA[Redux系列之五 － 粘合剂react-redux组件（下）]]></title><description><![CDATA[react-redux组件是React和Redux两个框架的粘合剂，它共有两个部分：Provider组件和connect方法。上篇已介绍了Provider组件，本文就来详细讲解connect方法。 connect方法 在React…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/20170401-redux-part-5/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/20170401-redux-part-5/</guid><pubDate>Sat, 01 Apr 2017 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;react-redux组件是React和Redux两个框架的粘合剂，它共有两个部分：Provider组件和connect方法。上篇已介绍了Provider组件，本文就来详细讲解connect方法。&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Tech blog]]></title><description><![CDATA[A starter blog demonstrating what Gatsby can do.]]></description><link>https://gatsby-starter-blog-demo.netlify.com</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 02 Apr 2020 23:49:11 GMT</lastBuildDate><item><title><![CDATA[Redux系列之五 － 粘合剂react-redux组件（下）]]></title><description><![CDATA[react-redux组件是React和Redux两个框架的粘合剂，它共有两个部分：Provider组件和connect方法。上篇已介绍了Provider组件，本文就来详细讲解connect方法。 connect方法 在React…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/20170401-redux-part-5/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/20170401-redux-part-5/</guid><pubDate>Sat, 01 Apr 2017 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;react-redux组件是React和Redux两个框架的粘合剂，它共有两个部分：Provider组件和connect方法。上篇已介绍了Provider组件，本文就来详细讲解connect方法。&lt;/p&gt;
 &lt;h3&gt;connect方法&lt;/h3&gt;
 &lt;p&gt;在&lt;a href=&quot;/20160328-react-part-7&quot;&gt;React系列之七&lt;/a&gt;中说到了一种设计模式－呈现组件和容器组件。简单来说，呈现组件只通过传入的属性负责呈现逻辑，而跟state相关的数据改动都放到容器组件中。connect方法就是为这种模式而生，它可以通过呈现组件快速生成容器组件。&lt;/p&gt;
 &lt;p&gt;connect方法有4个参数，通常只会用到前两个，参数类型都是函数。假设现在已有一个呈现组件叫BookList, 那么connect的使用方法如下：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;function mapStateToProps(state) {
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;function mapStateToProps(state) {
   return { todos: state.books}
 }
 
@@ -10,7 +12,9 @@ function mapDispatchToProps(dispatch) {
   return { actions: bindActionCreators(actionCreators, dispatch) }
 }
 
-var container = connect(mapStateToProps, mapDispatchToProps)(BookList)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+var container = connect(mapStateToProps, mapDispatchToProps)(BookList)&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;从方法的名字mapStateToProps和mapDispatchToProps可以看出，connect的主要功能是以下两点：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;从全局state中读取值，传递给呈现组件的props属性中。&lt;/li&gt;
@@ -24,10 +28,16 @@ var container = connect(mapStateToProps, mapDispatchToProps)(BookList)&lt;/code&
 &lt;p&gt;这里我们用connect对&lt;a href=&quot;/20170119-react-part-2&quot;&gt;React系列文章之二&lt;/a&gt;中的例子做改造，该例中只有一个与颜色相关的下拉框，当用户选择后，state会保存选中的值。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;http://7xtbg7.com2.z0.glb.clouddn.com/redux5-1&quot;&gt;&lt;/p&gt;
 &lt;p&gt;首先安装react-redux组件，命令如下：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;npm install react-redux --save&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;npm install react-redux --save&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;而前文中说到redux将所有组件的state都存入了一个全局变量中，因此redux的重要作用之一就是容器组件的简单化。&lt;/p&gt;
 &lt;p&gt;我们现在将下拉框中的state相关代码剥离出来，只留下呈现的逻辑，代码如下：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;// picker.js
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;// picker.js
 import React, { PropTypes } from &amp;#39;react&amp;#39;
 
 var Picker=({ value, onChange})=&amp;gt;{
@@ -42,16 +52,24 @@ var Picker=({ value, onChange})=&amp;gt;{
       &amp;lt;p&amp;gt;selectedValue is: {value} &amp;lt;/p&amp;gt;
     &amp;lt;/div&amp;gt;
   )
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+}&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;代码中可以看出Picker组件接受2个属性值，没有state的操作，因为所有的state都保存在Redux中的Store里。修改Store的方法只有通过发送Action指令到Reducer中，首先，我们通过ActionCreator的方式来创建Action。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;// actionCreator.js
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;// actionCreator.js
 function selectChangeCreator(value){
   return { type: &amp;#39;SELECTCHANGE&amp;#39;, value: value };
 }
 
-export default selectChangeCreator;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+export default selectChangeCreator;&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;现在创建一个名为selectChange的reducer，代码中需要注意的是，在’SELECTCHANGE’分支下，原state并没有做修改，而是新的state被创建并返回，不改变state状态，这是redux设计中的原则，否则会出现数据更新，组件不更新的情况。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;// reducer.js
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;// reducer.js
 export function selectChange(state={selectedValue:&amp;#39;&amp;#39;}, action){
   switch (action.type) {
     case &amp;#39;SELECTCHANGE&amp;#39;:
@@ -65,14 +83,18 @@ export function selectChange(state={selectedValue:&amp;#39;&amp;#39;}, action){
     default:
       return state;
   }
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+}&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;blockquote&gt;
 &lt;p&gt;关于不更新state的原则，可在&lt;a href=&quot;http://redux.js.org/docs/Troubleshooting.html&quot;&gt;官网此处&lt;/a&gt;查询
 创建newState用到的”Object.assign”和扩展字符串 “…state”,可在阮一峰老师的&lt;a href=&quot;http://es6.ruanyifeng.com/&quot;&gt;ES6入门中&lt;/a&gt;查询&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h4&gt;通过connect方法创建容器组件&lt;/h4&gt;
 &lt;p&gt;准备工作都完成以后，现在我们就可以通过connect方法来创建容器组件了。首先，创建一个组件将上文所写的Picker组件包含进去，并将对应的属性值赋值给Picker组件。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;import Picker from &amp;#39;./picker&amp;#39;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;import Picker from &amp;#39;./picker&amp;#39;
 
 class Container extends Component{
   render(){
@@ -83,9 +105,13 @@ class Container extends Component{
     &amp;lt;/div&amp;gt;
   )
   }
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+}&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;代码中可以看到，value值和onChange方法都是从自身到props属性取出，它们就是通过connect方法生成的，代码如下：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;function mapStateToProps(state){
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;function mapStateToProps(state){
   var { selectChange }= state
   return {
     value: selectChange.selectedValue
@@ -105,10 +131,14 @@ var PickerContainer = connect(
   mapStateToProps,
   mapDispatchToProps)(Container)
 
-export default PickerContainer&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+export default PickerContainer&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;代码中可以看到，mapStateToProps方法将state.selectChange.selectedValue赋值给了value。mapDispatchToProps将dispatch和actionCreator绑定后的方法赋值给了onChange，最后生成PickerContainer组件并返回。&lt;/p&gt;
 &lt;p&gt;现在只需要在入口文件(index.js)中引用此组件就可以了。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;// index.js
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;// index.js
 import React from &amp;#39;react&amp;#39;
 import ReactDOM from &amp;#39;react-dom&amp;#39;
 import { combineReducers, createStore} from &amp;#39;redux&amp;#39;
@@ -125,7 +155,9 @@ ReactDOM.render(
     &amp;lt;PickerContainer /&amp;gt;
   &amp;lt;/Provider&amp;gt;,
   document.getElementById(&amp;#39;demo5&amp;#39;)
-)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+)&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;记得connect需要和Provider组件配合使用，因此PickerContainer必须被包裹在Provider中。&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;关于Provider的使用说明可参考&lt;a href=&quot;/20170302-redux-part-4&quot;&gt;上篇&lt;/a&gt;&lt;/p&gt;
@@ -141,7 +173,9 @@ ReactDOM.render(
 &lt;/blockquote&gt;
 &lt;p&gt;由于redux将所有组件的state都存放在全局变量Store中，因此，在Rudux框架下的容器组件写法也略有不同，需要将Store通过属性props来传入。&lt;/p&gt;
 &lt;p&gt;在&lt;a href=&quot;/20160316-react-part-6&quot;&gt;React系列之二&lt;/a&gt;的示例中有一个下拉框，通过state保存用户对颜色的选择，代码如下：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;var Picker= React.createClass({
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;var Picker= React.createClass({
   getInitialState(){
     return {selectedColor:&amp;#39;&amp;#39;}
   },
@@ -162,9 +196,13 @@ ReactDOM.render(
   _handleChange(event){
     this.setState({selectedColor: event.target.value});
   }
-})&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+})&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;Store可以通过props传入到容器组件内，但是组件有时还会包含子组件，一旦层级过深，传递Store的写法会变的难以维护。因此，react-redux组件提供了一个方法，只需在外侧用Provider组件包裹住，就可以将store传递下去，写法如下：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;import ReactDOM from &amp;#39;react-dom&amp;#39;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;import ReactDOM from &amp;#39;react-dom&amp;#39;
 import {Provider} from &amp;#39;react-redux&amp;#39;
 import { createStore} from &amp;#39;redux&amp;#39;
 import Picker from &amp;#39;./picker&amp;#39;
@@ -176,9 +214,13 @@ ReactDOM.render(
     &amp;lt;Picker /&amp;gt;
   &amp;lt;/Provider&amp;gt;,
   document.getElementById(&amp;#39;demo4&amp;#39;)
-)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+)&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;被Provider组件包裹后，内部的所有组件都可以通过this.context.store访问到全局变量Store，上面的Picker组件的render方法改动如下：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;  render(){
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;  render(){
     var { store }= this.context;
     return(
       &amp;lt;select value={store.getState().selectedValue} onChange={this._handleChange.bind(this)}&amp;gt;
@@ -187,26 +229,42 @@ ReactDOM.render(
         &amp;lt;option value=&amp;#39;blue&amp;#39;&amp;gt;Blue&amp;lt;/option&amp;gt;
       &amp;lt;/select&amp;gt;
     )
-  }&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+  }&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;当需要发送Action指令来改变state状态时，可以直接调用store的实例，执行dispatch方法。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;_handleChange(event){
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;_handleChange(event){
     var { store }= this.context;
     store.dispatch({type:&amp;#39;SELECTCHANGE&amp;#39;, value: event.target.value})
-  }&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+  }&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;h3&gt;注意&lt;/h3&gt;
 &lt;p&gt;想要在组件中通过this.context.store读取到值，除了将其包裹在Provider组件中之外，还要添加一个属性contextTypes，在本例中，写法如下。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;Picker.contextTypes = { store: React.PropTypes.object };&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;Picker.contextTypes = { store: React.PropTypes.object };&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;Provider很少单独使用，当Provider和connect方法一起使用时，则不必添加contextTypes。&lt;/p&gt;
 &lt;h3&gt;结语&lt;/h3&gt;
 &lt;p&gt;在Redux架构下，必需将全局变量Store传入组件内部，才能操作state，当组件内嵌的子组件层数过多时，这种写法难以维护。通过react-redux提供的Provider组件包裹的方式，将Store传入各个组件中。&lt;/p&gt;
 &lt;p&gt;本系列示例可在&lt;a href=&quot;https://github.com/twomeetings/reduxExample&quot;&gt;此处下载&lt;/a&gt;，本文的代码可在目录demo4中查询。&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Redux系列之三－Action的简化：bindActionCreator方法]]></title><description><![CDATA[Action和Action Creator Action是Redux中的核心概念之一，它是信息的载体包含跟操作指令相关的信息，因此它是一个必需包含type属性的对象，type表示我们自定义的指令类别。 发送指令需调用Store的方法dispatch…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/20170119-redux-part-3/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/20170119-redux-part-3/</guid><pubDate>Thu, 19 Jan 2017 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;Action和Action Creator&lt;/h3&gt;
 &lt;p&gt;Action是Redux中的核心概念之一，它是信息的载体包含跟操作指令相关的信息，因此它是一个必需包含type属性的对象，type表示我们自定义的指令类别。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;{
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;{
 	type: &amp;#39;SOMETHING&amp;#39;,
 	//...
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+}&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;发送指令需调用Store的方法dispatch，比如在&lt;a href=&quot;/20161104-redux-part-2&quot;&gt;前文&lt;/a&gt;的示例中，三个Counter组件通过dispatch分别发生了不同类别的指令：INCREMENT, OTHER&lt;em&gt;INCREMENT, DOUBLE&lt;/em&gt;INCREMENT。相关代码如下：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;		&amp;lt;Counter
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;		&amp;lt;Counter
         value = {state.counterReducer.value}
         handleClick={()=&amp;gt; store.dispatch({type:&amp;#39;INCREMENT&amp;#39;})}
       /&amp;gt;
@@ -217,19 +275,31 @@ ReactDOM.render(
       &amp;lt;Counter
         value = {state.secondReducer.value}
         handleClick={()=&amp;gt; store.dispatch({type:&amp;#39;DOUBLE_INCREMENT&amp;#39;})}
-      /&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+      /&amp;gt;&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;有时，action会包含一些逻辑，因此，在redux中，通常会用一个方法来创建action，这样的方法叫‘action creator’。比如，创建INCREMENT类别的action，可创建一个increment方法，写法如下：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;function incremment(){
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;function incremment(){
   return {
     type: &amp;#39;INCREMENT&amp;#39;
   }
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+}&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;h3&gt;简化Action指令的发送&lt;/h3&gt;
 &lt;p&gt;上节看似多此一举的写法，实际上给redux带来了很多扩展性和便利。redux中发送action总需要调用Store的dispatch方法，如下。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;()=&amp;gt; store.dispatch({type:&amp;#39;INCREMENT&amp;#39;})&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;()=&amp;gt; store.dispatch({type:&amp;#39;INCREMENT&amp;#39;})&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;redux提供了bindActionCreator方法，可以将action和dispatch结合在一起，达到简化写法的目的。&lt;/p&gt;
 &lt;p&gt;现在我们创建一个action.js，添加三个方法用于创建那三个组件需要的action。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;export function incremment(){
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;export function incremment(){
   return {
     type: &amp;#39;INCREMENT&amp;#39;
   }
@@ -245,9 +315,13 @@ export function doubleIncremment(){
   return {
     type: &amp;#39;DOUBLE_INCREMENT&amp;#39;
   }
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+}&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;在入口文件(index.js)中，我们引入并调用bindActionCreator，将其与dispatch合并。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;mport {createStore, combineReducers, bindActionCreators} from &amp;#39;redux&amp;#39;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;mport {createStore, combineReducers, bindActionCreators} from &amp;#39;redux&amp;#39;
 import {counterReducer, secondReducer} from &amp;#39;./reducer.js&amp;#39;
 import * as actionCreators from &amp;#39;./action.js&amp;#39;
 
@@ -255,18 +329,26 @@ var reducers=combineReducers({counterReducer,secondReducer})
 
 const store = createStore(reducers)
 
-var boundActionCreators = bindActionCreators(actionCreators, store.dispatch)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+var boundActionCreators = bindActionCreators(actionCreators, store.dispatch)&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;blockquote&gt;
 &lt;p&gt;此处import * as actionCreators，是引入模块的一种写法，作用是将模块中所有导出的部分引入并命名为一个变量，import命令的详细信息可参考阮一峰老师的&lt;a href=&quot;http://es6.ruanyifeng.com/&quot;&gt;ES6入门&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;绑定后的boundActionCreators对象结构如下：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;{
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;{
 	incremment: function(){/.../},
 	otherIncremment: function(){/.../},
 	doubleIncremment: function(){/.../}
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+}&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;通过bindActionCreator方法的绑定，每次发送Action指令时，就不必再添加调用dispatch方法，或者说通过绑定，dispatch方法会自动被调用。因此入口文件(index.js)的组件呈现部分，就可以改动如下：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;ReactDOM.render(
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;ReactDOM.render(
     &amp;lt;div&amp;gt;
       &amp;lt;Counter
         value = {state.counterReducer.value}
@@ -283,11 +365,15 @@ var boundActionCreators = bindActionCreators(actionCreators, store.dispatch)&lt;
     &amp;lt;/div&amp;gt;
     ,
     document.getElementById(&amp;#39;demo3&amp;#39;)
-  )&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+  )&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;h3&gt;结语&lt;/h3&gt;
 &lt;p&gt;Action是Redux中的核心组件，承载着指令相关的信息，创建Action的方法有两种，直接手写和通过方法返回，而redux推荐后一种方法，并且提供了bindActionCreator方法来简化Action指令发送相关的代码。&lt;/p&gt;
 &lt;p&gt;示例代码可以在&lt;a href=&quot;https://github.com/twomeetings/reduxExample&quot;&gt;此处下载&lt;/a&gt;，本文相关的代码可在目录demo3中寻找。&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Redux系列之二－Reducer的合并：combineReducers方法]]></title><description><![CDATA[前文的示例代码包含一个reducer，逻辑是state数值加1。那么当多个reducer存在时，redux是怎样在一个全局对象中管理状态的呢？现在，我们扩展例子，再添加一个Counter组件，并让两个Counter的值各自独立，相互不受影响。 代码中可以看到，第二个Counter…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/20161104-redux-part-2/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/20161104-redux-part-2/</guid><pubDate>Fri, 04 Nov 2016 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;前文的示例代码包含一个reducer，逻辑是state数值加1。那么当多个reducer存在时，redux是怎样在一个全局对象中管理状态的呢？现在，我们扩展例子，再添加一个Counter组件，并让两个Counter的值各自独立，相互不受影响。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;// index.js
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;// index.js
   ReactDOM.render(
     &amp;lt;div&amp;gt;
       &amp;lt;Counter
@@ -302,16 +388,24 @@ var boundActionCreators = bindActionCreators(actionCreators, store.dispatch)&lt;
     ,
     document.getElementById(&amp;#39;demo2&amp;#39;)
   )
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+}&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;代码中可以看到，第二个Counter组件点击时，发送的Action类型和第一个不同，因为redux的机制，对Action多逻辑处理都放在在了Reducer中。在之前的reducer.js文件中，只有一个方法counterReducer，并且通过ES6语法将全局state初始化成了数值0，代码如下：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;function counterReducer(state = 0, action){
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;function counterReducer(state = 0, action){
   // ...
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+}&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;blockquote&gt;
 &lt;p&gt;关于ES6中对方法参数的初始化写法，可参考阮一峰老师的&lt;a href=&quot;http://es6.ruanyifeng.com/&quot;&gt;ES6入门&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;记录多个值需要用到对象或数组，而常见的写法是将全局state当作对象，因此原方法counterReducer的逻辑需做修改，用state对象的value属性来记录数值。对于第二个组件，用otherValue属性来记录对应的值，这样可以保证两个组件不会冲突，代码如下：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;function counterReducer(state = { value:0, otherValue:0 }, action){
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;function counterReducer(state = { value:0, otherValue:0 }, action){
   state.value =  state.value || 0;
   switch (action.type) {
     case &amp;#39;INCREMENT&amp;#39;:
@@ -323,17 +417,25 @@ var boundActionCreators = bindActionCreators(actionCreators, store.dispatch)&lt;
     default:
       return state;
   }
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+}&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;此时的全局变量state结构如下：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;{
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;{
 	value:0,
 	otherValue:0
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+}&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;编译后页面如下：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;http://7xtbg7.com2.z0.glb.clouddn.com/redux2-1&quot;&gt;&lt;/p&gt;
 &lt;h3&gt;conbineReducers－解决属性冲突&lt;/h3&gt;
 &lt;p&gt;在同一个reducer中，修改属性名比较容易，比如上文中，我们用不同的属性名value和otherValue避免组件的冲突。但是，项目中通常存在多个组件，这些组件相关的reducer写在不同的方法中，这种情况容易出现属性名冲突，且难以修改。比如，现在我们再引入第三个Counter组件，且该组件对应另一个reducer方法，也同样用value属性名来保存值，代码如下：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;// reducer.js
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;// reducer.js
 export function counterReducer(state = { value:0, otherValue:0}, action){
   state.value =  state.value || 0;
   switch (action.type) {
@@ -356,21 +458,33 @@ export function secondReducer(state={ value:0 }, action){
     default:
       return state;
   }
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+}&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;redux提供了conbineReducers方法来应对多个reducer合并成一个，从而解决属性名冲突的情况，用法如下：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;import {createStore, combineReducers} from &amp;#39;redux&amp;#39;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;import {createStore, combineReducers} from &amp;#39;redux&amp;#39;
 import {counterReducer, secondReducer} from &amp;#39;./reducer.js&amp;#39;
 
 var reducers=combineReducers({counterReducer,secondReducer})
 
-const store = createStore(reducers)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+const store = createStore(reducers)&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;conbineReducers在全局对象中添加了与方法名对应的属性，通过这种方法解决了冲突问题。此时全局对象state的解构如下：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;{
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;{
 	counterReducer: { value:0, otherValue:0},
 	secondReducer: { value:0 }
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+}&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;在这种情况下，组件初始化时传入的值也要加方法前缀，比如state.counterReducer.value。因此引用组件的入口文件index.js也要做相应调整，代码如下：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;ReactDOM.render(
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;ReactDOM.render(
     &amp;lt;div&amp;gt;
       &amp;lt;Counter
         value = {state.counterReducer.value}
@@ -387,7 +501,9 @@ const store = createStore(reducers)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
     &amp;lt;/div&amp;gt;
     ,
     document.getElementById(&amp;#39;demo2&amp;#39;)
-  )&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+  )&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;h3&gt;结语&lt;/h3&gt;
 &lt;p&gt;本文详细解释了当所有组件的state都放在一个全局变量时不可避免的属性名冲突问题，以及如何通过redux提供的conbineReducers方法解决此问题。&lt;/p&gt;
 &lt;p&gt;代码示例可在&lt;a href=&quot;https://github.com/twomeetings/reduxExample&quot;&gt;此处下载&lt;/a&gt;，在目录demo2中可找到本文示例。&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Redux系列之一－开篇]]></title><description><![CDATA[Redux是什么？ React的开发需要配合一种前端框架来组织代码，使得项目能易于维护和扩展。大家熟知的前端框架就是MVC，然而facebook的开发人员在尝试了React＋MVC模式之后，发现其并不适合开发大型应用，便采用了一种新的前端架构，叫Flux。 但其实，Flux…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/20160612-redux-part-1/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/20160612-redux-part-1/</guid><pubDate>Sun, 12 Jun 2016 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;Redux是什么？&lt;/h3&gt;
@@ -401,10 +517,16 @@ const store = createStore(reducers)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3&gt;简易示例&lt;/h3&gt;
 &lt;p&gt;现在让我们用redux创建一个实例，比官方示例更加简单的计数器，内容是点击一下按钮，对应的数值加1。示例的框架使用了webpack＋react＋redux的形势，如果对webpack和react不熟悉，则可以先阅读我之前所写的&lt;a href=&quot;/20150712-react-part-1&quot;&gt;react系列文章&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;搭建好项目，安装好webpack和react的相关的安装包后，要记得安装redux，命令如下：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;npm install redux --save&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;npm install redux --save&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;h3&gt;View－呈现数据&lt;/h3&gt;
 &lt;p&gt;首先我们创建一个Counter类（counter.js），用于数据呈现：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;import React, { Component, PropTypes } from &amp;#39;react&amp;#39;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;import React, { Component, PropTypes } from &amp;#39;react&amp;#39;
 
 class Counter extends Component{
   render(){
@@ -425,24 +547,40 @@ Counter.propTypes={
   handleClick: PropTypes.func.isRequired
 }
 
-export default Counter&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+export default Counter&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;Counter类的呈现逻辑中，需要用到两个属性值value和handleClick，一个是数值，一个是方法，并且用PropTypes对这两个属性做了必填的限制。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;Counter.propTypes={
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;Counter.propTypes={
   value:PropTypes.number.isRequired,
   handleClick: PropTypes.func.isRequired
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+}&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;h3&gt;Action－数据载体&lt;/h3&gt;
 &lt;p&gt;在Flux框架中，处理逻辑的部分（即MVC中的Controller）被分成了两块Action和Dispatcher。&lt;/p&gt;
 &lt;p&gt;Action时执行操作所需的数据载体，相当于传入的参数。它是一个对象，该对象必须包含一个type属性，type属性表示类型，方便dispather识别。本例中的action对象如下：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;{ type:&amp;#39;INCREMENT&amp;#39; }&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;{ type:&amp;#39;INCREMENT&amp;#39; }&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;常见的写法中，action对象不会直接编写，而是通过一个方法返回，这种方法就叫“action creator”，本例中假如采用action creator的写法会是下面这样：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;function AddCounter(){
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;function AddCounter(){
   return { type: &amp;#39;INCREMENT&amp;#39;}
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+}&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;这看似多余的一步，却可以给action带来极大的扩展性，这在后文会提及。&lt;/p&gt;
 &lt;h3&gt;Dispatcher－(Reducer)逻辑处理&lt;/h3&gt;
 &lt;p&gt;Dispatcher的作用是则是针对不同的Action做相应的逻辑处理，最终在组件的state上做相应的修改，所以Dispatcher常常是一个方法。本例中的Dispatcher创建在reducer.js文件中，内容如下。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;function counterReducer(state = 0, action){
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;function counterReducer(state = 0, action){
   switch (action.type) {
     case &amp;#39;INCREMENT&amp;#39;:
       return state + 1;
@@ -451,7 +589,9 @@ export default Counter&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
   }
 }
 
-export default counterReducer;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+export default counterReducer;&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;因为Dispatcher是根据action来操作state，所以它的常规写法是一个包含了两个参数的函数，一个是state，一个是action。
 本例中，当Dispather的逻辑是，当收到类型为INCREMENT的action时，将state加1。&lt;/p&gt;
 &lt;blockquote&gt;
@@ -459,10 +599,14 @@ export default counterReducer;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/blockquote&gt;
 &lt;h3&gt;Store－数据保存&lt;/h3&gt;
 &lt;p&gt;在Redux中，数据持久化的方式是所有的state数据都保存在一个全局对象中，这个对象就是Store。在redux中创建Store对象非常简单，利用模块方法createStore即可。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;import {createStore} from &amp;#39;redux&amp;#39;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;import {createStore} from &amp;#39;redux&amp;#39;
 import Reducer from &amp;#39;./reducer.js&amp;#39;
 
-const store = createStore(Reducer)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+const store = createStore(Reducer)&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;可以看到createstore方法的参数是我们上节中定义的Reducer(即Dispatcher)，所以Dispather和Store是挂靠在一起的。&lt;/p&gt;
 &lt;p&gt;当有action传入时，Store会依次遍历自身所有的Reducer，根据type做相应处理，并将修改后的值保存在全局state对象中。&lt;/p&gt;
 &lt;p&gt;Store对象有三个方法，就是用来完成上述工作：&lt;/p&gt;
@@ -472,7 +616,9 @@ const store = createStore(Reducer)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;li&gt;subscribe。 －订阅事件，当state更新时，刷新对应的组件&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;本例中与Store这三个方法的相关代码如下：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;import React from &amp;#39;react&amp;#39;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;import React from &amp;#39;react&amp;#39;
 import ReactDOM from &amp;#39;react-dom&amp;#39;
 import {createStore} from &amp;#39;redux&amp;#39;
 
@@ -492,22 +638,34 @@ function customRender(){
 }
 
 customRender()
-store.subscribe(customRender)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+store.subscribe(customRender)&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;h3&gt;结语&lt;/h3&gt;
 &lt;p&gt;本系列的示例代码可在&lt;a href=&quot;https://github.com/twomeetings/reduxExample&quot;&gt;此处&lt;/a&gt;下载，本文代码在目录demo1中。&lt;/p&gt;</content:encoded></item><item><title><![CDATA[React系列之八－组件的生命周期]]></title><description><![CDATA[在系列文章第三篇中，我们谈到了组件的事件，但只提到了其中两个事件方法，其实react组件的事件方法并不多，总共只有7个，如下： 所有的这些事件拼成了react组件的生命周期，那么，在整个生命周期中，这些事件的顺序是怎样的？本文中，我创建一个示例，通过在每个事件中用console…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/20160406-react-part-8/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/20160406-react-part-8/</guid><pubDate>Wed, 06 Apr 2016 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;在&lt;a href=&quot;/20151108-react-part-3&quot;&gt;系列文章第三篇&lt;/a&gt;中，我们谈到了组件的事件，但只提到了其中两个事件方法，其实react组件的事件方法并不多，总共只有7个，如下：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;componentWillMount
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;componentWillMount
 componentDidMount
 componentWillReceiveProps
 shouldComponentUpdate
 componentWillUpdate
 componentDidUpdate
-componentWillUnmount&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+componentWillUnmount&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;所有的这些事件拼成了react组件的生命周期，那么，在整个生命周期中，这些事件的顺序是怎样的？本文中，我创建一个示例，通过在每个事件中用console.log输出信息到控制台，来查看执行顺序，代码如下：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;componentWillMount(){
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;componentWillMount(){
     console.log(&amp;#39;componentWillMount&amp;#39;);
-  }&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+  }&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;然后创建一个类似&lt;a href=&quot;/20150721-react-part-2&quot;&gt;系列文章第二篇&lt;/a&gt;中的组件，可以通过选中下拉框，来改变组件本身的state，这也就可以观察到组件初始化时和状态改变时，两种状态下的生命周期。现在，创建index.js，基本代码如下：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;import React, { Component } from &amp;#39;react&amp;#39;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;import React, { Component } from &amp;#39;react&amp;#39;
 import ReactDOM from &amp;#39;react-dom&amp;#39;
 
 class SimpleComponent extends Component{
@@ -535,21 +693,31 @@ class SimpleComponent extends Component{
   }
   
   /.../
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+}&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;blockquote&gt;
 &lt;p&gt;这里为了让代码简洁，为省略了只有console.log的7个事件方法，详情可在代码示例中查看。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;编译后页面如图所示：
-&lt;code class=&quot;language-text&quot;&gt;图片&lt;/code&gt;&lt;/p&gt;
+&lt;code&gt;图片&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;现在，我们观察浏览器控制台，当页面初始化时，我们得到信息如下，可以看到加上render方法，只有3个事件方法被触发：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;componentWillMount
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;componentWillMount
 render
-componentDidMount&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+componentDidMount&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;然后，选中下拉框来修改组件state状态，得到如下信息：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;shouldComponentUpdate
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;shouldComponentUpdate
 componentWillUpdate
 render
-componentDidUpdate&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+componentDidUpdate&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;h3&gt;复杂组件的生命周期&lt;/h3&gt;
 &lt;p&gt;从上文到演示中可以看到单个组件初始化和状态改变时的生命周期，但奇怪的是，7个生命周期事件中，只有5个被触发，另外两个在什么情况下才会触发呢？&lt;/p&gt;
 &lt;p&gt;现在我们将组件设计的复杂一些，结合&lt;a href=&quot;/20160328-react-part-7&quot;&gt;系列文章第七篇&lt;/a&gt;中的容器组件和呈现组件的例子，当用户选择了下拉框之后，根据选中内容请求豆瓣图书API获取图书，再将书名呈现出来。在这样的情况下，我们观察一下容器组件和呈现组件的生命周期会是怎样的。&lt;/p&gt;
@@ -562,7 +730,9 @@ componentDidUpdate&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3&gt;结语&lt;/h3&gt;
 &lt;p&gt;本文代码可在&lt;a href=&quot;https://github.com/twomeetings/reactExamples&quot;&gt;示例代码&lt;/a&gt;中的demo8目录中查询。&lt;/p&gt;</content:encoded></item><item><title><![CDATA[React系列之七－组件间的通信－呈现组件和容器组件]]></title><description><![CDATA[在React中有一种常用的的设计模式，就是将组件分为呈现组件(presentatial component)和容器组件(container component),它们和MVC框架概念中的V和C…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/20160328-react-part-7/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/20160328-react-part-7/</guid><pubDate>Mon, 28 Mar 2016 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;在React中有一种常用的的设计模式，就是将组件分为呈现组件(presentatial component)和容器组件(container component),它们和MVC框架概念中的V和C很相似，呈现组件只负责呈现数据，而容器组件负责逻辑的处理。&lt;/p&gt;
 &lt;p&gt;现在我们创建一个示例，像&lt;a href=&quot;/20151108-react-part-3&quot;&gt;系列文章第三篇&lt;/a&gt;的例子那样调用豆瓣图书API获取信息，然后将信息呈现在页面上。首先，我们将所有逻辑写在一起，创建index.js，内容如下：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;import React, { Component} from &amp;#39;react&amp;#39;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;import React, { Component} from &amp;#39;react&amp;#39;
 import ReactDOM from &amp;#39;react-dom&amp;#39;
 
 class BookListContainer extends Component{
@@ -594,13 +764,17 @@ class BookListContainer extends Component{
 ReactDOM.render(
   &amp;lt;BookListContainer /&amp;gt;,
   document.getElementById(&amp;#39;demo7&amp;#39;)
-)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+)&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;编译后，呈现页面如下：&lt;/p&gt;
-&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;页面图片&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;页面图片&lt;/code&gt;&lt;/p&gt;
 &lt;h2&gt;代码解析&lt;/h2&gt;
 &lt;p&gt;BookListContainer组件的作用是，在组件初始化完毕后，异步请求豆瓣图书API，以nodejs为关键字，搜索相关图书，并最后用html标签将数据呈现在页面上。&lt;/p&gt;
 &lt;p&gt;如果按照功能划分的话，BookListContainer组件只做了两件事：获取数据和呈现数据。两种功能放在同一个组件会导致组件的复用性受到限制，因此，我们现在按照设计模式，将BookListContainer组件中呈现数据的部分抽离出来，作为一个单独的组件，叫BookListPresentation，代码如下：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;class BookListPresentation extends Component {
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;class BookListPresentation extends Component {
   render(){
       var books = this.props.books;
       return (
@@ -609,19 +783,29 @@ ReactDOM.render(
         &amp;lt;/ul&amp;gt;
       )
   }
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+}&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;因此BookListContainer对render方法就不必再负责呈现逻辑，直接使用BookListPresentation组件：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;render(){
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;render(){
     return(
       &amp;lt;BookListPresentation books={this.state.books} /&amp;gt;
     )
-  }&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+  }&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;这样做可以让呈现组件能复用在其他地方，假如呈现逻辑改变了，直接替换掉呈现组件就可以了，这也一定程度上保证了容器组件的复用。&lt;/p&gt;
 &lt;p&gt;而且，由于将呈现逻辑抽离，呈现组件内部不需要用到state或其他复杂的功能，正好适用&lt;a href=&quot;/20160316-react-part-6&quot;&gt;前文提过的stateless写法&lt;/a&gt;，从而进一步减少代码量，提高效率。比如此处BookListPresentation可改写为如下内容：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;var BookListPresentation = ({ books })=&amp;gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;var BookListPresentation = ({ books })=&amp;gt;
     &amp;lt;ul&amp;gt;
       {books.map(e=&amp;gt;&amp;lt;li key={e.id}&amp;gt;{e.title}&amp;lt;/li&amp;gt;)}
-    &amp;lt;/ul&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+    &amp;lt;/ul&amp;gt;&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;h4&gt;结语&lt;/h4&gt;
 &lt;p&gt;将组件中的呈现逻辑和数据业务逻辑分离开来，可以很大程度上提高组件的复用性，而且让不需要复杂功能的呈现组件可以充分利用react特性和ES6语法糖减少代码量，提高效率。&lt;/p&gt;
 &lt;p&gt;本文的示例可在&lt;a href=&quot;https://github.com/twomeetings/reactExamples&quot;&gt;示例代码&lt;/a&gt;的demo7目录中查阅。&lt;/p&gt;
@@ -632,7 +816,9 @@ ReactDOM.render(
 &lt;/ol&gt;</content:encoded></item><item><title><![CDATA[React系列之六－stateless组件的写法]]></title><description><![CDATA[函数就是stateless组件 前文介绍了编写react组件的两种写法，React写法和ES6写法，除此之外还有一种编写组件的写法，而这种写法编写的组件会略有不同，这样的组件叫stateless组件。顾名思义，stateless…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/20160316-react-part-6/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/20160316-react-part-6/</guid><pubDate>Wed, 16 Mar 2016 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;函数就是stateless组件&lt;/h3&gt;
 &lt;p&gt;前文介绍了编写react组件的两种写法，React写法和ES6写法，除此之外还有一种编写组件的写法，而这种写法编写的组件会略有不同，这样的组件叫stateless组件。顾名思义，stateless组件就是没有状态的组件，这种组件的写法基本等同于javascript的函数，函数的参数就是组件的props属性。&lt;/p&gt;
 &lt;p&gt;现在我们用这种写法重写&lt;a href=&quot;/20150712-react-part-1&quot;&gt;系列文章第一篇&lt;/a&gt;的示例，添加index.js文件，内容如下：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;import React from &amp;#39;react&amp;#39;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;import React from &amp;#39;react&amp;#39;
 import ReactDOM from &amp;#39;react-dom&amp;#39;
 
 function HelloMessage(props){
@@ -642,43 +828,75 @@ function HelloMessage(props){
 ReactDOM.render(
   &amp;lt;HelloMessage name=&amp;quot;Jacky&amp;quot; year=&amp;#39;2016&amp;#39;/&amp;gt;,
   document.getElementById(&amp;#39;demo6&amp;#39;)
-)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+)&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;代码中可以看到，HelloMessage组件就是函数HelloMessage，函数的返回值就是组件要呈现的内容，等同于组件的render方法。与返回值与以往函数的区别是：字符串作为其返回值不是用引号包裹，而是括号。&lt;/p&gt;
 &lt;p&gt;函数的参数就是组件的props，而这种组件不支持state，这也是组件名称的由来。除此之外，这种组件不支持ref属性，没有组件生命周期相关的事件方法，但支持propTypes，写法和&lt;a href=&quot;/20160301-react-part-5&quot;&gt;ES6组件写法&lt;/a&gt;)一样。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;HelloMessage.propType = { name: Proptypes.string.isRequired}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;HelloMessage.propType = { name: Proptypes.string.isRequired}&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;因此，这种组件的作用就是用来简单的呈现数据，最大的特点就是编写方便。&lt;/p&gt;
 &lt;h3&gt;箭头函数&lt;/h3&gt;
 &lt;p&gt;在ES6的语法里，函数可以有一种写法叫箭头函数，比如上面的HelloMessage组件箭头函数编写后，代码如下：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;var HelloMessage=(props)=&amp;gt;{
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;var HelloMessage=(props)=&amp;gt;{
   return (&amp;lt;div&amp;gt;Hello {props.name}, {props.year}!&amp;lt;/div&amp;gt;)
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+}&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;而且箭头函数可以进一步简化：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;var HelloMessage=(props)=&amp;gt; &amp;lt;div&amp;gt;Hello {props.name}, {props.year}!&amp;lt;/div&amp;gt;;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;var HelloMessage=(props)=&amp;gt; &amp;lt;div&amp;gt;Hello {props.name}, {props.year}!&amp;lt;/div&amp;gt;;&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;可以看到stateless组件的写法是三种写法里最简洁的。&lt;/p&gt;
 &lt;h3&gt;解构赋值&lt;/h3&gt;
 &lt;p&gt;解构是ES6的新赋值语法，变量可以通过解构赋值，简单来说就是可以从对象中抽取值给变量。像下面代码这样，变量a和b可以直接从obj对象中提取属性值，前者等于name，后者等于year。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;var obj={name: &amp;#39;jacky&amp;#39;, year:2016 }
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;var obj={name: &amp;#39;jacky&amp;#39;, year:2016 }
  var {name:a, year:b} = obj;
  console.log(a); // jacky
- console.log(b); // 2016&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ console.log(b); // 2016&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;通过解构给变量赋值，需要被包裹在花括号内。且当变量名和对象的属性名一样时，语法可以进一步简化，如下，变量name和year直接就被赋了obj的属性name和year的值：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;var obj={name: &amp;#39;jacky&amp;#39;, year:2016 }
-var {name, year} = obj;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;var obj={name: &amp;#39;jacky&amp;#39;, year:2016 }
+var {name, year} = obj;&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;blockquote&gt;
 &lt;p&gt;解构也可以用在数组，关于解构的详细的说明可以在阮一峰老师的文章：&lt;a href=&quot;http://es6.ruanyifeng.com/#docs/destructuring&quot;&gt;ECMAScript6入门&lt;/a&gt;里查看。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;当解构和箭头函数组合在一起时，我们的stateless组件的写法可以做进一步的改变：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;var HelloMessage=({name, year})=&amp;gt; &amp;lt;div&amp;gt;Hello {name}, {year}!&amp;lt;/div&amp;gt;;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;var HelloMessage=({name, year})=&amp;gt; &amp;lt;div&amp;gt;Hello {name}, {year}!&amp;lt;/div&amp;gt;;&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;可以看到解构赋值直接用在了函数的第一个参数，props的name和year属性被赋给了name和year变量。&lt;/p&gt;
 &lt;p&gt;注意，这种简化的解构写法中，变量名一定要和对象对属性名一致，而正常的函数的参数名可以使任意的字符串，比如原写法里的props参数就可以换成任何p，或任何想要的名字。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;var HelloMessage=(p)=&amp;gt; &amp;lt;div&amp;gt;Hello {p.name}, {p.year}!&amp;lt;/div&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;var HelloMessage=(p)=&amp;gt; &amp;lt;div&amp;gt;Hello {p.name}, {p.year}!&amp;lt;/div&amp;gt;&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;因此，当看到一个箭头函数时，判断其参数是否使用解构显得格外重要。判断的依据就是，解构变量需要被包含在花括号内。&lt;/p&gt;
 &lt;h3&gt;本文示例&lt;/h3&gt;
 &lt;p&gt;本文的示例可以在&lt;a href=&quot;https://github.com/twomeetings/reactExamples&quot;&gt;示例代码&lt;/a&gt;中的demo6目录中找到。&lt;/p&gt;</content:encoded></item><item><title><![CDATA[React系列之五－ES6语法编写组件]]></title><description><![CDATA[从前面到文章可以知道，当我们想要编写react组件时，就需要调用React.createClass方法，这是创建组件的常用方法，但除此之外，还有两种写法经常出现在开源代码中，那就是ES6写法和stateless写法。 ES6写法 顾名思义，这种就是利用ES…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/20160301-react-part-5/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/20160301-react-part-5/</guid><pubDate>Tue, 01 Mar 2016 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;从前面到文章可以知道，当我们想要编写react组件时，就需要调用React.createClass方法，这是创建组件的常用方法，但除此之外，还有两种写法经常出现在开源代码中，那就是ES6写法和stateless写法。&lt;/p&gt;
 &lt;h3&gt;ES6写法&lt;/h3&gt;
 &lt;p&gt;顾名思义，这种就是利用ES6的语法来编写组件，详细的ES6语法可参考阮一峰老师的&lt;a href=&quot;http://es6.ruanyifeng.com/&quot;&gt;ECMAScript 6入门&lt;/a&gt;，这里不再赘述。&lt;/p&gt;
 &lt;p&gt;本文用ES6写法来编写上篇文章的示例，以方便比较两者之间的不同。创建index.js，内容如下：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;import React, { Component} from &amp;#39;react&amp;#39;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;import React, { Component} from &amp;#39;react&amp;#39;
 import ReactDOM from &amp;#39;react-dom&amp;#39;
 import Mixin from &amp;#39;react-mixin&amp;#39;
 
@@ -719,56 +937,96 @@ class InputButton extends Component {
 ReactDOM.render(
   &amp;lt;InputButton /&amp;gt;,
   document.getElementById(&amp;#39;demo5&amp;#39;)
-)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+)&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;h3&gt;两种写法的区别&lt;/h3&gt;
 &lt;p&gt;可参考上篇中的写法，在这里比较两种组件写法之间的差别。为方便说明，在这里称React.createClass创建组件的写法为React写法，而利用ES6语法创建组件的写法则称为ES6写法。&lt;/p&gt;
 &lt;h4&gt;组件的声明&lt;/h4&gt;
 &lt;p&gt;在ES6写法中组件被看作是类，通过类的声明来创建组件，类必须要继承React.Component组件，类名就是要创建的组件名。因为是类，方法和属性之间不必添加逗号。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;class InputButton extends React.Component {}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;class InputButton extends React.Component {}&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;而React写法中，组件是React.createClass方法的返回值，由组件名是变量的名字。由于组件的属性和方法来自于一个对象，因此需要用逗号隔开。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;var InputButton=React.createClass({})&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;var InputButton=React.createClass({})&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;h4&gt;state的初始化&lt;/h4&gt;
 &lt;p&gt;在ES6写法中，初始化的工作要放在类的构造函数里，即constructor方法。在构造函数中，只需对this.state赋值一个对象就完成来state的初始化。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;constructor() {
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;constructor() {
     super()
     this.state={
       val:&amp;#39;&amp;#39;
     }
- }&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ }&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt; 在React写法中，初始化state则需要用getInitialState方法。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;getInitialState(){
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;getInitialState(){
    return { val: &amp;#39;&amp;#39;}
- }&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ }&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;blockquote&gt;
 &lt;p&gt;在ES6写法里，假如类有父类，则构造函数第一句必须是super()，用来初始化父类的相关信息，否则会出错。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h4&gt;props的默认值&lt;/h4&gt;
 &lt;p&gt;ES6的类声明中，无法设置props的默认值，只能在类的主体之外，使用defaultProps属性，来完成对默认值的设置。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;class InputButton extends React.Component{...}
-InputButton.defaultProps = { initialCount: 0 };&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;class InputButton extends React.Component{...}
+InputButton.defaultProps = { initialCount: 0 };&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;在React写法中，通过getDefaultProps方法来完成默认值的设置。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;	getDefaultProps(){
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;	getDefaultProps(){
 		return { initialCount: 0 };
-	}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+	}&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;h4&gt;propTypes的写法&lt;/h4&gt;
 &lt;p&gt;在&lt;a href=&quot;/20150712-react-part-1&quot;&gt;此系列文章第一篇&lt;/a&gt;)我们提到了propTypes，它可以对组件所需要的属性做验证，从而让组件的调用方了解如何正确使用该组件，当时的React写法是：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;propTypes:{
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;propTypes:{
     year: PropTypes.number.isRequired
-  }&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+  }&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;而ES6的写法与设置props的默认值类似，需要在类的主体之外，用propTypes属性来设置，写法如下：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;class InputButton extends React.Component{...}
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;class InputButton extends React.Component{...}
 InputButton.propTypes = {
 	year: PropTypes.number.isRequired
-};&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+};&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;h4&gt;对mixin的支持&lt;/h4&gt;
 &lt;p&gt;&lt;a href=&quot;/20160104-react-part-4&quot;&gt;上篇文章&lt;/a&gt;中，我们用React写法创建的组件中通过设置mixins属性，添加了mixin功能，让两个不相干的类之间也能共享属性和方法。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;var InputButton=React.createClass({
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;var InputButton=React.createClass({
   mixins:[mixinObject],
   getInitialState(){
     return { val: &amp;#39;&amp;#39;}
-  },&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+  },&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;可惜的是，ES6写法目前并不支持mixin，只能通过第三方的组件来实现mixin。本例中使用了react-mixin组件来添加mixin功能，写法如下：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;import Mixin from &amp;#39;react-mixin&amp;#39;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;import Mixin from &amp;#39;react-mixin&amp;#39;
 class InputButton extends Component {
   constructor() {
     super()
@@ -776,42 +1034,66 @@ class InputButton extends Component {
       val:&amp;#39;&amp;#39;
     }
     Mixin.onClass(InputButton, mixinObject);
-  }  &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+  }  &lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt; 除此之外，还有其他的第三方组件提供mixin功能，而且在不久的将来，ES7的语法中也会加入了对mixin的支持。所以从目前来看，当你需要mixin功能的组件时，选择React写法会比较有利。&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt; react－mixin组件的详细信息可&lt;a href=&quot;https://github.com/brigand/react-mixin&quot;&gt;点击此处查看&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h4&gt;方法绑定this&lt;/h4&gt;
 &lt;p&gt;在本例的ES6写法中，button控件的onClick事件和React写法略有不同，在方法的最后多了.bind(this)。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;&amp;lt;button onClick={this._handleClick.bind(this)}&amp;gt;go Button&amp;lt;/button&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;&amp;lt;button onClick={this._handleClick.bind(this)}&amp;gt;go Button&amp;lt;/button&amp;gt;&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;bind是javscript自带的方法，bind(this)的作用是为了让对应方法的内部实现能通过this引用到当前组件的实例。所以在本例中是为了让_handleClick方法内部能够使用this.setState方法。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;_handleClick(){
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;_handleClick(){
     this.setState({val: this._input.value})
-  }&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+  }&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;相似的写法还有this.props，this.state等等，假如组件中的方法内部通过this引用了实例的属性和方法，在ES6写法中就必须在最后添加.bind(this)，否则会出错。&lt;/p&gt;
 &lt;p&gt;React写法不需要bind(this)，因为React.createClass()会将参数对象中的所有方法都自动绑定.bind(this)，换言之，React写法也需要绑定this，但createClass帮我们做了绑定的逻辑，省去了手工编写的麻烦。&lt;/p&gt;
 &lt;p&gt;但是假如方法内部的方法也需要引用组件示例的方法（比如this.setState）该怎么办？这种情况createClass不能帮忙自动绑定，只能自己手动操作。在之前的&lt;a href=&quot;http://twomeetings.github.io/2016/03/03/React%E7%B3%BB%E5%88%97%E4%B9%8B%E4%B8%89%EF%BC%8D%E4%BA%8B%E4%BB%B6/&quot;&gt;系列文章－组件的事件&lt;/a&gt;中，有一段jQuery异步请求的代码，在回调函数中使用了this.setState，所以在方法后面添加了.bind(this)。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;$.ajax({
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;$.ajax({
         type: &amp;quot;GET&amp;quot;,
         dataType: &amp;#39;jsonp&amp;#39;,
         url: url
       }).done(function(json){
         var rating = json.rating.average;
         this.setState({rating:rating});
-      }.bind(this));&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+      }.bind(this));&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;h3&gt;示例代码&lt;/h3&gt;
 &lt;p&gt;本文的代码可查看&lt;a href=&quot;https://github.com/twomeetings/reactExamples&quot;&gt;示例代码&lt;/a&gt;的demo5目录。&lt;/p&gt;</content:encoded></item><item><title><![CDATA[webpack系列之五－与react框架结合]]></title><description><![CDATA[前四篇文章介绍了webpack基本的使用之后，这一篇逐步演示一个webpack结合react的项目，其中只包含react最基本的使用，所以没用过react的不必担心。当然，也可以通过react…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/20160226-webpack-part-5/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/20160226-webpack-part-5/</guid><pubDate>Fri, 26 Feb 2016 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;前四篇文章介绍了webpack基本的使用之后，这一篇逐步演示一个webpack结合react的项目，其中只包含react最基本的使用，所以没用过react的不必担心。当然，也可以通过&lt;a href=&quot;http://twomeetings.github.io/2016/05/08/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E6%96%87%E6%B1%87%E6%80%BB/&quot;&gt;react系列文章&lt;/a&gt;查看其用法。&lt;/p&gt;
 &lt;h3&gt;初始化项目&lt;/h3&gt;
 &lt;p&gt;首先，在一个目录下初始化项目，执行以下命令，然后一路回车到底。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;npm init&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;npm init&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;blockquote&gt;
 &lt;p&gt;初始化时不要将项目名称命名为模块名，比如react，这样会导致下面的react安装出错。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;假如没有安装过webpack的，需要先将webpack安装到全局环境，可顺便在此处连简易服务器组件webpack-dev-server一起安装，该组件说明可在&lt;a href=&quot;http://twomeetings.github.io/2016/01/05/Webpack%20%E7%B3%BB%E5%88%97%E5%BC%80%E7%AF%87%E4%B8%80/&quot;&gt;系列文章第一篇&lt;/a&gt;找到。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;npm install webpack webpack-dev-server -g&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;npm install webpack webpack-dev-server -g&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;h3&gt;添加webpack配置文件&lt;/h3&gt;
 &lt;p&gt;添加配置文件webpack.config.js,将index.js做为模块入口，且用加载器babel-loader来处理js文件，内容如下：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;module.exports={
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;module.exports={
   entry:&amp;#39;./index.js&amp;#39;,
   output:{
     path: __dirname+&amp;#39;/dist&amp;#39;,
@@ -822,29 +1104,49 @@ class InputButton extends Component {
       {test: /\.jsx?$/, loader:&amp;quot;babel&amp;quot;}
     ]
   }
-};&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+};&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;blockquote&gt;
 &lt;p&gt;配置文件内各节点的含义可查阅&lt;a href=&quot;/20160115-webpack-part-2&quot;&gt;系列文章第二篇&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3&gt;安装react相关的组件&lt;/h3&gt;
 &lt;p&gt;为了让react能运作正常，除了加载器babel-loader，还需要另外两个插件babel-preset-es2015，babel-preset-react，前者用来支持ES6语法，后者则是支持react语法，安装命令如下：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;npm install babel-loader babel-preset-es2015 babel-preset-react --save&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;npm install babel-loader babel-preset-es2015 babel-preset-react --save&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;这两个语法插件需写在配置文件中才能生效，像这样：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;{
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;{
     {test: /\.jsx?$/, loader:&amp;quot;babel&amp;quot;, query : { presets:[&amp;#39;es2015&amp;#39;,&amp;#39;react&amp;#39;]}}
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+}&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;或者也可添加一个名为.babelrc的文件，填入以下内容，编译时该文件会被自动加载。两种方法都可，这里我们采用后者。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;{
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;{
   &amp;quot;presets&amp;quot;:[&amp;quot;es2015&amp;quot;, &amp;quot;react&amp;quot;]
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+}&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;blockquote&gt;
 &lt;p&gt;假如不使用babel-preset-es2015，es6的语法（如import）将无法被识别。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;现在所有准备工作就绪，我们现在执行安装命令引入react，当前版本的react推荐使用react-dom来操作html元素，所以要一并安装&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;npm install react react-dom --save&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;npm install react react-dom --save&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;h3&gt;编写React代码&lt;/h3&gt;
 &lt;p&gt;添加入口文件index.js，编写一个名为HelloWorld的组件，在”id＝react-div”的html元素上呈现一段文字，代码如下：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;import React from &amp;#39;react&amp;#39;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;import React from &amp;#39;react&amp;#39;
 import ReactDOM from &amp;#39;react-dom&amp;#39;
 
 var HelloWorld=React.createClass({
@@ -858,13 +1160,21 @@ var HelloWorld=React.createClass({
 ReactDOM.render(
   &amp;lt;HelloWorld /&amp;gt;,
   document.getElementById(&amp;#39;react-div&amp;#39;)
-)	&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+)	&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;现在只需一个包含id为react-div元素的html页面就可以看到最终效果，我们可以手动添加，也可以利用&lt;a href=&quot;/20160119-webpack-part-3&quot;&gt;系列文章第三篇&lt;/a&gt;中谈及的模板插件来创建页面。&lt;/p&gt;
 &lt;h3&gt;模版插件添加HTML页面&lt;/h3&gt;
 &lt;p&gt;安装模版插件html-webpack-plugin，因为其依赖webpack，所以要一并安装，执行命令如下：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;npm install webpack html-webpack-plugin --save&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;npm install webpack html-webpack-plugin --save&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;修改配置文件为如下所示：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;var HtmlWebpackplugin=require(&amp;#39;html-webpack-plugin&amp;#39;);
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;var HtmlWebpackplugin=require(&amp;#39;html-webpack-plugin&amp;#39;);
 
 module.exports={
   entry:{
@@ -882,9 +1192,13 @@ module.exports={
   plugins:[
     new HtmlWebpackplugin({title:&amp;#39;Index Page&amp;#39;, template:&amp;#39;template.html&amp;#39;, filename:&amp;#39;index.html&amp;#39;, chunks:[&amp;#39;index&amp;#39;]})
   ]
-};&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+};&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;添加模板文件template.html:&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;
 &amp;lt;html&amp;gt;
   &amp;lt;head&amp;gt;
     &amp;lt;meta charset=&amp;quot;utf-8&amp;quot;&amp;gt;
@@ -893,66 +1207,134 @@ module.exports={
   &amp;lt;body&amp;gt;
     &amp;lt;div id=&amp;#39;react-div&amp;#39;&amp;gt;&amp;lt;/div&amp;gt;
   &amp;lt;/body&amp;gt;
-&amp;lt;/html&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&amp;lt;/html&amp;gt;&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;执行编译命令：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;webpack&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;webpack&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;编译成功后，再执行下面命令启动简易服务器。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;webpack-dev-server&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;webpack-dev-server&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;最后，就可以通过浏览器访问服务器默认地址 &lt;a href=&quot;http://localhost:8080/webpack-dev-server/&quot;&gt;http://localhost:8080/webpack-dev-server/&lt;/a&gt; 查看效果。&lt;/p&gt;
 &lt;h3&gt;示例代码&lt;/h3&gt;
 &lt;p&gt;这样一个webpack和react相结合的项目就搭建完成，假如你按上面步骤操作碰到了问题，可直接到&lt;a href=&quot;https://github.com/twomeetings/webpackAndReact&quot;&gt;这里&lt;/a&gt;下载示例代码。&lt;/p&gt;</content:encoded></item><item><title><![CDATA[webpack系列之四－资源文件的整合]]></title><description><![CDATA[css的提取和合并 在webpack模版插件下，可以对css做提取和合并成一个文件，从而达到优化性能和方便管理的目的。比如我们现在需要index.js文件中引入两个css文件： 提取和合并的工作就需要用到插件‘extract-text-webpack-plugin…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/20160208-webpack-part-4/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/20160208-webpack-part-4/</guid><pubDate>Mon, 08 Feb 2016 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;css的提取和合并&lt;/h3&gt;
 &lt;p&gt;在webpack模版插件下，可以对css做提取和合并成一个文件，从而达到优化性能和方便管理的目的。比如我们现在需要index.js文件中引入两个css文件：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;require(&amp;#39;./main.css&amp;#39;);
-require(&amp;#39;./common.css&amp;#39;);&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;require(&amp;#39;./main.css&amp;#39;);
+require(&amp;#39;./common.css&amp;#39;);&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;提取和合并的工作就需要用到插件‘extract-text-webpack-plugin’，安装代码如下：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;npm install extract-text-webpack-plugin --save-dev&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;npm install extract-text-webpack-plugin --save-dev&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;首先在配置文件中该插件，并创建一个实例。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;var ExtractTextWebpackPlugin=require(&amp;#39;extract-text-webpack-plugin&amp;#39;);
-var extractCss = new ExtractTextWebpackPlugin(&amp;#39;[name].css&amp;#39;);&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;var ExtractTextWebpackPlugin=require(&amp;#39;extract-text-webpack-plugin&amp;#39;);
+var extractCss = new ExtractTextWebpackPlugin(&amp;#39;[name].css&amp;#39;);&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;blockquote&gt;
 &lt;p&gt;[name]类似output配置节中的变量，等于对应模块的名称，其他几个变量可在&lt;a href=&quot;https://github.com/webpack/extract-text-webpack-plugin&quot;&gt;对应网站&lt;/a&gt;查询&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;然后，我们需要修改module的loaders配置节中针对css文件的部分，如下：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;{test: /\.css$/, loader: extractCss.extract(&amp;#39;style&amp;#39;,&amp;#39;css&amp;#39;)}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;{test: /\.css$/, loader: extractCss.extract(&amp;#39;style&amp;#39;,&amp;#39;css&amp;#39;)}&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;最后在plugins配置节加入这个插件的实例。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;plugins:[
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;plugins:[
 	...,
 	extractCss,
 	...
-]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+]&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;运行编译命令：webpack。编译后的文件就多来一个index.css,这个文件的内容合并main.css和common.css的内容。而且模版生成的html页面里，head标签自动加入了css引用的代码，省去了手工处理的麻烦，如下：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;&amp;lt;head&amp;gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;&amp;lt;head&amp;gt;
     &amp;lt;meta charset=&amp;quot;utf-8&amp;quot;&amp;gt;
     &amp;lt;title&amp;gt;&amp;lt;/title&amp;gt;
   &amp;lt;link href=&amp;quot;index.css&amp;quot; rel=&amp;quot;stylesheet&amp;quot;&amp;gt;&amp;lt;/head&amp;gt;
-  &amp;lt;body&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+  &amp;lt;body&amp;gt;&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;如前面提到的，通过这样的处理不但让css文件方便管理之外，还减少了请求次数，提高了性能。&lt;/p&gt;
 &lt;p&gt;css和img的抽取&lt;/p&gt;
 &lt;h3&gt;图片的提取&lt;/h3&gt;
 &lt;p&gt;假如项目中需要用到图片该怎么处理呢？比如现在我们在模版文件用img标签来引入一张图片。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;&amp;lt;img src=&amp;quot;./image/what-is-webpack.png&amp;quot; /&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;&amp;lt;img src=&amp;quot;./image/what-is-webpack.png&amp;quot; /&amp;gt;&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;现在在项目下添加img目录，并在其中放入一张图片(what-is-webpack.png)。然后我们在index.js这个入口文件加入引用代码。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;import &amp;#39;./imgs/what-is-webpack.png&amp;#39;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;import &amp;#39;./imgs/what-is-webpack.png&amp;#39;&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;然后我们用最基本的文件加载器file-loader处理图片，安装命令如下:&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;npm install file-loader --save-dev&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;npm install file-loader --save-dev&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;然后在配置文件的module字段区域添加如下代码，其中name=[name].[ext]表示编译时命名文件的规则。 &lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;{test: /\.png$/, loader:&amp;#39;file?name=[name].[ext]&amp;#39;}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;{test: /\.png$/, loader:&amp;#39;file?name=[name].[ext]&amp;#39;}&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;blockquote&gt;
 &lt;p&gt; [name]和[ext]是其内置的变量，除此之外还有[path]，[hash]等，详细的说明可到&lt;a href=&quot;https://github.com/webpack/file-loader&quot;&gt;对应网站&lt;/a&gt;查询&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;执行webpack命令进行编译，图片就会出现在发布目录下。假如你想把图片放在某个目录下，只要像下面代码，在前面加目录名就行了。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;{test: /\.png$/, loader:&amp;#39;file?name=image/[name].[ext]&amp;#39;}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;{test: /\.png$/, loader:&amp;#39;file?name=image/[name].[ext]&amp;#39;}&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;h3&gt;示例代码如下&lt;/h3&gt;
 &lt;p&gt;本文代码可在&lt;a href=&quot;https://github.com/twomeetings/webpackPluginExtension&quot;&gt;此处&lt;/a&gt;查看。&lt;/p&gt;</content:encoded></item><item><title><![CDATA[webpack系列之三 - 插件的使用]]></title><description><![CDATA[webpack框架内置了20多种插件，除此之外的开源社区也存在很多优秀的第三方插件，利用这些插件可以轻松扩展webpack到功能，给使用者带来极大的便利。 在web开发中，模版文件基本不可或缺，它抽取出通用部分，为编写代码节省了大量的时间。在webpack…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/20160119-webpack-part-3/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/20160119-webpack-part-3/</guid><pubDate>Tue, 19 Jan 2016 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;webpack框架内置了20多种插件，除此之外的开源社区也存在很多优秀的第三方插件，利用这些插件可以轻松扩展webpack到功能，给使用者带来极大的便利。&lt;/p&gt;
 &lt;p&gt;在web开发中，模版文件基本不可或缺，它抽取出通用部分，为编写代码节省了大量的时间。在webpack中也有模版文件的功能，不过它是通过第三方插件来实现的，这个插件叫HtmlWebpackPlugin。可通过下面命令安装：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;npm install html-webpack-plugin --save&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;npm install html-webpack-plugin --save&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;现在我们通过这个插件来创建index页面。先在一个目录下初始化项目:&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;npm init&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;npm init&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;然后创建一个模块入口文件index.js。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;// add index.js
-console.log(&amp;#39;index&amp;#39;)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;// add index.js
+console.log(&amp;#39;index&amp;#39;)&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;然后我们来创建模版文件template.html。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;
 &amp;lt;html&amp;gt;
   &amp;lt;head&amp;gt;
     &amp;lt;meta charset=&amp;quot;utf-8&amp;quot;&amp;gt;
@@ -963,9 +1345,13 @@ console.log(&amp;#39;index&amp;#39;)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
     	&amp;lt;h2&amp;gt;&amp;lt;%- htmlWebpackPlugin.options.title %&amp;gt;&amp;lt;/h2&amp;gt;
     &amp;lt;/div&amp;gt;
   &amp;lt;/body&amp;gt;
-&amp;lt;/html&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&amp;lt;/html&amp;gt;&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;模版文件中有一句表达式&amp;#x3C;%- htmlWebpackPlugin.options.title %&gt;，用来显示某个对象点title属性，这个属性就来自于webpack与HtmlWebpackPlugin插件相关的配置节点。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;// 创建 webpack.config.js
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;// 创建 webpack.config.js
 module.exports={
  entry:&amp;#39;./index.js&amp;#39;,
  output:{
@@ -975,27 +1361,49 @@ module.exports={
  plugins:[
  	new HtmlWebpackPlugin({title:&amp;#39;Index Page&amp;#39;,template:&amp;#39;template.html&amp;#39;,filename:&amp;#39;index.html&amp;#39;, chunks:[&amp;#39;index&amp;#39;]})
  ]
-};&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+};&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;可以看到对应的index模块中模版插件的title值为‘Index Page’。&lt;/p&gt;
 &lt;p&gt;现在执行编译命令：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;webpack&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;webpack&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;当前目录下生成index.html文件，用浏览器打开如下：&lt;/p&gt;
 &lt;h3&gt;添加新的页面&lt;/h3&gt;
 &lt;p&gt;在当前模版下，添加页面变的容易许多，比如我们添加的页面叫basic。首先添加模版入口文件basic.js，内容如下：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;console.log(&amp;#39;basic&amp;#39;)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;console.log(&amp;#39;basic&amp;#39;)&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;之后修改配置文件的entry属性，加入basic模块。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;entry:{
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;entry:{
 	index: &amp;#39;./index.js&amp;#39;,
 	basic: &amp;#39;./basic.js&amp;#39;
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+}&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;然后添加一个新的HtmlWebPackPlugin插件给basic模块。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;plugins:[
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;plugins:[
   	new HtmlWebpackPlugin({title:&amp;#39;Index Page&amp;#39;,template:&amp;#39;template.html&amp;#39;,filename:&amp;#39;index.html&amp;#39;, chunks:[&amp;#39;index&amp;#39;]})
   ],
   	new HtmlWebpackPlugin({title:&amp;#39;Basic Page&amp;#39;,template:&amp;#39;template.html&amp;#39;,filename:&amp;#39;basic.html&amp;#39;, chunks:[&amp;#39;basic&amp;#39;]})
-  ]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+  ]&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;执行编译命令：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;webpack&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;webpack&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;这样以basic.js为模块的basic.html页面就添加好了。&lt;/p&gt;
 &lt;h3&gt;模板变量&lt;/h3&gt;
 &lt;p&gt;该模板插件中内置了一些变量，可以通过“&amp;#x3C;%= %&gt;”来引用，当需要对变量中的内容编码时，可以使用“&amp;#x3C;%- %&gt;”。具体的模版属性可以访问&lt;a href=&quot;https://github.com/ampedandwired/html-webpack-plugin&quot;&gt;此处&lt;/a&gt;查看官方说明。&lt;/p&gt;
@@ -1005,7 +1413,9 @@ module.exports={
 &lt;h3&gt;示例代码&lt;/h3&gt;
 &lt;p&gt;本文相关代码可在&lt;a href=&quot;https://github.com/twomeetings/webpackPluginExtension&quot;&gt;此处&lt;/a&gt;查询。&lt;/p&gt;</content:encoded></item><item><title><![CDATA[webpack系列之二 - 配置文件解析]]></title><description><![CDATA[使用配置文件是webpack的基本用法，默认的配置文件名是webpack.config.js，只需把这个文件创建在根目录下，webpack编译时就会自动加载。 在开篇文章里，一个简单示例展示了webpack…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/20160115-webpack-part-2/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/20160115-webpack-part-2/</guid><pubDate>Fri, 15 Jan 2016 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;使用配置文件是webpack的基本用法，默认的配置文件名是webpack.config.js，只需把这个文件创建在根目录下，webpack编译时就会自动加载。&lt;/p&gt;
 &lt;p&gt;在开篇文章里，一个简单示例展示了webpack的基本机制和运作方式，例子中的配置文件内容如下：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;module.exports={
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;module.exports={
   entry:&amp;#39;./entry.js&amp;#39;,
   output:{
     path: __dirname,
@@ -1016,11 +1426,15 @@ module.exports={
       {test: /\.css$/, loader:&amp;quot;style!css&amp;quot;}
     ]
   }
-};&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+};&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;通过这配置文件，webpack将entry.js当作入口文件，无论其内部引用了多少js文件，jquery，angularJS，react等等，最终都会被编译并重命名为一个单独文件bundle.js, 这个单独的文件即被视为模块(在webpack中被称为chunk)。&lt;/p&gt;
 &lt;h3&gt;配置字段：entry&lt;/h3&gt;
 &lt;p&gt;entry可以接受三种形式的赋值，一个字符串，一个字符串数组或者一个对象。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;//字符串
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;//字符串
 entry:&amp;#39;./entry.js&amp;#39;
 
 //字符串数组
@@ -1030,14 +1444,20 @@ entry:[&amp;#39;./entry1.js&amp;#39;,&amp;#39;./entry2.js&amp;#39;,&amp;#39;./en
 entry:{
 	name1:&amp;#39;./entry1.js&amp;#39;,
 	name2:&amp;#39;./entry2.js&amp;#39;
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+}&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;它们的区别是，第一种的模块名等于没有后缀的文件名，即entry。第二种会将数组中的文件全部编译到一个文件中，以最后一个文件名来命名模块名。第三种则是根据对象的字段，一个属性名对应一个模块，且属性名为模块名，上面的例子中会生成两个模块name1和name2.&lt;/p&gt;
 &lt;h3&gt;配置字段：output&lt;/h3&gt;
 &lt;p&gt;output用来决定输出模块的信息，比如目录或者名称。下面的代码将模块文件命名为bundle.js，并放置到当前目录下。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;output:{
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;output:{
     path: __dirname,
     filename: &amp;quot;bundle.js&amp;quot;
-  }&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+  }&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;blockquote&gt;
 &lt;p&gt;__dirname是nodejs中的常量，表示当前目录&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -1050,61 +1470,109 @@ entry:{
 &lt;li&gt;chunkhash&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;这些变量因其对应的不同模块而不同，使用时需要放到方括号中，如[id].js,[name]_bundle.js,比如下面的示例：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;entry:｛
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;entry:｛
 	name1: &amp;#39;./entry1.js&amp;#39;,
 	name2: &amp;#39;./entry1.js&amp;#39;
 ｝,
   output:{
     path: __dirname,
     filename: &amp;quot;[name]_bundle.js&amp;quot;
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+}&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;上面的配置最终会在当前目录下生成两个模块文件name1&lt;em&gt;bundle.js和name2&lt;/em&gt;bundle.js。
 你可以将四个变量都写在一起，用来查看分别代表什么值。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;filename: [id]_[name]_[hash]_[chunkhash].js&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;filename: [id]_[name]_[hash]_[chunkhash].js&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;除此之外output还有一个较常用的的字段是publicPath,用于指定文件或图片的相对路径，用于网站对访问，有别于path字段，因为后者是本地硬盘的存储路径。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;	output:{
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;	output:{
 		path:&amp;#39;/home/project/assets/&amp;#39;,
 		publicPath:&amp;#39;/assets/&amp;#39;
-	}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;&amp;lt;img src=&amp;#39;/assets/pic.gif&amp;#39;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+	}&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;&amp;lt;img src=&amp;#39;/assets/pic.gif&amp;#39;&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;在output中，除了path, filename, publicPath这三个常见字段外，还有十多个不常用的字段，在此不细说，可查阅其&lt;a href=&quot;http://www.google.com&quot;&gt;官方网站对应页面&lt;/a&gt;。&lt;/p&gt;
 &lt;h3&gt;配置字段：module&lt;/h3&gt;
 &lt;p&gt;module字段最核心的属性就是loaders，利用nodejs庞大的插件库，可以方便的引入专门模块来处理特殊文件，比如例子中对css文件和相应语法的处理。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;module:{
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;module:{
     loaders:[
       {test: /\.css$/, loader:&amp;quot;style!css&amp;quot;}
     ]
-  }&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+  }&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;loaders字段接受一个数组，数组中是包含指定字段的对象。其中test值是正则表达式，用来定位什么样的文件，例中/.css$/代表以.css结尾的文件。&lt;/p&gt;
 &lt;p&gt;loader表示加载器，或者叫加载模块。通常这种模块是以loader为后缀，给loader字段赋值时，可以用全名，也可省略后缀。比如style和css的全名是style-loader和css-loader，可用下面的命令来安装：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;npm install css-loader style-loader --save&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;npm install css-loader style-loader --save&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;loader:‘style!css’表示将css和style两种加载器放到一起处理，多个加载器之间用感叹号隔开是其指定的语法，也可分开书写，便于理解。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;{test: /\.css$/ , loaders:[&amp;#39;style&amp;#39;,&amp;#39;css&amp;#39;]}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;{test: /\.css$/ , loaders:[&amp;#39;style&amp;#39;,&amp;#39;css&amp;#39;]}&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;blockquote&gt;
 &lt;p&gt;分开写在数组中需要把字段loader改成loaders&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;除此之外include和exclude也是常用的两个字段，include用来指定目录，exclude用来排除目录。当项目不断变大，模块不断变多时，模块加载器要遍历的文件也越来越多，除了导致编译速度变慢外，有时还会因为加载了不该加载的文件而报错，因此限制文件目录就变的很重要。下面的代码表示只处理app/src目录下的css文件。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;{test:/\.css$/, loaders:[&amp;#39;style&amp;#39;,&amp;#39;css&amp;#39;], include:path.resolve(__dirname,&amp;quot;app/src&amp;quot;)}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;{test:/\.css$/, loaders:[&amp;#39;style&amp;#39;,&amp;#39;css&amp;#39;], include:path.resolve(__dirname,&amp;quot;app/src&amp;quot;)}&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;blockquote&gt;
 &lt;p&gt;__dirname时nodejs中的变量，表当前目录；path.resolve是nodejs内置的方法。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;而exclude最常见的用法是排除node_modules目录，因为该目录包含项目所有的第三份模块，将其排除在外可提高编译速度。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;exclude: /node_modules/&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;exclude: /node_modules/&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;h3&gt;配置字段：plugins&lt;/h3&gt;
 &lt;p&gt;webpack自身提供了一系列的插件来应对不同需求，这些插件按功能分类有30个左右，可在&lt;a href=&quot;http://webpack.github.io&quot;&gt;官网&lt;/a&gt;查询。这里用ProvidePlugin插件将jquery引用为全局变量在所有模块中使用，这样就不必在每个模块都添加引用jquery的代码。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;plugins:[
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;plugins:[
 	new webpack.ProvidePlugin({
 		$:&amp;#39;jquery&amp;#39;,
 		jQuery:&amp;#39;jquery&amp;#39;
 	})
-]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+]&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;使用webpack插件要记得先在配置文件中引用webpack。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;var webpack = require(&amp;#39;webpack&amp;#39;)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;var webpack = require(&amp;#39;webpack&amp;#39;)&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;更多的插件相关内容，会在接下来的系列文章详细讲解。&lt;/p&gt;</content:encoded></item><item><title><![CDATA[webpack系列－开篇]]></title><description><![CDATA[为什么要用Webpack？它是什么？ 随着nodejs的迅猛发展，javascript不断进化，且逐渐变成服务器端开发的主流，而在前端领域它能做的事情也越来越多。可是，不断增多的js代码管理起来却让人头疼，模块化是唯一的解决办法，常见的做法是将不同功能的js…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/20160108-webpack-part-1/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/20160108-webpack-part-1/</guid><pubDate>Fri, 08 Jan 2016 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;为什么要用Webpack？它是什么？&lt;/h3&gt;
 &lt;p&gt;随着nodejs的迅猛发展，javascript不断进化，且逐渐变成服务器端开发的主流，而在前端领域它能做的事情也越来越多。可是，不断增多的js代码管理起来却让人头疼，模块化是唯一的解决办法，常见的做法是将不同功能的js分割作为单独模块。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;&amp;lt;script src=&amp;quot;module1.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;&amp;lt;script src=&amp;quot;module1.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
 &amp;lt;script src=&amp;quot;module2.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
-&amp;lt;script src=&amp;quot;module3.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;`&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&amp;lt;script src=&amp;quot;module3.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;`&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;但这种做法有几点问题：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;全局变量可能冲突&lt;/li&gt;
@@ -1113,13 +1581,21 @@ entry:{
 &lt;li&gt;在大项目里，模块过多难以管理&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;在nodejs领域，通过CommonJS规范和AMD，这些问题得到了解决。所谓CommonJS，简单来说就是可用关键字require加载模块：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;var foo = require(&amp;#39;foo&amp;#39;);&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;var foo = require(&amp;#39;foo&amp;#39;);&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;这种加载方式是同步的，在浏览器常常需异步加载，这时就涉及到了AMD的异步加载方式。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;require([&amp;quot;module&amp;quot;, &amp;quot;../file&amp;quot;], function(module, file) { /* ... */ });
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;require([&amp;quot;module&amp;quot;, &amp;quot;../file&amp;quot;], function(module, file) { /* ... */ });
 
 define(&amp;quot;mymodule&amp;quot;, [&amp;quot;dep1&amp;quot;, &amp;quot;dep2&amp;quot;], function(d1, d2) {
   return someExportedValue;
-});&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+});&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;这解决了异步但不可避免的让代码更难阅读和维护。除此之外，随着ECMAScript6的推行，它也带来自己的模块加载方式，让模块加载这件事变的更加复杂。&lt;/p&gt;
 &lt;p&gt;Webpack是一个模块化管理系统，使用它的好处有以下三点：&lt;/p&gt;
 &lt;ol&gt;
@@ -1129,13 +1605,27 @@ define(&amp;quot;mymodule&amp;quot;, [&amp;quot;dep1&amp;quot;, &amp;quot;dep2&a
 &lt;/ol&gt;
 &lt;h3&gt;用webpack创建项目&lt;/h3&gt;
 &lt;p&gt;首先，你需要用nodejs来安装webpack，假如对nodejs不熟悉也没有关系，将其当作是一个安装工具，常用的命令也不过3句。下载nodejs并安装后，在一个文件目录下执行如下命令，用来初始化项目。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;npm init&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;npm init&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;之后，运行下面命令安装webpack，命令后的-g，表示将其安装为全局模块：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;npm install webpack -g&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;npm install webpack -g&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;这时可用编辑器（Atom或VsCode）打开该项目，添加以下两个文件：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;// 添加 entry.js
-docuemnt.write(&amp;quot;It works&amp;quot;).&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;// 添加 index.html
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;// 添加 entry.js
+docuemnt.write(&amp;quot;It works&amp;quot;).&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;// 添加 index.html
 &amp;lt;html&amp;gt;
     &amp;lt;head&amp;gt;
         &amp;lt;meta charset=&amp;quot;utf-8&amp;quot;&amp;gt;
@@ -1143,38 +1633,74 @@ docuemnt.write(&amp;quot;It works&amp;quot;).&lt;/code&gt;&lt;/pre&gt;&lt;/div&g
     &amp;lt;body&amp;gt;
         &amp;lt;script type=&amp;quot;text/javascript&amp;quot; src=&amp;quot;bundle.js&amp;quot; charset=&amp;quot;utf-8&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
     &amp;lt;/body&amp;gt;
-&amp;lt;/html&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&amp;lt;/html&amp;gt;&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;接着执行一下命令：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;webpack ./entry.js bundle.js&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;webpack ./entry.js bundle.js&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;这时用浏览器打开index.html文件，你能看到”It works”显示在页面上。
 &lt;img src=&quot;http://7xtbg7.com2.z0.glb.clouddn.com/webpack1-1&quot;&gt;&lt;/p&gt;
 &lt;h3&gt;引用第二个文件&lt;/h3&gt;
 &lt;p&gt;接着添加一个content.js文件：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;// 添加 content.js
-module.exports= &amp;quot;It works from content.js&amp;quot;;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;// 修改entry.js
-document.write(require(&amp;quot;./content.js&amp;quot;)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;// 添加 content.js
+module.exports= &amp;quot;It works from content.js&amp;quot;;&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;// 修改entry.js
+document.write(require(&amp;quot;./content.js&amp;quot;)&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;重新运行命令&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;webpack ./entry.js bundle.js&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;webpack ./entry.js bundle.js&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;刷新那个页面你会看到更新的内容：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;It works from content.js&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;It works from content.js&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;h3&gt;第一个加载器(loader)&lt;/h3&gt;
 &lt;p&gt;现在添加一个css文件，webpack本身职能处理javascript代码，所以我们需要加载器css-loader来处理css文件，同时我们需要style-loader来处理css文件中的样式。执行命令如下：
-&lt;code class=&quot;language-text&quot;&gt;npm install css-loader style-loader --save&lt;/code&gt;&lt;/p&gt;
+&lt;code&gt;npm install css-loader style-loader --save&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;现在做如下操作：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;// 添加 style.css
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;// 添加 style.css
 body{
 	background: yellow;
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;// 更新 entry.js
+}&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;// 更新 entry.js
 require(&amp;#39;!style!css!./style.css&amp;#39;);
-document.write(require(&amp;#39;./content.js&amp;#39;))&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+document.write(require(&amp;#39;./content.js&amp;#39;))&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;重新执行命令：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;webpack ./entry.js bundle.js&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;webpack ./entry.js bundle.js&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;刷新页面，应该能看到背景色的变化。&lt;/p&gt;
 &lt;h3&gt;配置文件&lt;/h3&gt;
 &lt;p&gt;现在将上面对例子移动到配置文件中。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;// 创建 webpack.config.js
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;// 创建 webpack.config.js
 module.exports={
   entry:&amp;#39;./entry.js&amp;#39;,
   output:{
@@ -1186,18 +1712,32 @@ module.exports={
       {test: /\.css$/, loader:&amp;quot;style!css&amp;quot;}
     ]
   }
-};&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+};&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;现在我们只要运行命令：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;webpack&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;webpack&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;webpack会尝试加载当前目录下的webpack.config.js文件，这样就可以完成编译。&lt;/p&gt;
 &lt;h3&gt;监控模式&lt;/h3&gt;
 &lt;p&gt;如果不想每次更改后都手动执行一下，可以在最开始执行下面的命令：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;wepack --watch&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;wepack --watch&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;这样webpack会自动监控每一个文件，假如有更新，则会自动重新编译。&lt;/p&gt;
 &lt;h3&gt;开发服务器&lt;/h3&gt;
 &lt;p&gt;使用开发服务器模块是webpack开发中不可缺少的，它会绑定一个简便服务器到localhost:8080，每次有改动会自动编译，你可以通过浏览器访问localhost:8080/webpack-dev-server/bundle来查看页面，方便调试。
 开发服务器的模块名是webpack-dev-server,安装命令如下：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;npm install webpack-dev-server -g&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;npm install webpack-dev-server -g&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;blockquote&gt;
 &lt;p&gt;记得也要将webpack安装在全局，此后命令行下执行webpack-dev-server即可开启服务&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -1210,13 +1750,19 @@ module.exports={
 &lt;li&gt;&lt;a href=&quot;http://webpack.github.io/docs/tutorials/getting-started/&quot;&gt;http://webpack.github.io/docs/tutorials/getting-started/&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;</content:encoded></item><item><title><![CDATA[React系列之四－扩展知识点ref和mixin]]></title><description><![CDATA[React系列之四－扩展知识点ref和mixin 在创建完组件后，我们常常需要获得对内部某个控件的值，比如说在系列文章第二篇中，我们在下拉框的onChange事件中获取并保存了下拉框的值，而获取值的途径是通过方法参数的属性：event.target.value…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/20160104-react-part-4/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/20160104-react-part-4/</guid><pubDate>Mon, 04 Jan 2016 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;React系列之四－扩展知识点ref和mixin&lt;/h3&gt;
 &lt;p&gt;在创建完组件后，我们常常需要获得对内部某个控件的值，比如说在&lt;a href=&quot;/20150721-react-part-2&quot;&gt;系列文章第二篇中&lt;/a&gt;，我们在下拉框的onChange事件中获取并保存了下拉框的值，而获取值的途径是通过方法参数的属性：event.target.value，代码如下。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;_handleChange(event){
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;_handleChange(event){
     this.setState({selectedColor: event.target.value});
-  }&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+  }&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;这是onChange事件提供的关于控件自身相关的参数。那么，假如我想在一个控件的事件中获取另外一个控件的值该怎么办？比如说，点击一个按钮，获取并保存其另一个输入框的值，这种情况下，通过事件内部的参数是读取不到的，而解决的办法是－ref属性。&lt;/p&gt;
 &lt;h3&gt;ref属性用法&lt;/h3&gt;
 &lt;p&gt;现在创建一个包含输入框和按钮的组件，添加index.js文件，内容如下：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;import React from &amp;#39;react&amp;#39;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;import React from &amp;#39;react&amp;#39;
 import ReactDOM from &amp;#39;react-dom&amp;#39;
 
 var InputButton=React.createClass({
@@ -1241,9 +1787,15 @@ var InputButton=React.createClass({
 ReactDOM.render(
   &amp;lt;InputButton /&amp;gt;,
   document.getElementById(&amp;#39;demo4&amp;#39;)
-)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+)&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;代码中input控件包含了一个ref属性，这个属性的须是方法，且该方法的第一个参数已经指明，就是这个控件本身。代码中将这个参数赋值给了实例的_input属性，从而可以让其他控件的事件方法内调用。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;&amp;lt;input ref={c=&amp;gt;this._input=c }/&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;&amp;lt;input ref={c=&amp;gt;this._input=c }/&amp;gt;&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;在react的早期可以给ref赋值字符串，比如某个控件的Id，这样也能到达相同的效果，但随着react版本的升级，给ref属性赋值字符串的方式不再推荐。&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;“c=&gt;this._input=c” 这种写法是ES6对javascript函数语法的扩张，详情可参考&lt;a href=&quot;http://es6.ruanyifeng.com/#docs/function#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0&quot;&gt;此处&lt;/a&gt;&lt;/p&gt;
@@ -1251,32 +1803,46 @@ ReactDOM.render(
 &lt;h3&gt;mixins属性用法&lt;/h3&gt;
 &lt;p&gt;假如你有使用过Ruby语言，对mixin这个单词就不会陌生，它巧妙的让ruby语言拥有多重继承的好处，同时避开了多重继承的复杂性。简单来说，mixin让两个不相干的类之间也能共享其通用的功能。&lt;/p&gt;
 &lt;p&gt;现在，我们添加一个对象，一个自定义方法_alertMessage和一个事件方法componentDidMount, 作用是当组件加载完毕后出现弹窗信息。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;var mixinObject={
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;var mixinObject={
   componentDidMount(){
     this._alertMessage(&amp;#39;completed&amp;#39;);
   },
   _alertMessage(msg){
     alert(msg);
   }
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+}&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;然后上文中的InputButton组件可以通过mixins属性来把这个对象容纳进来。部分代码如下：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;var InputButton=React.createClass({
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;var InputButton=React.createClass({
   mixins:[mixinObject],
   getInitialState(){
     return { val: &amp;#39;&amp;#39;}
   },
-  ...&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+  ...&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;重新刷新页面会发现组件加载完毕后会有弹窗，尽管组件本身并没有在componentDidMount事件中添加任何代码，而且InputButton组件内部也可以使用_alertMessage这个自定义方法了。&lt;/p&gt;
 &lt;p&gt;无论是自定义方法还是事件方法都能过通过mixins融入到一起，而mixins属性本身接受一个数组，可一次性融入多个mixin。当有多个mixin对象存在且每个对象都在同一个事件方法（比如componentDidMount方法）中有代码逻辑时，执行顺序和mixins数组中的顺序一致，排在前面的先执行。&lt;/p&gt;
 &lt;h3&gt;代码示例&lt;/h3&gt;
 &lt;p&gt;本文的&lt;a href=&quot;https://github.com/twomeetings/reactExamples&quot;&gt;代码示例&lt;/a&gt;在demo4目录中查找。&lt;/p&gt;</content:encoded></item><item><title><![CDATA[React系列之三 － 组件的事件]]></title><description><![CDATA[React组件从创建到注销的过程中需要经历一个生命周期，在这个周期内会触发一系列的方法事件，利用这些事件，可以让组件处理更复杂的逻辑。 使用过jquery的一定知道，jquery的一个常见用法是，当页面DOM…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/20151108-react-part-3/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/20151108-react-part-3/</guid><pubDate>Sun, 08 Nov 2015 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;React组件从创建到注销的过程中需要经历一个生命周期，在这个周期内会触发一系列的方法事件，利用这些事件，可以让组件处理更复杂的逻辑。&lt;/p&gt;
 &lt;p&gt;使用过jquery的一定知道，jquery的一个常见用法是，当页面DOM元素加载完成后，再开始一些逻辑操作，写法如下：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;$(function(){
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;$(function(){
 	// do something
-})&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+})&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;那么，这个功能在react中该怎样实现呢？答案是通过事件中的componentDidMount方法。&lt;/p&gt;
 &lt;p&gt;现在我们编写一个异步加载数据的示例，当组件加载完毕后，异步请求豆瓣的图书API并在页面上显示评分，index.js代码如下：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;import React from &amp;#39;react&amp;#39;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;import React from &amp;#39;react&amp;#39;
 import ReactDOM from &amp;#39;react-dom&amp;#39;
 
 var AjaxGetData= React.createClass({
@@ -1306,7 +1872,9 @@ var AjaxGetData= React.createClass({
 ReactDOM.render(
   &amp;lt;AjaxGetData /&amp;gt;,
   document.getElementById(&amp;#39;demo3&amp;#39;)
-)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+)&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;blockquote&gt;
 &lt;p&gt;关于豆瓣图书API文档可查阅&lt;a href=&quot;https://developers.douban.com/wiki/?title=book_v2#get_isbn_book&quot;&gt;此处&lt;/a&gt;。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -1316,27 +1884,41 @@ ReactDOM.render(
 &lt;h3&gt;代码解析&lt;/h3&gt;
 &lt;p&gt;在上面代码中可以看到，组件中多了一个componentDidMount方法，该方法在组件加载完毕后会触发，且只会触发一次。与之对应多还有一个事件方法是componentWillMount，表示组件的render方法执行前触发。&lt;/p&gt;
 &lt;p&gt;假如我们在这三个方法内加入调试信息比如：console.log(方法名)，则得到这三个方法的执行顺序如下：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;componentWillMount
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;componentWillMount
 render
-componentDidMount&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+componentDidMount&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;前文说过，当组件的state值改变时，组件会刷新，并导致render方法重新执行。但是componentWillMount和componentDidMount只会执行一次，直至被销毁。&lt;/p&gt;
 &lt;h3&gt;shouldComponentUpdate方法&lt;/h3&gt;
 &lt;p&gt;shouldComponentUpdate是react组件生命周期中的一个重要方法，它觉得着是否需要刷新组件，当它返回true时则刷新组件，返回false，则不必。它默认的判断依据是state是否改变，我们也可以根据自己的需求来修改刷新条件，比如像下面这样，只有当id属性改变时，才刷新组件。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;shouldComponentUpdate(nextProps, nextState): {
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;shouldComponentUpdate(nextProps, nextState): {
   return nextState !== this.state.id;
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+}&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;一旦shouldComponentUpdate返回true，确定更新，render的前后会执行另外一对事件方法，它们是componentWillUpdate和componentDidUpdate。加入调试信息，可看到组件更新导致的这四个方法的触发顺序是：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;shouldComponentUpdate
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;shouldComponentUpdate
  componentWillUpdate
  render
- componentDidUpdate&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ componentDidUpdate&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;blockquote&gt;
 &lt;p&gt; 其他的事件方法，可在&lt;a href=&quot;https://facebook.github.io/react/docs/component-specs.html&quot;&gt;官网此处&lt;/a&gt;查询。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3&gt;示例代码&lt;/h3&gt;
 &lt;p&gt;本文&lt;a href=&quot;https://github.com/twomeetings/reactExamples&quot;&gt;示例代码&lt;/a&gt;可在在目录demo3中查阅。&lt;/p&gt;</content:encoded></item><item><title><![CDATA[React系列之二 － state]]></title><description><![CDATA[大多数情况下，我们创建的组件不需要用到state，只需处理props属性，然后将其呈现出来。但是有时组件中需要应对用户的输入，这时就必须用到state来保存变化的值。 我们现在创建一个含有下拉框的组件，当用户选择了下拉框时，用state记录用户选择的内容。现在创建index.js…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/20150721-react-part-2/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/20150721-react-part-2/</guid><pubDate>Tue, 21 Jul 2015 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;大多数情况下，我们创建的组件不需要用到state，只需处理props属性，然后将其呈现出来。但是有时组件中需要应对用户的输入，这时就必须用到state来保存变化的值。&lt;/p&gt;
 &lt;p&gt;我们现在创建一个含有下拉框的组件，当用户选择了下拉框时，用state记录用户选择的内容。现在创建index.js，内容如下：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;import React from &amp;#39;react&amp;#39;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;import React from &amp;#39;react&amp;#39;
 import ReactDOM from &amp;#39;react-dom&amp;#39;
 
 var UserInput= React.createClass({
@@ -1365,18 +1947,32 @@ var UserInput= React.createClass({
 ReactDOM.render(
   &amp;lt;UserInput /&amp;gt;,
   document.getElementById(&amp;#39;demo2&amp;#39;)
-)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+)&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;h3&gt;state初始化&lt;/h3&gt;
 &lt;p&gt;从代码中可以看出，UserInput组件和&lt;a href=&quot;/20150712-react-part-1&quot;&gt;上一篇&lt;/a&gt;的例子相比，多了getInitialState方法，该方法通过返回一个对象来初始化state，最终对象的属性和state属性一致。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;getInitialState(){
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;getInitialState(){
     return {selectedColor:&amp;#39;&amp;#39;}
-  }&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+  }&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;状态值的读取和props相似，不同的是要用state保留字。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;var color= this.state.selectedColor;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;var color= this.state.selectedColor;&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;h3&gt;state修改&lt;/h3&gt;
 &lt;p&gt;state的修改有别于以往常见的修改方法，它不是直接操作对象this.state，而是创建新的对象将原对象替换，使用方法this.setState。&lt;/p&gt;
 &lt;p&gt;在示例中的onChange事件中，直接将下拉框选中的值赋予state的selectedColor属性。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;this.setState({selectedColor: event.target.value});&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;this.setState({selectedColor: event.target.value});&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;blockquote&gt;
 &lt;p&gt;event是onChange事件的参数，event.target.value是常用属性，用来读取修改后的控件参数，其他的属性可参考&lt;a href=&quot;https://facebook.github.io/react/docs/events.html#form-events&quot;&gt;官网此处&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -1396,7 +1992,9 @@ ReactDOM.render(
 &lt;p&gt;在之前的webpack和react结合的教程里，我只做了简单的示例，即在html标签中显示一段文字，在本文的例子中我们引入react中的基本元素props。&lt;/p&gt;
 &lt;p&gt;首先在一个空目录下，初始化项目名reactExample，并搭建webpack和react环境，详细做法可参考前言中的链接。&lt;/p&gt;
 &lt;p&gt;创建index.js文件，内容如下：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;import React from &amp;#39;react&amp;#39;;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;import React from &amp;#39;react&amp;#39;;
 import ReactDOM from &amp;#39;react-dom&amp;#39;
 
 var HelloName= React.createClass({
@@ -1411,46 +2009,78 @@ var HelloName= React.createClass({
 ReactDOM.render(
   &amp;lt;HelloName myName=&amp;#39;Jacky&amp;#39; /&amp;gt;,
   document.getElementById(&amp;#39;demo1&amp;#39;)
-)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+)&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;这段代码有以下四点说明：&lt;/p&gt;
 &lt;h4&gt;import语法&lt;/h4&gt;
 &lt;p&gt;import是ES6的特性，作用类似require，作用都是引用模块，因此下面两段代码作用一样，都是引入react模块，并将其赋值为一个名为React的变量，这个变量名可以是任何符合规则的字符串。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;import React from &amp;#39;react&amp;#39;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;import React from &amp;#39;react&amp;#39;
 // 等同于
-var React = require(&amp;#39;react&amp;#39;)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+var React = require(&amp;#39;react&amp;#39;)&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;ES6中，这种引入方式对应模块的默认输出变量，但一个模块只能允许一个默认输出变量，引用其他输出变量时，需要将其变量写准确，否则会出错。import通过花括号来引用非默认变量，比如像下面这样：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;import {render} from &amp;#39;react-dom&amp;#39;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;import {render} from &amp;#39;react-dom&amp;#39;&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;那么对应的require语句就要写成这样：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;var render=require(&amp;#39;react-dom&amp;#39;).render&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;var render=require(&amp;#39;react-dom&amp;#39;).render&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;这种引用方法也很常见，假如本例的引用语句写成了这样，那么index.js文件的最后一句需要去掉ReactDOM，改成下面这样：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;render(
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;render(
   &amp;lt;HelloName myName=&amp;#39;Jacky&amp;#39; /&amp;gt;,
   document.getElementById(&amp;#39;demo1&amp;#39;)
-)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+)&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;blockquote&gt;
 &lt;p&gt;关于模块import和export的详细解释可参考阮一峰老师的&lt;a href=&quot;http://es6.ruanyifeng.com/#docs/module#import%E5%91%BD%E4%BB%A4&quot;&gt;ECMAScript 6 入门&lt;/a&gt;的Module章节&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h4&gt;React.createClass方法&lt;/h4&gt;
 &lt;p&gt;React.createClass方法可以创建自定义的组件，该说React.createClass是组件的起点，该方法接受一个对象，必不可少的核心方法是render，该方法要返回的值表示最后的输出。在本例中返回p标签及其包含对内容。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;&amp;lt;p&amp;gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;&amp;lt;p&amp;gt;
     &amp;lt;label&amp;gt;{name}:&amp;lt;/label&amp;gt;
     &amp;lt;input /&amp;gt;
-&amp;lt;/p&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&amp;lt;/p&amp;gt;&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;blockquote&gt;
 &lt;p&gt;除render之外的其他的方法和属性可在官网查询，在随后的文章也会详细讲解。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h4&gt;ReactDOM.render方法&lt;/h4&gt;
 &lt;p&gt;ReactDOM的render方法和刚刚提及的创建组件的核心方法重名，它的作用是将组件呈现在对应的HTML的DOM元素内。示例中的代码将LabelInput组件呈现在id＝demo1对HTML标签内。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;ReactDOM.render(
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;ReactDOM.render(
   &amp;lt;LabelInput labelName=&amp;#39;test1&amp;#39; /&amp;gt;,
   document.getElementById(&amp;#39;demo1&amp;#39;)
-)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+)&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;ReactDOM.render方法除了组件和DOM标签两个参数外，还可以接受第三个回调函数，当组件呈现或更新完毕时会执行，具体信息可查看&lt;a href=&quot;https://facebook.github.io/react/docs/top-level-api.html#reactdom.render&quot;&gt;官网&lt;/a&gt;&lt;/p&gt;
 &lt;h4&gt;无需声明的props属性&lt;/h4&gt;
 &lt;p&gt;在组件内部可以通过this.props访问属性值，比如在本例中我们访问了属性myName。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;var name = this.props.myName;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;var name = this.props.myName;&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;但这属性是从哪来的？由于javascript对象的特性，属性不必声明就可以直接使用.也就是说当你编写组件时，需要某个属性就直接引用，比如我们修改render方法，再添加一个属性year。&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;var HelloName= React.createClass({
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;var HelloName= React.createClass({
   render(){
     var name=this.props.myName;
     var year=this.props.year;
@@ -1458,13 +2088,21 @@ var React = require(&amp;#39;react&amp;#39;)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt
       &amp;lt;p&amp;gt;Hello {name}! {year}&amp;lt;/p&amp;gt;
     )
   }
-})&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+})&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;编译后刷新页面可发现，属性date并没有值。这是因为调用HelloName组件时，只给myName赋了值，这说明只有当调用组件时给属性赋值，其组件内部才能拿到对应的值，否则只能是undefine.&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;&amp;lt;HelloName myName=&amp;#39;Jacky&amp;#39; /&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;&amp;lt;HelloName myName=&amp;#39;Jacky&amp;#39; /&amp;gt;&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;那么，由于组件内部不必显示声明属性，当我们调用某个组件的时候，怎样才能知道它需要哪些属性呢？答案使用propType。&lt;/p&gt;
 &lt;h3&gt;属性验证－propTypes&lt;/h3&gt;
 &lt;p&gt;编写组件时，当需要某些特定类型或者必填的属性时，可以使用propTypes来完成需求。现在我们添加propTypes，year设置为数字类型且必填，改动后的index.js代码如下：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;import React, { PropTypes } from &amp;#39;react&amp;#39;;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;import React, { PropTypes } from &amp;#39;react&amp;#39;;
 import ReactDOM from &amp;#39;react-dom&amp;#39;
 
 var HelloName= React.createClass({
@@ -1483,9 +2121,11 @@ var HelloName= React.createClass({
 ReactDOM.render(
   &amp;lt;HelloName myName=&amp;#39;Jacky&amp;#39;/&amp;gt;,
   document.getElementById(&amp;#39;demo1&amp;#39;)
-)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+)&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
 &lt;p&gt;更新后查看页面，会在控制台看到异常如下：&lt;/p&gt;
-&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;bundle_demo1.js:1074 Warning: Failed propType: Required prop &amp;#39;year&amp;#39; was not specified in &amp;#39;HelloName&amp;#39;.&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;bundle_demo1.js:1074 Warning: Failed propType: Required prop &apos;year&apos; was not specified in &apos;HelloName&apos;.&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;这样在调用组件时，就能知道该组件需要什么样的属性了。PropTypes提供了一系列的验证方式，包括字符串，对象，方法，数组以及自定义验证，详细信息可点击&lt;a href=&quot;https://facebook.github.io/react/docs/reusable-components.html#prop-validation&quot;&gt;官网此处&lt;/a&gt;查看。&lt;/p&gt;
 &lt;h3&gt;示例代码&lt;/h3&gt;
 &lt;p&gt;示例代码可在&lt;a href=&quot;https://github.com/twomeetings/reactExamples&quot;&gt;此处&lt;/a&gt;下载，本文示例对应文件夹demo1。&lt;/p&gt;
