@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Tech blog]]></title><description><![CDATA[A starter blog demonstrating what Gatsby can do.]]></description><link>https://gatsby-starter-blog-demo.netlify.com</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 02 Apr 2020 22:39:52 GMT</lastBuildDate><item><title><![CDATA[Redux系列之五 － 粘合剂react-redux组件（下）]]></title><description><![CDATA[react-redux组件是React和Redux两个框架的粘合剂，它共有两个部分：Provider组件和connect方法。上篇已介绍了Provider组件，本文就来详细讲解connect方法。 connect方法 在React…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/20170401-redux-part-5/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/20170401-redux-part-5/</guid><pubDate>Sat, 01 Apr 2017 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;react-redux组件是React和Redux两个框架的粘合剂，它共有两个部分：Provider组件和connect方法。上篇已介绍了Provider组件，本文就来详细讲解connect方法。&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Tech blog]]></title><description><![CDATA[A starter blog demonstrating what Gatsby can do.]]></description><link>https://gatsby-starter-blog-demo.netlify.com</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 02 Apr 2020 22:51:22 GMT</lastBuildDate><item><title><![CDATA[Redux系列之五 － 粘合剂react-redux组件（下）]]></title><description><![CDATA[react-redux组件是React和Redux两个框架的粘合剂，它共有两个部分：Provider组件和connect方法。上篇已介绍了Provider组件，本文就来详细讲解connect方法。 connect方法 在React…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/20170401-redux-part-5/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/20170401-redux-part-5/</guid><pubDate>Sat, 01 Apr 2017 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;react-redux组件是React和Redux两个框架的粘合剂，它共有两个部分：Provider组件和connect方法。上篇已介绍了Provider组件，本文就来详细讲解connect方法。&lt;/p&gt;
 &lt;h3&gt;connect方法&lt;/h3&gt;
-&lt;p&gt;在&lt;a href=&quot;http://twomeetings.github.io/2016/03/29/React%E7%B3%BB%E5%88%97%E4%B9%8B%E4%B8%83%EF%BC%8D%E7%BB%84%E4%BB%B6%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1/&quot;&gt;React系列之七&lt;/a&gt;中说到了一种设计模式－呈现组件和容器组件。简单来说，呈现组件只通过传入的属性负责呈现逻辑，而跟state相关的数据改动都放到容器组件中。connect方法就是为这种模式而生，它可以通过呈现组件快速生成容器组件。&lt;/p&gt;
+&lt;p&gt;在&lt;a href=&quot;/20160328-react-part-7&quot;&gt;React系列之七&lt;/a&gt;中说到了一种设计模式－呈现组件和容器组件。简单来说，呈现组件只通过传入的属性负责呈现逻辑，而跟state相关的数据改动都放到容器组件中。connect方法就是为这种模式而生，它可以通过呈现组件快速生成容器组件。&lt;/p&gt;
 &lt;p&gt;connect方法有4个参数，通常只会用到前两个，参数类型都是函数。假设现在已有一个呈现组件叫BookList, 那么connect的使用方法如下：&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;function mapStateToProps(state) {
   return { todos: state.books}
@@ -18,14 +18,14 @@ var container = connect(mapStateToProps, mapDispatchToProps)(BookList)&lt;/code&
 &lt;/ol&gt;
 &lt;p&gt;这两点恰恰是容器组件要做的事，所以connect方法其实就是通过呈现组件快速生成容器组件的快捷方式。&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;关于action creator和dispatch的组合可参考&lt;a href=&quot;http://twomeetings.github.io/2016/04/19/Redux%E7%B3%BB%E5%88%97%E4%B9%8B%E4%B8%89%EF%BC%8DbindActionCreator/&quot;&gt;Redux系列之三&lt;/a&gt;中，对bindActionCreators的描述。&lt;/p&gt;
+&lt;p&gt;关于action creator和dispatch的组合可参考&lt;a href=&quot;/20170119-redux-part-3&quot;&gt;Redux系列之三&lt;/a&gt;中，对bindActionCreators的描述。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3&gt;用connect方法改造示例&lt;/h3&gt;
-&lt;p&gt;这里我们用connect对&lt;a href=&quot;http://twomeetings.github.io/2016/02/20/React%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0%E4%B9%8B%E4%BA%8C%EF%BC%8DpropType/&quot;&gt;React系列文章之二&lt;/a&gt;中的例子做改造，该例中只有一个与颜色相关的下拉框，当用户选择后，state会保存选中的值。&lt;/p&gt;
+&lt;p&gt;这里我们用connect对&lt;a href=&quot;/20170119-react-part-2&quot;&gt;React系列文章之二&lt;/a&gt;中的例子做改造，该例中只有一个与颜色相关的下拉框，当用户选择后，state会保存选中的值。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;http://7xtbg7.com2.z0.glb.clouddn.com/redux5-1&quot;&gt;&lt;/p&gt;
 &lt;p&gt;首先安装react-redux组件，命令如下：&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;npm install react-redux --save&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;而&lt;a href=&quot;http://twomeetings.github.io/2016/04/21/Redux%E7%B3%BB%E5%88%97%E4%B9%8B%E5%9B%9B%EF%BC%8D%E7%B2%98%E5%90%88%E5%89%82-react-redux%E7%BB%84%E4%BB%B6/&quot;&gt;前文&lt;/a&gt;中说到redux将所有组件的state都存入了一个全局变量中，因此redux的重要作用之一就是容器组件的简单化。&lt;/p&gt;
+&lt;p&gt;而前文中说到redux将所有组件的state都存入了一个全局变量中，因此redux的重要作用之一就是容器组件的简单化。&lt;/p&gt;
 &lt;p&gt;我们现在将下拉框中的state相关代码剥离出来，只留下呈现的逻辑，代码如下：&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;// picker.js
 import React, { PropTypes } from &amp;#39;react&amp;#39;
@@ -128,7 +128,7 @@ ReactDOM.render(
 )&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;记得connect需要和Provider组件配合使用，因此PickerContainer必须被包裹在Provider中。&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;关于Provider的使用说明可参考&lt;a href=&quot;http://twomeetings.github.io/2016/04/21/Redux%E7%B3%BB%E5%88%97%E4%B9%8B%E5%9B%9B%EF%BC%8D%E7%B2%98%E5%90%88%E5%89%82-react-redux%E7%BB%84%E4%BB%B6/&quot;&gt;上篇&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;关于Provider的使用说明可参考&lt;a href=&quot;/20170302-redux-part-4&quot;&gt;上篇&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3&gt;结语&lt;/h3&gt;
 &lt;p&gt;react-redux组件的connect方法是通过呈现组件创建容器组件的一种快捷方式，它需要和Provider组件一起使用。&lt;/p&gt;
