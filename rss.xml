@@ -1,4 +1,111 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Tech blog]]></title><description><![CDATA[A starter blog demonstrating what Gatsby can do.]]></description><link>https://gatsby-starter-blog-demo.netlify.com</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 26 Jul 2020 23:13:16 GMT</lastBuildDate><item><title><![CDATA[Redux系列之五 － 粘合剂react-redux组件（下）]]></title><description><![CDATA[react-redux组件是React和Redux两个框架的粘合剂，它共有两个部分：Provider组件和connect方法。上篇已介绍了Provider组件，本文就来详细讲解connect方法。 connect方法 在React…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/20170401-redux-part-5/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/20170401-redux-part-5/</guid><pubDate>Sat, 01 Apr 2017 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;react-redux组件是React和Redux两个框架的粘合剂，它共有两个部分：Provider组件和connect方法。上篇已介绍了Provider组件，本文就来详细讲解connect方法。&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Tech blog]]></title><description><![CDATA[A starter blog demonstrating what Gatsby can do.]]></description><link>https://gatsby-starter-blog-demo.netlify.com</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 26 Jul 2020 23:18:59 GMT</lastBuildDate><item><title><![CDATA[No title]]></title><description><![CDATA[看过一道面试题要求实现断点续传，当时脑海大致想了一下实现思路，没完全想通，感觉涉及的知识点挺多，于是花了些时间用react和nodejs实现了一个简易版，并梳理了实现思路和用到的知识点。 简单汇总，用到的知识点如下： 利用FileReader将上传文件切片 用MD…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/20200611-how-to-implement-resumable-upload/web端断点续传的思路和实现/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/20200611-how-to-implement-resumable-upload/web端断点续传的思路和实现/</guid><content:encoded>&lt;p&gt;看过一道面试题要求实现断点续传，当时脑海大致想了一下实现思路，没完全想通，感觉涉及的知识点挺多，于是花了些时间用react和nodejs实现了一个简易版，并梳理了实现思路和用到的知识点。&lt;/p&gt;
+&lt;p&gt;简单汇总，用到的知识点如下：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;利用FileReader将上传文件切片&lt;/li&gt;
+&lt;li&gt;用MD5算法获取文件唯一性标识&lt;/li&gt;
+&lt;li&gt;用XHR显示上传进度&lt;/li&gt;
+&lt;li&gt;比对文件大小，计算续传的开始节点&lt;/li&gt;
+&lt;li&gt;自定制对文件的保存方法，确保异常终止时也能将未传完文件保存下来&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/twomeetings/resumable-upload-demo&quot;&gt;demo可以在此处下载&lt;/a&gt;，另外，推荐使用chrome本身的网络限速来方便的测试断点续传功能。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/6/11/172a060c655071e1?w=1338&amp;#x26;h=510&amp;#x26;f=png&amp;#x26;s=179173&quot; alt=&quot;chrome网络限速&quot;&gt;&lt;/p&gt;
+&lt;h3&gt;前端部分&lt;/h3&gt;
+&lt;p&gt;框架选择上用了React作前端呈现，利用axois做网络请求，用js-md5来获取文件唯一性标识。&lt;/p&gt;
+&lt;h4&gt;先说断点&lt;/h4&gt;
+&lt;p&gt;断点的基础是将文件分段，在web端可用&lt;a href=&quot;https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader&quot;&gt;FileReader&lt;/a&gt;类将文件以Buffer的形式读取，之后用原型链上的slice方法分段处理。&lt;/p&gt;
+
+        &lt;deckgo-highlight-code language=&quot;javascript&quot; &gt;
+          &lt;code slot=&quot;code&quot;&gt;const reader = new FileReader()
+reader.readAsArrayBuffer(uploadedFile)&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
+&lt;p&gt;此外，由于上传文件不通过html表单提交，在js端操作上传就需要使用FormData类来封装上传数据。&lt;/p&gt;
+&lt;h4&gt;再说续传&lt;/h4&gt;
+&lt;p&gt;续传的前提是需要能识别出再次上传的文件是否与上一次相同，即必须先获取文件唯一性标识，其中MD5算法即可满足要求，因此我使用了第三方依赖js-md5。&lt;/p&gt;
+&lt;p&gt;另外，续传开始时需要知道从哪开始续，我在后端提供一个api接口，通过文件md5的值查询对应文件的大小，然后由前端再次上传前调用，并比较计算出续传的开始位置。&lt;/p&gt;
+&lt;p&gt;后端的具体实现会在下文提及。&lt;/p&gt;
+&lt;h4&gt;上传进度&lt;/h4&gt;
+&lt;p&gt;刚开始的时候，我想简单的使用fetch来处理请求，但很快发现fetch本身的设计无法获取上传进度信息，底层实现上只能通过XHR拿到，因此引入了基于XHR的axois来处理上传。&lt;/p&gt;
+&lt;h3&gt;后端部分&lt;/h3&gt;
+&lt;p&gt;后端使用了koa加formidable组件来处理上传请求，尽管formidable稍显过时，网上更多人推荐multer，我对比了两者，最后决定选用formidable是因为它满足需求且文档详尽。&lt;/p&gt;
+&lt;h4&gt;自定义formidable中间件&lt;/h4&gt;
+&lt;p&gt;为了能更灵活控制数据处理的部分，我参考了&lt;a href=&quot;https://github.com/rkusa/koa-formidable/blob/master/index.js&quot;&gt;koa-formidable&lt;/a&gt;写法，实现了一个自定义koa中间件。&lt;/p&gt;
+
+        &lt;deckgo-highlight-code language=&quot;javascript&quot; &gt;
+          &lt;code slot=&quot;code&quot;&gt;const koaMiddleware = opt =&amp;gt; {
+	const tempFileDir = `./upload/tmp/`
+	if (!fs.existsSync(tempFileDir, { recursive: true })) {
+		fs.mkdirSync(tempFileDir)
+	}
+
+	return async function(ctx, next) {
+		const form = formidable.IncomingForm()
+		for (const key in opt) {
+			form[key] = opt[key]
+		}
+		await new Promise((resolve, reject) =&amp;gt; {
+			form.parse(ctx.req, (err, fields, files) =&amp;gt; {
+				if (err) {
+					reject(err)
+				} else {
+					ctx.request.body = fields
+					ctx.request.files = files
+					resolve()
+				}
+			})
+		})
+
+		await next()
+	}
+}
+
+export default koaMiddleware&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
+&lt;h4&gt;接受分段数据&lt;/h4&gt;
+&lt;p&gt;formidable本身提供了一系列事件来处理文件上传操作，比如fileBegin，file，data，aborted，end等等，但这些事件还无法完全满足保存分段数据的一些特殊场景，比如网络中断或异常的情况下，需要将未上传完的文件保存下来，这可能是断点续传功能在实际应用场景的价值所在，应对这种场景则需使用更细化的接收事件onPart。&lt;/p&gt;
+&lt;p&gt;在自定义onPart事件中，保存文件的核心方法使用了nodejs中的createWriteStream，使用flags:‘a’来保证没有文件时创建文件，有了文件时则往文件中添加内容。&lt;/p&gt;
+&lt;p&gt;另外，在aborted调用end方法，确保网络异常的情况下，已上传的文件内容能被安全保存下来。&lt;/p&gt;
+
+        &lt;deckgo-highlight-code language=&quot;javascript&quot; &gt;
+          &lt;code slot=&quot;code&quot;&gt;form.onPart = part =&amp;gt; {
+	const tempFilePath = `${tempFileDir}${part.filename}`
+	const writer = fs.createWriteStream(tempFilePath, { flags: &amp;#39;a&amp;#39; })
+	form.on(&amp;#39;aborted&amp;#39;, e =&amp;gt; {
+	  writer.end()
+	})
+
+	form.on(&amp;#39;end&amp;#39;, () =&amp;gt; {
+	  writer.end()
+	})
+
+	part.on(&amp;#39;data&amp;#39;, buffer =&amp;gt; {
+	  writer.write(buffer)
+	})
+}&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
+&lt;h4&gt;查询当前文件大小&lt;/h4&gt;
+&lt;p&gt;上面前端部分提到过，续传前需要知道从哪里开始续传，具体做法就是用已上传的文件大小和整个文件大小做个除法来得知续传的开始点。nodejs中&lt;a href=&quot;https://nodejs.org/dist/latest-v12.x/docs/api/fs.html#fs_fs_stat_path_options_callback&quot;&gt;fs.statSync&lt;/a&gt;方法可以获取当前文件状态，通过size属性拿到当前文件的大小。&lt;/p&gt;
+&lt;p&gt;然后将这些通过API开放给前端，使其能在续传前获取相关信息。&lt;/p&gt;
+
+        &lt;deckgo-highlight-code language=&quot;javascript&quot; &gt;
+          &lt;code slot=&quot;code&quot;&gt;router.get(&amp;#39;/get-tmp-file-size&amp;#39;, async ctx =&amp;gt; {
+	const { name } = ctx.query
+	const filePath = `./upload/tmp/${name}`
+	try {
+		const instance = fs.statSync(filePath)
+		ctx.body = { size: instance.size }
+	} catch (err) {
+		ctx.body = { size: 0 }
+	}
+})&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
+&lt;h3&gt;最后&lt;/h3&gt;
+&lt;p&gt;总体而已，在我尝试编写demo的过程中，涉及的知识点渐渐超过了一开始的预期，每个点深挖下去都能牵扯出更多的内容，比如上传取消的功能，demo中我尝试用axois的CancelToken来实现，但使用后发现只能在文件上传前生效，一旦文件开始传输则无法取消，因此当前demo中的取消上传是通过最简单的刷新页面完成的。&lt;/p&gt;
+&lt;p&gt;从面试的角度来说，这无疑是一个很好的题目，但假如工作中未接触或留意过上传相关的功能，在时间有限的情况下，其难度也是显而易见，在此祝每个面试中碰到此题的朋友们能有好运气。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/7/1/17308d9b3a7761ec?w=1702&amp;#x26;h=806&amp;#x26;f=png&amp;#x26;s=162909&quot;&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Redux系列之五 － 粘合剂react-redux组件（下）]]></title><description><![CDATA[react-redux组件是React和Redux两个框架的粘合剂，它共有两个部分：Provider组件和connect方法。上篇已介绍了Provider组件，本文就来详细讲解connect方法。 connect方法 在React…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/20170401-redux-part-5/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/20170401-redux-part-5/</guid><pubDate>Sat, 01 Apr 2017 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;react-redux组件是React和Redux两个框架的粘合剂，它共有两个部分：Provider组件和connect方法。上篇已介绍了Provider组件，本文就来详细讲解connect方法。&lt;/p&gt;
 &lt;h3&gt;connect方法&lt;/h3&gt;
 &lt;p&gt;在&lt;a href=&quot;/20160328-react-part-7&quot;&gt;React系列之七&lt;/a&gt;中说到了一种设计模式－呈现组件和容器组件。简单来说，呈现组件只通过传入的属性负责呈现逻辑，而跟state相关的数据改动都放到容器组件中。connect方法就是为这种模式而生，它可以通过呈现组件快速生成容器组件。&lt;/p&gt;
 &lt;p&gt;connect方法有4个参数，通常只会用到前两个，参数类型都是函数。假设现在已有一个呈现组件叫BookList, 那么connect的使用方法如下：&lt;/p&gt;
