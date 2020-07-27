@@ -1,4 +1,45 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Tech blog]]></title><description><![CDATA[A starter blog demonstrating what Gatsby can do.]]></description><link>https://gatsby-starter-blog-demo.netlify.com</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 27 Jul 2020 00:37:01 GMT</lastBuildDate><item><title><![CDATA[web端断点续传的思路和实现]]></title><description><![CDATA[看过一道面试题要求实现断点续传，当时脑海大致想了一下实现思路，没完全想通，感觉涉及的知识点挺多，于是花了些时间用react和nodejs实现了一个简易版，并梳理了实现思路和用到的知识点。 简单汇总，用到的知识点如下： 利用FileReader将上传文件切片 用MD…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/2020-06-11-how-to-implement-resumable-upload/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/2020-06-11-how-to-implement-resumable-upload/</guid><pubDate>Thu, 11 Jun 2020 00:00:00 GMT</pubDate><content:encoded>&lt;!-- ---
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Tech blog]]></title><description><![CDATA[A starter blog demonstrating what Gatsby can do.]]></description><link>https://gatsby-starter-blog-demo.netlify.com</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 27 Jul 2020 00:42:08 GMT</lastBuildDate><item><title><![CDATA[如何顺滑的展示大数据列表]]></title><description><![CDATA[每每谈到前端性能优化，大数据列表的呈现总是一个老生常谈的话题。基于浏览器本身处理DOM的方式，一旦列表数据足够大时，总是不可避免的出现CUP…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/2020-06-18-how-to-render-big-data-with-list/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/2020-06-18-how-to-render-big-data-with-list/</guid><pubDate>Thu, 18 Jun 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;每每谈到前端性能优化，大数据列表的呈现总是一个老生常谈的话题。基于浏览器本身处理DOM的方式，一旦列表数据足够大时，总是不可避免的出现CUP和内存占用导致的卡顿问题，因此，针对大数据列表，只能使用特别的方式来呈现。&lt;/p&gt;
+&lt;p&gt;面对这个问题时，直觉反应就是切分：切成小块再呈现。比如，现在有10万条数据，仅仅拿出前1000条呈现出来，随着滚动条的滑动再逐步展示后面数据。然而，这种方式引起的列表高度变化会给用户带来非常糟糕的滑动体验，无论是补充数据还是把原列表换掉，使用起来跟标准滚动条差别非常大。因此，仅仅是切分还远远不够。&lt;/p&gt;
+&lt;h3&gt;定高&lt;/h3&gt;
+&lt;p&gt;为了防止列表高度变化带来的滚动体验问题，需要在大列表呈现时就先计算好高度。也就是说当要呈现10万条数据时，即使只先呈现前1000条，10W条数据的总高度要先被算好并设置在最外层的容器上。目的是当滑动时，呈现的数据变化，但容器总高度不变，这样体验起来才会和普通滚动条一致。&lt;/p&gt;
+&lt;p&gt;给10万条数据定高，就意味着你需要知道每一条数据呈现出来的高度是多少，在代码实现层面，可以拿出其中一条数据展示出来获取其高度。如此一来，不但总容器的高度能确定，每一条数据在纵坐标的起始位置也能定下，为后续的滑动展示提供基础。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/6/18/172c4af4d55a1686?w=1124&amp;#x26;h=948&amp;#x26;f=png&amp;#x26;s=40550&quot; alt=&quot;通过单项定高&quot;&gt;&lt;/p&gt;
+&lt;h3&gt;分组&lt;/h3&gt;
+&lt;p&gt;一旦高度定下，就可以根据滚动条的的位置展示或隐藏列表数据，但具体的代码实现却不得不考虑性能问题，因为需要遍历整个列表逐个判断，10W条数据遍历一次也是特别大的运算，更糟糕的是，滚动条滑动的事件触发是非常频繁的。&lt;/p&gt;
+&lt;p&gt;解决方案就是分组，即将100个或1000个划分为一组，以组为单位进行判断，同时，需要在定高时根据每一项高度计算出组的纵坐标起始位置。如此一来，遍历时以组为单位大大减少了计算量，10W条数据，1000个为1组，遍历起来也就只有100组而已。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/6/18/172c4b072b03ad1e?w=1104&amp;#x26;h=832&amp;#x26;f=png&amp;#x26;s=42233&quot;&gt;&lt;/p&gt;
+&lt;p&gt;分组后，滑动展示时便可以灵活制定展示规则，比如滚动条划过当前组高度一大半以后展示下一组等。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/6/18/172c4ad0f7b9b623?w=824&amp;#x26;h=970&amp;#x26;f=gif&amp;#x26;s=549313&quot; alt=&quot;分组后的滑动展示预览图&quot;&gt;&lt;/p&gt;
+&lt;h3&gt;分组算法&lt;/h3&gt;
+&lt;p&gt;因为看了国外一篇写大数据列表的文章有感，才写了此文。值得一提的是，那篇文章中的分组方式很特别，利用二叉树算法，一个简洁递归就把数据分好了。&lt;/p&gt;
+
+        &lt;deckgo-highlight-code language=&quot;javascript&quot; &gt;
+          &lt;code slot=&quot;code&quot;&gt;recursiveSplit =(data)=&amp;gt; {
+    if(data.length / 2 &amp;gt; this.minimumStackSize) {
+      let mid = Math.floor(data.length/2, 10);
+      let node = { 
+        parent: true,
+        getParent: ()=&amp;gt; data,
+        data: [this.recursiveSplit(data.slice(0, mid)), this.recursiveSplit(data.slice(mid, data.length+1))]
+      }
+      return node;
+    }
+    return {
+      parent: false,
+      data
+    }
+  }&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
+&lt;p&gt;作者最终Demo的效果如图，相关链接我已贴在文章底部。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/6/18/172c4b635d38056a?w=1204&amp;#x26;h=963&amp;#x26;f=gif&amp;#x26;s=2218960&quot; alt=&quot;demo效果展示图&quot;&gt;&lt;/p&gt;
+&lt;h3&gt;结语&lt;/h3&gt;
+&lt;p&gt;处理大数据列表的呈现，关键点有两个，一是定高，二是分组。定高保证了选择性呈现数据时滚动条的正常体验，分组则处理了频繁遍历带来的性能消耗。&lt;/p&gt;
+&lt;h5&gt;参考资料：&lt;/h5&gt;
+&lt;p&gt;&lt;a href=&quot;https://medium.com/better-programming/how-i-rendered-a-massive-list-in-react-without-memory-and-cpu-issues-7ac6fe6a697b&quot;&gt;https://medium.com/better-programming/how-i-rendered-a-massive-list-in-react-without-memory-and-cpu-issues-7ac6fe6a697b&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://react-eternal-list.rinas.in/&quot;&gt;https://react-eternal-list.rinas.in/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/rinasm/react-eternal-list#readme&quot;&gt;https://github.com/rinasm/react-eternal-list#readme&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/7/1/17308da600ad738a?w=1702&amp;#x26;h=806&amp;#x26;f=png&amp;#x26;s=162909&quot;&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[web端断点续传的思路和实现]]></title><description><![CDATA[看过一道面试题要求实现断点续传，当时脑海大致想了一下实现思路，没完全想通，感觉涉及的知识点挺多，于是花了些时间用react和nodejs实现了一个简易版，并梳理了实现思路和用到的知识点。 简单汇总，用到的知识点如下： 利用FileReader将上传文件切片 用MD…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/2020-06-11-how-to-implement-resumable-upload/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/2020-06-11-how-to-implement-resumable-upload/</guid><pubDate>Thu, 11 Jun 2020 00:00:00 GMT</pubDate><content:encoded>&lt;!-- ---
 title: &apos;&apos;
 --- --&gt;
 &lt;p&gt;看过一道面试题要求实现断点续传，当时脑海大致想了一下实现思路，没完全想通，感觉涉及的知识点挺多，于是花了些时间用react和nodejs实现了一个简易版，并梳理了实现思路和用到的知识点。&lt;/p&gt;
