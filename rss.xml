@@ -1,4 +1,558 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[上线前夕]]></title><description><![CDATA[A starter blog demonstrating what Gatsby can do.]]></description><link>https://gatsby-starter-blog-demo.netlify.com</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 02 Aug 2020 23:24:47 GMT</lastBuildDate><item><title><![CDATA[如何编写hooks风格的redux组件]]></title><description><![CDATA[Hooks特性在React的16.…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/2020-07-01-how-to-write-hooks-like-component-in-redux/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/2020-07-01-how-to-write-hooks-like-component-in-redux/</guid><pubDate>Wed, 01 Jul 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Hooks特性在React的16.8版本被引入，在解决组件重用和生命周期逻辑破碎两大难题的同时，极大简化了组件写法，而且兼容旧写法，即便不想学也没关系，向开发者释放了极大的善意。&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[上线前夕]]></title><description><![CDATA[A starter blog demonstrating what Gatsby can do.]]></description><link>https://gatsby-starter-blog-demo.netlify.com</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 03 Aug 2020 00:52:32 GMT</lastBuildDate><item><title><![CDATA[Promise.all和Promise.allSettled的区别]]></title><description><![CDATA[不管你是否还学的动，JS语言依然在以自己的节奏飞快的进化。转眼间，Promise的工具包里又多了一个方法Promise.allSettled供你选择，它看起来像是对Promise.all的一种补充，缓解了使用Promise.all碰到reject…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/2020-07-29-the-diff-between-promise-all-and-promise-allsettled/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/2020-07-29-the-diff-between-promise-all-and-promise-allsettled/</guid><pubDate>Wed, 29 Jul 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;不管你是否还学的动，JS语言依然在以自己的节奏飞快的进化。转眼间，Promise的工具包里又多了一个方法Promise.allSettled供你选择，它看起来像是对Promise.all的一种补充，缓解了使用Promise.all碰到reject的痛点问题。&lt;/p&gt;
+&lt;p&gt;一句话概括Promise.allSettled和Promise.all的最大不同：&lt;strong&gt;Promise.allSettled永远不会被reject&lt;/strong&gt;。&lt;/p&gt;
+&lt;h3&gt;解决Promise.all的痛点&lt;/h3&gt;
+&lt;p&gt;当需要处理多个Promise并行时，大多数情况下Promise.all用起来是非常顺手的，比如下面这样&lt;/p&gt;
+
+        &lt;deckgo-highlight-code language=&quot;javascript&quot; &gt;
+          &lt;code slot=&quot;code&quot;&gt;const delay = n =&amp;gt; new Promise(resolve =&amp;gt; setTimeout(resolve, n));
+
+const promises = [
+  delay(100).then(() =&amp;gt; 1),
+  delay(200).then(() =&amp;gt; 2),
+  ]
+
+Promise.all(promises).then(values=&amp;gt;console.log(values))
+// 最终输出： [1, 2]&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
+&lt;p&gt;可是，是一旦有一个promise出现了异常，被reject了，情况就会变的麻烦。&lt;/p&gt;
+
+        &lt;deckgo-highlight-code language=&quot;javascript&quot; &gt;
+          &lt;code slot=&quot;code&quot;&gt;const promises = [
+  delay(100).then(() =&amp;gt; 1),
+  delay(200).then(() =&amp;gt; 2),
+  Promise.reject(3)
+  ]
+
+Promise.all(promises).then(values=&amp;gt;console.log(values))
+// 最终输出： Uncaught (in promise) 3
+
+Promise.all(promises)
+.then(values=&amp;gt;console.log(values))
+.catch(err=&amp;gt;console.log(err))
+// 加入catch语句后，最终输出：3&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
+&lt;p&gt;尽管能用catch捕获其中的异常，但你会发现其他执行成功的Promise的消息都丢失了，仿佛石沉大海一般。&lt;/p&gt;
+&lt;p&gt;要么全部成功，要么全部重来，这是Promise.all本身的强硬逻辑，也是痛点的来源，不能说它错，但这的确给Promise.allSettled留下了立足的空间。&lt;/p&gt;
+&lt;p&gt;假如使用Promise.allSettled来处理这段逻辑会怎样呢?&lt;/p&gt;
+
+        &lt;deckgo-highlight-code language=&quot;javascript&quot; &gt;
+          &lt;code slot=&quot;code&quot;&gt;const promises = [
+  delay(100).then(() =&amp;gt; 1),
+  delay(200).then(() =&amp;gt; 2),
+  Promise.reject(3)
+  ]
+
+Promise.allSettled(promises).then(values=&amp;gt;console.log(values))
+// 最终输出： 
+//    [
+//      {status: &amp;quot;fulfilled&amp;quot;, value: 1},
+//      {status: &amp;quot;fulfilled&amp;quot;, value: 2},
+//      {status: &amp;quot;rejected&amp;quot;, value: 3},
+//    ]&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
+&lt;p&gt;可以看到所有promise的数据都被包含在then语句中，且每个promise的返回值多了一个status字段，表示当前promise的状态，没有任何一个promise的信息被丢失。&lt;/p&gt;
+&lt;p&gt;因此，当用Promise.allSettled时，我们只需专注在then语句里，当有promise被异常打断时，我们依然能妥善处理那些已经成功了的promise，不必全部重来。&lt;/p&gt;
+&lt;h3&gt;当前大环境对Promise.allSettled的支持&lt;/h3&gt;
+&lt;p&gt;nodejs从&lt;a href=&quot;https://nodejs.org/en/blog/release/v12.9.0/&quot;&gt;v12.9.0&lt;/a&gt;开始加入了对Promise.allSettled的支持，主流浏览器们也各自在2019年发布的版本中支持了此方法，这意味着你已经可以放心大胆的使用了。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/7/29/17397a0e39508308?w=2548&amp;#x26;h=634&amp;#x26;f=png&amp;#x26;s=166617&quot;&gt;&lt;/p&gt;
+&lt;p&gt;对于那些不支持此方法的环境，你可以直接引用开源社区中实现了此方法的npm包：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.npmjs.com/package/promise.allsettled&quot;&gt;promise.allsettled&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.npmjs.com/package/promise-settle&quot;&gt;promise-settle&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.npmjs.com/package/promise-all-settled&quot;&gt;promise-all-settled&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.npmjs.com/package/es2015-promise.allsettled&quot;&gt;es2015-promise.allsettled&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;或者，你可以直接基于Promise.all写一个polyfill，给你的项目打上补丁：&lt;/p&gt;
+
+        &lt;deckgo-highlight-code language=&quot;javascript&quot; &gt;
+          &lt;code slot=&quot;code&quot;&gt;if (Promise &amp;amp;&amp;amp; !Promise.allSettled) {
+  Promise.allSettled = function (promises) {
+    return Promise.all(promises.map(function (promise) {
+      return promise.then(function (value) {
+        return { state: &amp;#39;fulfilled&amp;#39;, value: value };
+      }).catch(function (reason) {
+        return { state: &amp;#39;rejected&amp;#39;, reason: reason };
+      });
+    }));
+  };
+}&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
+&lt;h3&gt;结语&lt;/h3&gt;
+&lt;p&gt;Promise.allSettled是对Promise.all的一种补充，当面对多个promise并行时，它额外提供了一种处理方式，解决了当多个promise并行时reject的出现会伴随着其他promise数据丢失的问题。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;h4&gt;参考资料&lt;/h4&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://medium.com/trabe/using-promise-allsettled-now-e1767d43e480&quot;&gt;using-promise-allsettled-now&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/tc39/proposal-promise-allSettled&quot;&gt;proposal-promise-allSettled&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/robhicks/es2015-Promise.allSettled&quot;&gt;es2015-Promise.allSettled&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://nodejs.org/en/blog/release/v12.9.0/&quot;&gt;nodejs v12.9.0 release notes&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</content:encoded></item><item><title><![CDATA[如何搭建类似麦当劳店中需登录认证的wifi]]></title><description><![CDATA[日常生活中常能碰到一些商场或餐饮店提供一种需认证的wifi，这种wifi连接后不能立刻使用，往往还需要在一个页面上进一步认证操作才行，比如输入手机号填个验证码之类的。 作为一名前端开发，每当我去麦当劳店里吃饭，用手机连接wifi时，一直都很想搞清楚几个问题： 这种wifi…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/2020-07-24-how-to-build-captive-portal-with-nodogslash/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/2020-07-24-how-to-build-captive-portal-with-nodogslash/</guid><pubDate>Fri, 24 Jul 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;日常生活中常能碰到一些商场或餐饮店提供一种需认证的wifi，这种wifi连接后不能立刻使用，往往还需要在一个页面上进一步认证操作才行，比如输入手机号填个验证码之类的。&lt;/p&gt;
+&lt;p&gt;作为一名前端开发，每当我去麦当劳店里吃饭，用手机连接wifi时，一直都很想搞清楚几个问题：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;这种wifi认证页面是如何搭建的？&lt;/li&gt;
+&lt;li&gt;它的认证机制是怎样的？&lt;/li&gt;
+&lt;li&gt;它跟正常的网站会有哪些不一样？&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;我工作地旁边的麦当劳wifi认证截图：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/7/24/1737ef087d8c450d?w=1080&amp;#x26;h=2340&amp;#x26;f=jpeg&amp;#x26;s=72244&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/7/24/1737ef0ad36721bf?w=1080&amp;#x26;h=2340&amp;#x26;f=jpeg&amp;#x26;s=69542&quot;&gt;&lt;/p&gt;
+&lt;p&gt;这种wifi的英文学名叫&lt;strong&gt;Captive Portal&lt;/strong&gt;，在开源社区中早已存在一些组件可轻松搭建这种类型的wifi，比如wifiDog, CoovaChilli, nodogslash等。&lt;/p&gt;
+&lt;p&gt;为了一探究竟，我用nodogslash在树莓派上搭建了一个带认证功能的wifi，并且使用React创建了自定义认证页面，尝试搞清楚整个认证流程背后的原理。&lt;/p&gt;
+&lt;p&gt;最终认证页面效果如下，点击按钮即完成认证：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/7/24/1737e5b0e88a8be8?w=1240&amp;#x26;h=1106&amp;#x26;f=png&amp;#x26;s=353081&quot;&gt;&lt;/p&gt;
+&lt;h3&gt;wifi认证的机制和原理&lt;/h3&gt;
+&lt;p&gt;每当设备连接wifi后，系统会自动做一个连通性校验，此校验的本质是发送一个HTTP请求。如果请求失败，则会触发相应机制要求用户输入登录凭证。如果请求成功，则表示网络已通，无任何回应，这个网络校验过程叫Captive Portal Detection (CPD)。&lt;/p&gt;
+&lt;p&gt;不同的操作系统校验时的请求地址不一样，比如我用手边的android和iphone手机分别做了测试，他们对应校验地址如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://connectivitycheck.smartisan.com/wifi.html&quot;&gt;http://connectivitycheck.smartisan.com/wifi.html&lt;/a&gt; （坚果 pro3）&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://captive.apple.com/hotspot-detect.html&quot;&gt;http://captive.apple.com/hotspot-detect.html&lt;/a&gt; （iphone 6）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;简单来说，wifi的认证过程通过一个HTTP GET请求即可完成。以我本文示例中使用的&lt;code&gt;nodogsplash&lt;/code&gt;组件为例，其内部用C语言实现了一个服务器运行在2050端口。设备连上wifi时，wifi端会生成一个token，当设备被重定向到认证页面时，页面模板中包含此token，此时用户只需发送一个GET请求将此token传入到对应服务器的认证地址即可。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/7/24/1737e6d58639002a?w=1636&amp;#x26;h=602&amp;#x26;f=png&amp;#x26;s=71017&quot;&gt;&lt;/p&gt;
+&lt;p&gt;如果你配置了FAS，也就是说设置了自定义认证机制，比如说你想添加了一个手机验证环节，需要用户填入手机和验证码才能完成认证。那么&lt;code&gt;nodogsplash&lt;/code&gt;在重定向登录页面的时候会把一些重要参数附带在请求地址的后面，让你的自定义入口页能获取到这些认证凭证，比如token之类的参数。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/7/24/1737e8f0ce691329?w=706&amp;#x26;h=1462&amp;#x26;f=png&amp;#x26;s=310187&quot;&gt;&lt;/p&gt;
+&lt;p&gt;等你的自定义验证手机验证通过了，再选择将token以HTTP GET请求发送回原2050端口上的认证服务器，整个流程如下图所示：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/7/24/1737e828bab6f58b?w=1762&amp;#x26;h=1068&amp;#x26;f=png&amp;#x26;s=116808&quot;&gt;&lt;/p&gt;
+&lt;h4&gt;认证站点的限制&lt;/h4&gt;
+&lt;p&gt;需要注意的是，当用户设备连上wifi但还尚未通过验证时，网络访问是受限的，此时能访问的内容取决于防火墙的设置。比如我上面示例中，将站点配置在路由器上，网站端口是8080，依赖的后端服务器运行在端口8081上，此时必须在&lt;code&gt;nodogsplash&lt;/code&gt;的防火墙规则中开放这两个端口，才能让未认证的用户设备访问的到。假如服务器配置在外网，就要将对应的域名或IP在防火墙中开放出来，具体配置方式参考&lt;code&gt;nodogsplash&lt;/code&gt;关于&lt;a href=&quot;https://nodogsplash.readthedocs.io/en/v4.5.1/fas.html&quot;&gt;FAS的文档&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;另外，wifi认证页面的实现上要有一些额外的安全考量。比如在&lt;code&gt;nodogsplash&lt;/code&gt;的官网文档中建议网站遵循一下安全准则：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;当认证成功后需立刻关闭浏览器&lt;/li&gt;
+&lt;li&gt;禁止使用链接&lt;/li&gt;
+&lt;li&gt;禁止文件下载功能&lt;/li&gt;
+&lt;li&gt;禁止执行javascript&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;关于第二条，可以使用表单提交的方式替换链接调整，而对于第四条，它的本意并不是禁止js功能，只是为了防止执行js语句引起的安全性问题。我在示例中搭建的网站使用了react框架，在android和ios上都能正常显示。&lt;/p&gt;
+&lt;p&gt;因此，在功能实现上相比较通常的前端站点，自定义的wifi认证网站部分功能受限，但影响并不大，可以使用你自己擅长的前端框架来搭建。&lt;/p&gt;
+&lt;h3&gt;创建需认证的wifi&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;注意，如果你手边没有树莓派或Linux系统，或者对配置部分不感兴趣，直接跳过即可。&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4&gt;准备工作&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;树莓派 4B&lt;/li&gt;
+&lt;li&gt;hostapd和dnsmasq (用于创建wifi热点)&lt;/li&gt;
+&lt;li&gt;nodogsplash (核心组件，管理wifi热点，提供认证功能)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;nodogsplash可以安装OpenWrt和Linux中，前者是开源的智能路由器操作系统，国内的一些路由器厂商通常是基于此系统定制的，后者就不必多介绍了，这次的示例就是安装在Linux系统上，为了方便安装调试，我直接使用一个树莓派4作为载体，用网线连通网络，用无线创建热点wifi。&lt;/p&gt;
+&lt;h4&gt;创建wifi热点&lt;/h4&gt;
+&lt;p&gt;在安装组件之前，首先将依赖包更新，然后安装&lt;code&gt;hostapd&lt;/code&gt;和&lt;code&gt;dnsmasq&lt;/code&gt;两个组件，前者用来创建wifi热点，后者用来处理DNS和DHCP等服务。&lt;/p&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;sudo apt-get update
+sudo apt-get upgrade
+
+sudo apt-get install hostapd dnsmasq&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
+&lt;p&gt;修改配置并指定一个wifi网段，配置文件在&lt;code&gt;/etc/dhcpcd.conf&lt;/code&gt;&lt;/p&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;sudo vi /etc/dhcpcd.conf
+
+# ...
+
+# 文件内容如下：
+interface wlan0
+    static ip_address=192.168.220.1/24
+    nohook wpa_supplicant&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
+&lt;p&gt;其中wlan0是无线网卡的名称，可以通过&lt;code&gt;ifconfig&lt;/code&gt;命令查询，IP地址可任意指定，只要不跟家中的wifi冲突即可，比如说此处设置的是192.168.220.*，而我家中的wifi网段是192.168.31.*。&lt;/p&gt;
+&lt;p&gt;重启一下服务，让配置生效：&lt;/p&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;sudo systemctl restart dhcpcd&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
+&lt;p&gt;修改hostapd配置，用于设置wifi的名称和密码，其中ssid表示此wifi的名称，wpa_passphrase表示此wifi的密码。&lt;/p&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;sudo vi /etc/hostapd/hostapd.conf
+
+# ...
+
+# 文件内容如下：
+interface=wlan0
+driver=nl80211
+
+hw_mode=g
+channel=6
+ieee80211n=1
+wmm_enabled=0
+macaddr_acl=0
+ignore_broadcast_ssid=0
+
+auth_algs=1
+wpa=2
+wpa_key_mgmt=WPA-PSK
+wpa_pairwise=TKIP
+rsn_pairwise=CCMP
+
+# wif的名称
+ssid=Pi4-AP
+# wifi的秘密
+wpa_passphrase=pimylifeup&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
+&lt;h5&gt;修改配置文件&lt;code&gt;/etc/default/hostapd&lt;/code&gt;&lt;/h5&gt;
+&lt;p&gt;这时还需要再修改两个配置文件，一个是&lt;code&gt;hostapd&lt;/code&gt;启动时的加载文件，需要将配置文件字段&lt;code&gt;DAEMON_CONF&lt;/code&gt;指定为上面的文件地址，默认情况下该字段是被注释掉的。&lt;/p&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;sudo nano /etc/default/hostapd
+
+# ...
+# 文件内容如下：
+# 将#DAEMON_CONF=&amp;quot;&amp;quot; 修改为下面这行
+DAEMON_CONF=&amp;quot;/etc/hostapd/hostapd.conf&amp;quot;&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
+&lt;h5&gt;修改配置文件&lt;code&gt;/etc/init.d/hostapd&lt;/code&gt;&lt;/h5&gt;
+&lt;p&gt;另一个配置文件是系统服务配置，同意将上文的配置文件地址赋值给&lt;code&gt;DAEMON_CONF&lt;/code&gt;字段。&lt;/p&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;sudo vi /etc/init.d/hostapd
+
+# ...
+
+# 文件内容如下：
+# 将DAEMON_CONF=修改为下面这行
+DAEMON_CONF=/etc/hostapd/hostapd.conf&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
+&lt;h5&gt;修改配置文件&lt;code&gt;/etc/dnsmasq.conf&lt;/code&gt;&lt;/h5&gt;
+&lt;p&gt;在此文件配置自定义wifi的网段、dns服务器等信息。&lt;/p&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;sudo vi /etc/dnsmasq.conf
+
+# ...
+
+# 文件内容如下：
+interface=wlan0       # 指定无线网卡名称 
+server=114.114.114.114       # 使用dns服务器
+dhcp-range=192.168.220.50,192.168.220.150,12h  # 指定可用IP的网段范围和释放时间&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
+&lt;h5&gt;无线网卡转发有线网卡&lt;/h5&gt;
+&lt;p&gt;修改系统配置文件中的&lt;code&gt;net.ipv4.ip_forward&lt;/code&gt;字段，激活转发功能，默认情况下，该字段是被注释掉的。&lt;/p&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;sudo vi /etc/sysctl.conf
+
+# ...
+
+# 文件内容如下：
+# 将原#net.ipv4.ip_forward=1的注释符号去掉，修改为下面这行
+net.ipv4.ip_forward=1&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
+&lt;p&gt;重启系统，让此修改生效。&lt;/p&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;sudo reboot&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
+&lt;p&gt;然后，通过&lt;code&gt;iptables&lt;/code&gt;命令实现网卡之间的信息转发，其中&lt;code&gt;eth0&lt;/code&gt;是有线网卡的名称，可通过&lt;code&gt;ifconfig&lt;/code&gt;命令查询。&lt;/p&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
+&lt;p&gt;最后，需要将当前&lt;code&gt;iptables&lt;/code&gt;的配置保存下来，保证每次机器重启时该配置都能生效，先将配置保存到文件中&lt;code&gt;/etc/iptables.ipv4.nat&lt;/code&gt;。&lt;/p&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;# 将配置写入/etc/iptables.ipv4.nat文件
+sudo sh -c &amp;quot;iptables-save &amp;gt; /etc/iptables.ipv4.nat&amp;quot;&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
+&lt;p&gt;修改&lt;code&gt;rc.local&lt;/code&gt;，保证每次启动时都会读取&lt;code&gt;iptables&lt;/code&gt;配置。&lt;/p&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;sudo vi /etc/rc.local
+
+# ...
+# 文件内容如下：
+
+# ...
+# 在“exit 0”这一行之前添加下面命令读取iptables的配置
+iptables-restore &amp;lt; /etc/iptables.ipv4.nat
+
+exit 0&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
+&lt;h5&gt;启动wifi热点&lt;/h5&gt;
+&lt;p&gt;最后，关于热点的配置终于配置完毕，运行一下命令启动服务：&lt;/p&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;sudo systemctl unmask hostapd
+sudo systemctl enable hostapd
+sudo systemctl start hostapd
+sudo service dnsmasq start&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
+&lt;p&gt;这时，应该可以用手机检测到配置的wifi出现了&lt;code&gt;Pi4-AP&lt;/code&gt;，该名称即上面配置的wifi名称，输入对应密码即可连上网络。此时可重启一下再连，确保重启后配置依然生效。&lt;/p&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;sudo reboot&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
+&lt;h4&gt;安装nodogsplash&lt;/h4&gt;
+&lt;p&gt;首先安装对应依赖&lt;code&gt;git&lt;/code&gt;和&lt;code&gt;libmicrohttpd-dev&lt;/code&gt;。&lt;/p&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;sudo apt install git libmicrohttpd-dev&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
+&lt;p&gt;然后使用git直接将nodogsplash源码拿下来，直接安装。&lt;/p&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;git clone https://github.com/nodogsplash/nodogsplash.git
+cd ./nodogsplash
+make
+sudo make install&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
+&lt;h4&gt;添加nodogsplash配置&lt;/h4&gt;
+&lt;p&gt;添加配置到文件&lt;code&gt;/etc/nodogsplash/nodogsplash.conf&lt;/code&gt;中，指定对应网卡、网关、最大连接用户数和认证过期时间。其中，&lt;code&gt;wlan0&lt;/code&gt;是上面配置的无线网卡名，IP地址是上面配置的wifi热点的网关。&lt;/p&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;sudo vi /etc/nodogsplash/nodogsplash.conf
+
+# ...
+
+# 文件内容如下：
+GatewayInterface wlan0
+GatewayAddress 192.168.220.1
+MaxClients 250
+AuthIdleTimeout 480&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
+&lt;p&gt;配置完成后，启动nodogsplash。&lt;/p&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;sudo nodogsplash&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
+&lt;p&gt;此时，用手机连接创建的wifi并输入密码以后，即可看到以下弹窗，要求登录认证。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/7/24/1737eecb43cc96b4?w=1080&amp;#x26;h=2340&amp;#x26;f=jpeg&amp;#x26;s=59299&quot;&gt;&lt;/p&gt;
+&lt;p&gt;点击登录后进入认证页面。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/7/24/1737eed8d34ef200?w=1080&amp;#x26;h=2340&amp;#x26;f=jpeg&amp;#x26;s=86961&quot;&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;a href=&quot;#section-2&quot;&gt;配置自定义wifi认证页面&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;nodogsplash&lt;/code&gt;本身提供了自定义验证机制 - &lt;a href=&quot;https://nodogsplash.readthedocs.io/en/v4.5.1/fas.html&quot;&gt;Forwarding Authentication Service (FAS)&lt;/a&gt;，它可以指定自定义的认证页面和认证方式，通过简单配置对应服务器的IP和端口即可。&lt;/p&gt;
+&lt;p&gt;比如，我在同一台机器上开启一个react站点，端口为8080，若想把此站点设置为认证入口页，只需在配置文件中添加下面四行代码即可，其中&lt;code&gt;fas_secure_enabled&lt;/code&gt;有&lt;a href=&quot;https://nodogsplash.readthedocs.io/en/v4.5.1/fas.html#example-fas-query-strings&quot;&gt;从0到3的多个等级值&lt;/a&gt;，从低到高会让安全性和复杂性递增，此处选了最简单等级用于做演示。&lt;/p&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;sudo vi /etc/nodogsplash/nodogsplash.conf
+
+# ...
+
+# 要添加的内容如下
+fasport 8080
+fasremoteip 192.168.220.1
+faspath /
+fas_secure_enabled 0&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
+&lt;p&gt;最后，呈现的样子如下，点击按钮即完成认证，顺利联网。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/7/24/1737e5b0e88a8be8?w=1240&amp;#x26;h=1106&amp;#x26;f=png&amp;#x26;s=353081&quot;&gt;&lt;/p&gt;
+&lt;h4&gt;备注：关于nodogsplash的版本&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;nodogsplash源码中的master分支指向的3.3.5版本，而此时最新版是5.0.0（笔者写此文章时间2020.7），越新的版本其文档越完善，但要注意的是4.5.1版本是一个分水岭，因为从4.5.1之后该项目的自定义登录授权功能被剥离到一个独立项目&lt;a href=&quot;https://github.com/openNDS/openNDS&quot;&gt;openNDS&lt;/a&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;假如切换到v4.5.1版后碰到&lt;code&gt;libmicrohttpd&lt;/code&gt;报&lt;a href=&quot;https://raspberrypi.stackexchange.com/questions/108803/issue-with-nodogsplash-saying-it-needed-updateed-libmicrohttpd-dev-but-i-seems&quot;&gt;组件过时异常&lt;/a&gt;，可在配置文件中添加字段&lt;code&gt;se_outdated_mhd 1&lt;/code&gt;避开此异常。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;结语&lt;/h3&gt;
+&lt;p&gt;带认证的wifi在商业活动中越来越常见，开源社区中，&lt;code&gt;nodogsplash&lt;/code&gt;是其中一种实现方式，在少量限制的情况下，提供了足够的灵活性让你用熟悉的方式像搭建其他网站一样搭建wifi认证页面。最终，把你的前端能力延伸到路由器上。&lt;/p&gt;
+&lt;h4&gt;参考文献&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/nodogsplash/nodogsplash&quot;&gt;nodogsplash的github地址&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://nodogsplashdocs.readthedocs.io/en/stable/&quot;&gt;nodogsplash的官方文档&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://blogs.arubanetworks.com/industries/rfc-7710-captive-portal-identification-using-dhcp-or-router-advertisements-ras/&quot;&gt;captive-portal和rfc-7710文献关联&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://wiki.mozilla.org/QA/Captive_Portals&quot;&gt;Captive-Portal的wiki&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://pimylifeup.com/raspberry-pi-wireless-access-point/&quot;&gt;树莓派搭建wifi热点&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://pimylifeup.com/raspberry-pi-captive-portal/&quot;&gt;树莓派搭建captive-portal&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</content:encoded></item><item><title><![CDATA[试了就戒不掉的CI工具-dangerjs]]></title><description><![CDATA[在开源社区中，danger的使用尤其普遍，它可以拿来自动判断每个人提交的代码合并请求（github中叫Pull Request，下文简称PR，gitlab中叫Merge Request，下文简称MR…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/2020-07-14-the-addicting-ci-tool-dangerjs/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/2020-07-14-the-addicting-ci-tool-dangerjs/</guid><pubDate>Tue, 14 Jul 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;在开源社区中，danger的使用尤其普遍，它可以拿来自动判断每个人提交的代码合并请求（github中叫Pull Request，下文简称PR，gitlab中叫Merge Request，下文简称MR）是否符合规范，自动化一些费时费力的人工检查，从而保证代码质量，是项目管理的利器。&lt;/p&gt;
+&lt;p&gt;比如开源项目&lt;a href=&quot;https://github.com/styled-components/styled-components&quot;&gt;styled-componet&lt;/a&gt;的这个自动回复机器人就是用danger实现的。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/7/13/1734543bf6969c3a?w=777&amp;#x26;h=199&amp;#x26;f=png&amp;#x26;s=33630&quot;&gt;&lt;/p&gt;
+&lt;p&gt;Danger最初是由ruby社区发展起来，之后增加了对js语言的支持，衍生出DangerJs。从它的标语中即可看出此工具存在的意义：&lt;strong&gt;Stop saying “you forgot to …” in code review&lt;/strong&gt;，实际上，此工具可做的事情要远比标语中描述的多。&lt;/p&gt;
+&lt;p&gt;在整个代码合并流程中，danger的位置通常在测试和代码规范化检查的后一步，人工检查的前一步，相当于是足球中的清道夫的角色，&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/7/13/1734559a0448b54a?w=2060&amp;#x26;h=360&amp;#x26;f=png&amp;#x26;s=38537&quot;&gt;&lt;/p&gt;
+&lt;p&gt;danger常见的使用场景是：通过自定制的脚本自动化处理一些费神的人工检查。我以前在项目中使用dangerjs在gitlab上实现过这样的检查：合并代码时有没有勾选“合并后删除远端分支”的复选框，有没有勾选“合并时压缩git节点”的复选框，有没有在合并标题中写上对应电子看板的任务卡ID等等，如果没有操作这些则禁止代码合并，及其方便的规范了整个团队的git开发流程。&lt;/p&gt;
+&lt;p&gt;在上篇&lt;a href=&quot;https://juejin.im/post/6847902224794943495&quot;&gt;介绍lerna的文章&lt;/a&gt;里，用dangerjs实现了子项目权限检查：判定当前提交人是否满足某个目录的提交权限，不满足则不允许代码合并，效果如下图所示。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/7/13/1734543212ec650e?w=2018&amp;#x26;h=912&amp;#x26;f=png&amp;#x26;s=288646&quot;&gt;&lt;/p&gt;
+&lt;h3&gt;安装Dangerjs&lt;/h3&gt;
+&lt;p&gt;Dangerjs支持github和gitlab两大代码托管平台，也支持私有gitlab服务器，不过它对github的支持最好，简单几步在即可在一个github项目中加入danger检查。&lt;/p&gt;
+&lt;p&gt;在你的项目中，dangerjs用起来就像其他任何npm包一样，一行命令即可安装。（注意包名没有js后缀）&lt;/p&gt;
+
+        &lt;deckgo-highlight-code language=&quot;javascript&quot; &gt;
+          &lt;code slot=&quot;code&quot;&gt;yarn add -D danger&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
+&lt;h3&gt;设置github的token&lt;/h3&gt;
+&lt;p&gt;danger需要使用你的token授权来做相应操作，比如添加评论到对应的PR下方给出提示。你可以点击&lt;a href=&quot;https://github.com/settings/tokens/new&quot;&gt;此链接&lt;/a&gt;在github上生成对应token，token的名称可以随便起，权限要记得给足。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/7/13/173456ceceb894c1?w=1400&amp;#x26;h=790&amp;#x26;f=jpeg&amp;#x26;s=132923&quot;&gt;&lt;/p&gt;
+&lt;h3&gt;将token保存到环境变量中&lt;/h3&gt;
+&lt;p&gt;需要把token的变量名命名为&lt;code&gt;DANGER_GITHUB_API_TOKEN&lt;/code&gt;，并且保存在CI的配置里，比如我在github中使用了circleci作为持续集成的工具，token就需要保存到如下位置，见截图：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/7/14/1734a263655eea6e?w=2686&amp;#x26;h=1102&amp;#x26;f=png&amp;#x26;s=262091&quot;&gt;&lt;/p&gt;
+&lt;p&gt;注意，如果是gitlab公网上的项目，那变量名就不一样了，需设置为&lt;code&gt;DANGER_GITLAB_API_TOKEN&lt;/code&gt;, 如果是私有gitlab服务器，还需要添加另外一个变量&lt;code&gt;DANGER_GITLAB_HOST&lt;/code&gt;将地址指向你自己的服务器，详情可参考&lt;a href=&quot;https://danger.systems/js/usage/gitlab.html&quot;&gt;官网链接&lt;/a&gt;。&lt;/p&gt;
+&lt;h3&gt;创建dangerfile.js文件&lt;/h3&gt;
+&lt;p&gt;项目根目录下创建dangerfile.js文件用于编写对应的脚本，比如下面几行代码就是最常用的写法。&lt;/p&gt;
+
+        &lt;deckgo-highlight-code language=&quot;javascript&quot; &gt;
+          &lt;code slot=&quot;code&quot;&gt;import { danger, fail, warn } from &amp;#39;danger&amp;#39;
+
+fail(&amp;#39;This is a failure message&amp;#39;) // 显示一条错误信息
+
+warn(&amp;#39;This is a warn message&amp;#39;) // 显示一条警告信息
+
+const { title } = danger.github.pr
+if (!title.startsWith(&amp;#39;feature/&amp;#39;)) {
+	fail(&amp;#39;标题必须要由&amp;quot;feature/&amp;quot;开头&amp;#39;)
+}&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
+&lt;h3&gt;本地测试danger脚本&lt;/h3&gt;
+&lt;p&gt;在脚本正式推向CI环境前，可以本地测试一下脚本是否符合预期。首先要创建Pull Requst，然后获取此PR的地址，之后使用npm或者yarn执行命令：&lt;/p&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;yarn danger pr 创建的PR的地址&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
+&lt;p&gt;此时，你可能会碰到下面这样的提示，这是因为还没有在本地设置token变量。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/7/14/1734a3ec4d88347d?w=1760&amp;#x26;h=214&amp;#x26;f=png&amp;#x26;s=79558&quot;&gt;&lt;/p&gt;
+&lt;p&gt;本地直接执行一下命令来声明变量即可。&lt;/p&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;export DANGER_GITHUB_API_TOKEN=xxxxxx&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
+&lt;p&gt;设置token变量后重新执行&lt;code&gt;danger pr&lt;/code&gt;的命令。访问对应的PR地址，如果看到下图这样的效果，说明你写的dangerjs脚本生效了。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/7/14/1734a46cfe487cf1?w=1886&amp;#x26;h=822&amp;#x26;f=png&amp;#x26;s=164780&quot;&gt;&lt;/p&gt;
+&lt;p&gt;最后，把&lt;code&gt;yarn danger ci&lt;/code&gt;或者&lt;code&gt;npm danger ci&lt;/code&gt;放在你的CI文件中的合适位置，这样danger就添加完成了。&lt;/p&gt;
+&lt;p&gt;另外，你可以申请一个github账号名为’xxxx-bot’，再贴一张机器人图片作为头像，并用此账号的token作为变量来自动回复，最终能让整个效果更显技术含量。 &lt;/p&gt;
+&lt;h3&gt;能获取到的数据&lt;/h3&gt;
+&lt;p&gt;除了标题之外，danger能获取当前PR中的各种信息字段，比如用户信息、修改的文件、代码审核人、代码合并的配置等等，从下面的截图里包含了一些常用字段。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/7/14/1734a52d35926ddb?w=2268&amp;#x26;h=1670&amp;#x26;f=png&amp;#x26;s=430546&quot;&gt;&lt;/p&gt;
+&lt;p&gt;除此之外，&lt;a href=&quot;https://danger.systems/js/reference.html&quot;&gt;dangerjs的官网&lt;/a&gt;也给出了详细的类型数据，你可以根据需要定制符合自己项目需求的检查脚本。&lt;/p&gt;
+&lt;h3&gt;结语&lt;/h3&gt;
+&lt;p&gt;danger可以在合并代码时提供自定义的合并规则，能规范整个项目的开发流程，把它整合到CI中能帮你自动化很多繁琐的人工检查，无论是开源项目还是日常开发项目，danger都是项目流程管理的利器，一旦试过你就再也戒不掉。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;相关资料&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://medium.com/@ivan.ha/integrate-danger-js-in-5-minutes-55515bc5355d&quot;&gt;integrate-danger-js-in-5-minutes&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://danger.systems/js/&quot;&gt;dangerjs官网&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/twomeetings/lerna-example/pull/3&quot;&gt;文章中的PR地址&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</content:encoded></item><item><title><![CDATA[大前端项目代码重用，也许lerna是最好的选择]]></title><description><![CDATA[我前段时间参与了一个react为主的大前端项目，覆盖Web、Android、Ios三个平台。由于整个业务逻辑侧重在手机端，且Web端也是到了项目中期才开始启动，我分别以react-native和react分开建了两个项目。 可是，后端微服务集群是同一个，两个项目调用的API…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/2020-07-10-you-should-use-lerna-for-sharing-code/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/2020-07-10-you-should-use-lerna-for-sharing-code/</guid><pubDate>Fri, 10 Jul 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;我前段时间参与了一个&lt;code&gt;react&lt;/code&gt;为主的大前端项目，覆盖Web、Android、Ios三个平台。由于整个业务逻辑侧重在手机端，且Web端也是到了项目中期才开始启动，我分别以&lt;code&gt;react-native&lt;/code&gt;和&lt;code&gt;react&lt;/code&gt;分开建了两个项目。&lt;/p&gt;
+&lt;p&gt;可是，后端微服务集群是同一个，两个项目调用的API大多一样，导致两个项目中不可避免的出现了一些重复逻辑。比如说写在redux中的业务逻辑代码，写在http拦截器中的请求处理代码等等，这些重复的部分从目录名和文件名即可肉眼看出。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/7/13/173452607adea86e?w=1584&amp;#x26;h=1050&amp;#x26;f=png&amp;#x26;s=270873&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/7/13/17345627a10f22a2?w=1864&amp;#x26;h=1128&amp;#x26;f=png&amp;#x26;s=352870&quot;&gt;&lt;/p&gt;
+&lt;p&gt;我尝试了将重复部分封装成独立的&lt;code&gt;npm&lt;/code&gt;包供两个项目引用，但这个做法仅适用于变化频率较小的工具类代码，一旦封装了变化频繁的业务逻辑代码，用起来也麻烦不断。首先，抽出到项目之外但不易开发和调试，其次，在项目开发过程中业务代码更新太频繁，常常要不断升级版本。权衡利弊，最终得不偿失。&lt;/p&gt;
+&lt;p&gt;那么，有没有办法更好的重用这部分代码逻辑呢？有没有办法把这两个项目的通用代码抽取成独立项目，但是又能避开封装成独立&lt;code&gt;npm&lt;/code&gt;包的弊端呢？&lt;/p&gt;
+&lt;p&gt;我最近尝试引入&lt;a href=&quot;https://github.com/lerna/lerna&quot;&gt;lerna框架&lt;/a&gt;，把这个大前端项目架构作为参照物来改造，惊喜的发现它不但能解决当时项目的痛点，还能额外带来一些多项目管理相关的好处。&lt;/p&gt;
+&lt;p&gt;事实上，开源社区早已有很多项目使用了这种多项目合而为一的方案，且采用了lerna框架的代码库也大多耳熟能详，比如国外的有&lt;a href=&quot;https://github.com/babel/babel&quot;&gt;babel&lt;/a&gt;、&lt;a href=&quot;https://github.com/facebook/create-react-app&quot;&gt;create-react-app&lt;/a&gt;、&lt;a href=&quot;https://github.com/ReactTraining/react-router&quot;&gt;react-router&lt;/a&gt;、&lt;a href=&quot;https://github.com/facebook/jest&quot;&gt;jest&lt;/a&gt;、以及国内跨端小程序框架&lt;a href=&quot;https://github.com/NervJS/taro&quot;&gt;Taro&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;最后经过改造，两个项目合并成一个，重复的代码逻辑也被抽取成另一个独立项目，整个项目结构变成了下面图示这样。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/7/13/17345266371693e2?w=1666&amp;#x26;h=1130&amp;#x26;f=png&amp;#x26;s=246949&quot;&gt;&lt;/p&gt;
+&lt;h3&gt;引入lerna&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;lerna&lt;/code&gt;的名字来源于希腊神话中的九头蛇海德拉（Lernaean Hydra），拿它形容多项目工程是再贴切不过了。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;lerna&lt;/code&gt;的引入比想象中简单，其实，与其说引入&lt;code&gt;lerna&lt;/code&gt;，倒不如说是导入到&lt;code&gt;lerna&lt;/code&gt;更合适，因为具体的做法是通过命令行创建了一个新的&lt;code&gt;lerna&lt;/code&gt;项目，然后把所有项目导入进去。而且在导入的同时，每个项目的git提交记录也都合并在了一起。&lt;/p&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;lerna init
+lerna import 你本地的项目路径&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
+&lt;p&gt;每个被导入的项目都会被存放在根路径的packages目录下，下面是我demo项目的截图，一共引入了三个子项目：rntest, web-app, shared。分别代表mobile，web和可重用的逻辑代码。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/7/10/17336c236f9a7a04?w=726&amp;#x26;h=850&amp;#x26;f=png&amp;#x26;s=97041&quot;&gt;&lt;/p&gt;
+&lt;h3&gt;使用lerna来管理项目依赖&lt;/h3&gt;
+&lt;p&gt;引入&lt;code&gt;lerna&lt;/code&gt;后，第一件事就是要处理安装依赖的问题，我们需要用&lt;code&gt;lerna add&lt;/code&gt; 命令来代替我们习惯的&lt;code&gt;npm&lt;/code&gt;或&lt;code&gt;yarn&lt;/code&gt;，比如说给rntest项目安装&lt;code&gt;lodash&lt;/code&gt;，就要执行下面的命令。&lt;/p&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;lerna add lodash --scope=rntest&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
+&lt;p&gt;不过，执行后你会发现其他项目中package-lock.json都发生了变化，让人非常困惑，这背后的原因是跟添加依赖后自动执行的安装命令&lt;code&gt;lerna bootstrap&lt;/code&gt;有关。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/7/10/17336ce90943c4c5?w=1590&amp;#x26;h=692&amp;#x26;f=png&amp;#x26;s=306642&quot;&gt;&lt;/p&gt;
+&lt;h4&gt;lerna的依赖提升&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;lerna&lt;/code&gt;可以通过&lt;code&gt;lerna bootstrap&lt;/code&gt;一行命令安装所有子项目的依赖包，而且在安装依赖时还有依赖提升功能，所谓“依赖提升”，就是把所有项目npm依赖文件都提升到根目录下，这样能避免相同依赖包在不同项目安装多次。比如多个项目都用了&lt;code&gt;redux&lt;/code&gt;，通过依赖提升，多个项目一共只需要下载一次即可。不过，需要额外的参数&lt;code&gt;--hoist&lt;/code&gt;让依赖提升生效。&lt;/p&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;lerna bootstrap --hoist&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
+&lt;p&gt;但是自动执行&lt;code&gt;lerna bootstrap&lt;/code&gt;命令是不带依赖提升参数的，这就导致上面每个项目的lock文件都会被修改的原因。&lt;/p&gt;
+&lt;p&gt;当然，要解决这个问题也容易，可以通过&lt;code&gt;lerna&lt;/code&gt;的配置来避免npm对lock文件的修改即可，写法如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/7/10/17336dd6146615f4?w=574&amp;#x26;h=610&amp;#x26;f=png&amp;#x26;s=45981&quot;&gt;&lt;/p&gt;
+&lt;h4&gt;yarn是lerna的最佳搭档&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;lerna&lt;/code&gt;默认使用&lt;code&gt;npm&lt;/code&gt;作为安装依赖包工具，但也可以选择其他工具。&lt;code&gt;yarn&lt;/code&gt;在1.0版本之后提供了workspaces的功能，该功能从更底层的地方提供了依赖提升，做的事情跟&lt;code&gt;lerna&lt;/code&gt;如出一辙。把它跟&lt;code&gt;lerna&lt;/code&gt;放在一起看，简直就像是为&lt;code&gt;lerna&lt;/code&gt;量身定做一样。因此，推荐在lerna中搭配yarn一起使用。&lt;/p&gt;
+&lt;p&gt;把npm替换成yarn只需在lerna的配置文件添加两行代码即可，配置完以后立刻顺畅百倍。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/7/10/17336e46c6eed674?w=538&amp;#x26;h=386&amp;#x26;f=png&amp;#x26;s=35002&quot;&gt;&lt;/p&gt;
+&lt;h3&gt;高效的代码重用&lt;/h3&gt;
+&lt;p&gt;在我参与的这个大前端项目里，多端之间代码重复的部分包含&lt;code&gt;redux&lt;/code&gt;中的业务逻辑、http请求的处理、代码规范工具的检查、&lt;code&gt;git&lt;/code&gt;钩子中的自定义脚本等等。在&lt;code&gt;lerna&lt;/code&gt;架构下，前两者可直接抽取到一个独立的项目，然后被其他项目引用，比如在我的demo中，可以像其他依赖包一样直接引入&lt;code&gt;shared&lt;/code&gt;项目, lerna会自动识别并把它导向内部项目。&lt;/p&gt;
+
+        &lt;deckgo-highlight-code language=&quot;javascript&quot; &gt;
+          &lt;code slot=&quot;code&quot;&gt;import shared from &amp;#39;shared&amp;#39;&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
+&lt;p&gt;这跟直接封装成&lt;code&gt;npm&lt;/code&gt;包的一大区别就是实时更新，修改立刻可见，就像在同一个项目一样，不影响开发和调试。&lt;/p&gt;
+&lt;h4&gt;git钩子和自定义脚本的重用&lt;/h4&gt;
+&lt;p&gt;我尝试把处理&lt;code&gt;git&lt;/code&gt;钩子的工具&lt;code&gt;husky&lt;/code&gt;安装到了根目录，触发的事件和自定义脚本能覆盖到每个项目，给这部分代码重用带来了极大便利。比如，不少项目会添加自定义脚本来约束&lt;code&gt;git commit&lt;/code&gt;提交时的消息描述，在&lt;code&gt;lerna&lt;/code&gt;架构下，只需写一次即可。&lt;/p&gt;
+&lt;h4&gt;eslint的重用&lt;/h4&gt;
+&lt;p&gt;那些常常需要在根目录添加配置文件的第三方依赖，比如&lt;code&gt;eslint&lt;/code&gt;、&lt;code&gt;prettier&lt;/code&gt;、&lt;code&gt;babel&lt;/code&gt;等，在&lt;code&gt;lerna&lt;/code&gt;中无法简单粗暴的提升合并到一处。因此，对于&lt;code&gt;eslint&lt;/code&gt;这种前端开发已不可或缺的工具，可以尝试将所有配置项抽取到独立项目，然后安装第三方依赖的方式引入，类似&lt;code&gt;eslint-config-airbnb&lt;/code&gt;，&lt;code&gt;eslint-config-prettier&lt;/code&gt;，&lt;code&gt;eslint-config-google&lt;/code&gt;这样。&lt;/p&gt;
+&lt;p&gt;不得不说，即便不用&lt;code&gt;lerna&lt;/code&gt;框架我们也可以这么做，只不过在&lt;code&gt;lerna&lt;/code&gt;框架下修改立刻可见，方便了调试和开发。&lt;/p&gt;
+&lt;h3&gt;lerna框架下的CI/CD&lt;/h3&gt;
+&lt;p&gt;多项目的结构无疑给&lt;code&gt;CI/CD&lt;/code&gt;带来挑战，好在主流的CI框架能完美解决这个问题。比如在gitlab上，&lt;code&gt;only/changes&lt;/code&gt;参数完全满足了我们的需求，让我们可以为每一个子项目设置单独的pipeline，比如现在我们设置一个pipeline，只当rntest项目下的文件被修改时才会触发：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/7/10/1733709cb0553f09?w=1022&amp;#x26;h=470&amp;#x26;f=png&amp;#x26;s=56019&quot;&gt;&lt;/p&gt;
+&lt;p&gt;在lerna框架下，所有项目都合在一个工程里，但&lt;code&gt;CI/CD&lt;/code&gt;并不必这样。通过把脚本中的关键参数配置到&lt;code&gt;CI/CD&lt;/code&gt;的项目内里，共用同一份&lt;code&gt;.gitlab-ci.yml&lt;/code&gt;文件，从而能够实现每个子项目对应一个独立的&lt;code&gt;CI/CD&lt;/code&gt;项目，最终&lt;code&gt;CI/CD&lt;/code&gt;结构如下图：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/7/10/1733717fab7eb8e3?w=1332&amp;#x26;h=846&amp;#x26;f=png&amp;#x26;s=175590&quot;&gt;&lt;/p&gt;
+&lt;h3&gt;lerna框架下的子项目权限&lt;/h3&gt;
+&lt;p&gt;由于所有的项目都归并到了一个&lt;code&gt;lerna&lt;/code&gt;工程下，一旦有了访问权限意味着你可以修改所有子项目中的代码，在实际的开发工作中多多少少会带来一些麻烦。比如说，开发web和开发mobile平台的是两个不同的团队，假如我作为web组的一员，一不小心修改了或删除了mobile项目的文件该怎么办？假如不加入任何限制，这种事情迟早会发生，我想这可能是&lt;code&gt;lerna&lt;/code&gt;框架与生俱来的的痛点。&lt;/p&gt;
+&lt;p&gt;不幸的是，在&lt;code&gt;lerna&lt;/code&gt;框架下，gitlab或github这类第三方代码托管平台，本身的权限管理功能无法解决这问题。但好在有其他工具的帮助可以缓解这种痛，我尝试用来约束开源贡献者提交PR规范的工具&lt;code&gt;dangerjs&lt;/code&gt;来完成权限分隔，利用的信息就是当前gitlab账号的用户名，看起来效果还不错。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/7/13/1734528ea00cdce7?w=2134&amp;#x26;h=1834&amp;#x26;f=png&amp;#x26;s=479655&quot;&gt;&lt;/p&gt;
+&lt;p&gt;可以看到，此工具会在合并MR时，判断出我gitlab账号没有权限修改rntest子项目内的文件，从而禁止合并此MR，并将这些信息自动添加到MR的评论里。当然，脚本判断是自己写的仅用作演示，逻辑比较简陋，脚本代码如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/7/13/17345291a0c5b1f1?w=2838&amp;#x26;h=988&amp;#x26;f=png&amp;#x26;s=631394&quot;&gt;&lt;/p&gt;
+&lt;p&gt;关于&lt;code&gt;dangerjs&lt;/code&gt;的部分我会另写一篇文章详细介绍。&lt;/p&gt;
+&lt;h3&gt;结语&lt;/h3&gt;
+&lt;p&gt;大前端项目将会是前端发展的趋势，如何更好的管理大前端项目是每一位前端开发躲不开的课题。&lt;code&gt;lerna&lt;/code&gt;框架通过合而为一的理念提供了一种解决方案，通过扬长避短，我们可以发挥出&lt;code&gt;lerna&lt;/code&gt;的最大效用。假如你还没有用过，也许，下一个项目就可以试试看。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;相关资料&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://classic.yarnpkg.com/en/docs/workspaces/&quot;&gt;yarn的workspaces&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/lerna/lerna&quot;&gt;lerna的github地址&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://gitlab.com/twomeetings/lerna-demo&quot;&gt;文章中的demo&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</content:encoded></item><item><title><![CDATA[如何编写hooks风格的redux组件]]></title><description><![CDATA[Hooks特性在React的16.…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/2020-07-01-how-to-write-hooks-like-component-in-redux/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/2020-07-01-how-to-write-hooks-like-component-in-redux/</guid><pubDate>Wed, 01 Jul 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Hooks特性在React的16.8版本被引入，在解决组件重用和生命周期逻辑破碎两大难题的同时，极大简化了组件写法，而且兼容旧写法，即便不想学也没关系，向开发者释放了极大的善意。&lt;/p&gt;
 &lt;p&gt;可是，组件写法的改变或多或少会让人有些顾虑，尤其是和第三方组件集成，开发社区中也出现了一些类似“Redux是否要被Hooks取代”的声音，就像之前的React Context特性出现的时候一样，大伙的第一反应总是先问Redux是不是要被取代了，即使两者之间并无太多冲突，不过这也侧面反映了Redux框架在社区中的受众之广。&lt;/p&gt;
 &lt;p&gt;实际上，React-Redux组件库作为粘合剂从7.1.0开始已支持Hooks特性，这让我们写redux组件的时候不再需要connect方法，我们通过一个例子来展示如何写Hooks风格的redux组件。下面代码展示了一个复选框，使用了常见的connect方法将组件和store连接起来。&lt;/p&gt;
 
