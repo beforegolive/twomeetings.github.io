@@ -60,7 +60,38 @@ Promise.allSettled(promises).then(values=&gt;console.log(values))
 <p>因此，当用Promise.allSettled时，我们只需专注在then语句里，当有promise被异常打断时，我们依然能妥善处理那些已经成功了的promise，不必全部重来。</p>
 <h3>当前大环境对Promise.allSettled的支持</h3>
 <p>nodejs从<a href="https://nodejs.org/en/blog/release/v12.9.0/">v12.9.0</a>开始加入了对Promise.allSettled的支持，主流浏览器们也各自在2019年发布的版本中支持了此方法，这意味着你已经可以放心大胆的使用了。</p>
-<p><img src="https://user-gold-cdn.xitu.io/2020/7/29/17397a0e39508308?w=2548&#x26;h=634&#x26;f=png&#x26;s=166617"></p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;"
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/3bf09ec83b7e9f15e982ddae3ed993f4/67ee3/cover.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 25%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wgARCAAFABQDASIAAhEBAxEB/8QAFwABAAMAAAAAAAAAAAAAAAAAAAEDBv/EABYBAQEBAAAAAAAAAAAAAAAAAAIBA//aAAwDAQACEAMQAAAB0dxhZCX/xAAaEAABBQEAAAAAAAAAAAAAAAABAAMREhMi/9oACAEBAAEFAiHLDSO1/8QAFhEBAQEAAAAAAAAAAAAAAAAAARAh/9oACAEDAQE/AR2f/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAGhAAAgIDAAAAAAAAAAAAAAAAAAEykRETkv/aAAgBAQAGPwLGxck1RJUf/8QAGhAAAgIDAAAAAAAAAAAAAAAAASEA8DFBcf/aAAgBAQABPyHTAyoSRXmBXb2f/9oADAMBAAIAAwAAABAL7//EABURAQEAAAAAAAAAAAAAAAAAAAEA/9oACAEDAQE/EGXN/8QAFhEAAwAAAAAAAAAAAAAAAAAAARAx/9oACAECAQE/EBV//8QAGRABAAMBAQAAAAAAAAAAAAAAAQARIVGh/9oACAEBAAE/EC1ml4M9mKJGZb7AAEPREf/Z'); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="cover"
+        title="cover"
+        src="/static/3bf09ec83b7e9f15e982ddae3ed993f4/625aa/cover.jpg"
+        srcset="/static/3bf09ec83b7e9f15e982ddae3ed993f4/c4d45/cover.jpg 148w,
+/static/3bf09ec83b7e9f15e982ddae3ed993f4/1f0d7/cover.jpg 295w,
+/static/3bf09ec83b7e9f15e982ddae3ed993f4/625aa/cover.jpg 590w,
+/static/3bf09ec83b7e9f15e982ddae3ed993f4/f8367/cover.jpg 885w,
+/static/3bf09ec83b7e9f15e982ddae3ed993f4/fab84/cover.jpg 1180w,
+/static/3bf09ec83b7e9f15e982ddae3ed993f4/67ee3/cover.jpg 2548w"
+        sizes="(max-width: 590px) 100vw, 590px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
 <p>对于那些不支持此方法的环境，你可以直接引用开源社区中实现了此方法的npm包：</p>
 <ul>
 <li><a href="https://www.npmjs.com/package/promise.allsettled">promise.allsettled</a></li>

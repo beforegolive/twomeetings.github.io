@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[上线前夕]]></title><description><![CDATA[A starter blog demonstrating what Gatsby can do.]]></description><link>https://gatsby-starter-blog-demo.netlify.com</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 03 Aug 2020 02:31:22 GMT</lastBuildDate><item><title><![CDATA[Promise.all和Promise.allSettled的区别]]></title><description><![CDATA[不管你是否还学的动，JS语言依然在以自己的节奏飞快的进化。转眼间，Promise的工具包里又多了一个方法Promise.allSettled供你选择，它看起来像是对Promise.all的一种补充，缓解了使用Promise.all碰到reject…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/2020-07-29-the-diff-between-promise-all-and-promise-allsettled/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/2020-07-29-the-diff-between-promise-all-and-promise-allsettled/</guid><pubDate>Wed, 29 Jul 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;不管你是否还学的动，JS语言依然在以自己的节奏飞快的进化。转眼间，Promise的工具包里又多了一个方法Promise.allSettled供你选择，它看起来像是对Promise.all的一种补充，缓解了使用Promise.all碰到reject的痛点问题。&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[上线前夕]]></title><description><![CDATA[A starter blog demonstrating what Gatsby can do.]]></description><link>https://gatsby-starter-blog-demo.netlify.com</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 03 Aug 2020 02:32:43 GMT</lastBuildDate><item><title><![CDATA[Promise.all和Promise.allSettled的区别]]></title><description><![CDATA[不管你是否还学的动，JS语言依然在以自己的节奏飞快的进化。转眼间，Promise的工具包里又多了一个方法Promise.allSettled供你选择，它看起来像是对Promise.all的一种补充，缓解了使用Promise.all碰到reject…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/2020-07-29-the-diff-between-promise-all-and-promise-allsettled/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/2020-07-29-the-diff-between-promise-all-and-promise-allsettled/</guid><pubDate>Wed, 29 Jul 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;不管你是否还学的动，JS语言依然在以自己的节奏飞快的进化。转眼间，Promise的工具包里又多了一个方法Promise.allSettled供你选择，它看起来像是对Promise.all的一种补充，缓解了使用Promise.all碰到reject的痛点问题。&lt;/p&gt;
 &lt;p&gt;一句话概括Promise.allSettled和Promise.all的最大不同：&lt;strong&gt;Promise.allSettled永远不会被reject&lt;/strong&gt;。&lt;/p&gt;
 &lt;h3&gt;解决Promise.all的痛点&lt;/h3&gt;
 &lt;p&gt;当需要处理多个Promise并行时，大多数情况下Promise.all用起来是非常顺手的，比如下面这样&lt;/p&gt;
@@ -57,7 +57,38 @@ Promise.allSettled(promises).then(values=&amp;gt;console.log(values))
 &lt;p&gt;因此，当用Promise.allSettled时，我们只需专注在then语句里，当有promise被异常打断时，我们依然能妥善处理那些已经成功了的promise，不必全部重来。&lt;/p&gt;
 &lt;h3&gt;当前大环境对Promise.allSettled的支持&lt;/h3&gt;
 &lt;p&gt;nodejs从&lt;a href=&quot;https://nodejs.org/en/blog/release/v12.9.0/&quot;&gt;v12.9.0&lt;/a&gt;开始加入了对Promise.allSettled的支持，主流浏览器们也各自在2019年发布的版本中支持了此方法，这意味着你已经可以放心大胆的使用了。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/7/29/17397a0e39508308?w=2548&amp;#x26;h=634&amp;#x26;f=png&amp;#x26;s=166617&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/3bf09ec83b7e9f15e982ddae3ed993f4/67ee3/cover.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 25%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wgARCAAFABQDASIAAhEBAxEB/8QAFwABAAMAAAAAAAAAAAAAAAAAAAEDBv/EABYBAQEBAAAAAAAAAAAAAAAAAAIBA//aAAwDAQACEAMQAAAB0dxhZCX/xAAaEAABBQEAAAAAAAAAAAAAAAABAAMREhMi/9oACAEBAAEFAiHLDSO1/8QAFhEBAQEAAAAAAAAAAAAAAAAAARAh/9oACAEDAQE/AR2f/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAGhAAAgIDAAAAAAAAAAAAAAAAAAEykRETkv/aAAgBAQAGPwLGxck1RJUf/8QAGhAAAgIDAAAAAAAAAAAAAAAAASEA8DFBcf/aAAgBAQABPyHTAyoSRXmBXb2f/9oADAMBAAIAAwAAABAL7//EABURAQEAAAAAAAAAAAAAAAAAAAEA/9oACAEDAQE/EGXN/8QAFhEAAwAAAAAAAAAAAAAAAAAAARAx/9oACAECAQE/EBV//8QAGRABAAMBAQAAAAAAAAAAAAAAAQARIVGh/9oACAEBAAE/EC1ml4M9mKJGZb7AAEPREf/Z&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;cover&quot;
+        title=&quot;cover&quot;
+        src=&quot;/static/3bf09ec83b7e9f15e982ddae3ed993f4/625aa/cover.jpg&quot;
+        srcset=&quot;/static/3bf09ec83b7e9f15e982ddae3ed993f4/c4d45/cover.jpg 148w,
+/static/3bf09ec83b7e9f15e982ddae3ed993f4/1f0d7/cover.jpg 295w,
+/static/3bf09ec83b7e9f15e982ddae3ed993f4/625aa/cover.jpg 590w,
+/static/3bf09ec83b7e9f15e982ddae3ed993f4/f8367/cover.jpg 885w,
+/static/3bf09ec83b7e9f15e982ddae3ed993f4/fab84/cover.jpg 1180w,
+/static/3bf09ec83b7e9f15e982ddae3ed993f4/67ee3/cover.jpg 2548w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;对于那些不支持此方法的环境，你可以直接引用开源社区中实现了此方法的npm包：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https://www.npmjs.com/package/promise.allsettled&quot;&gt;promise.allsettled&lt;/a&gt;&lt;/li&gt;
