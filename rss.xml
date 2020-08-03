@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[上线前夕]]></title><description><![CDATA[A starter blog demonstrating what Gatsby can do.]]></description><link>https://gatsby-starter-blog-demo.netlify.com</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 03 Aug 2020 03:03:17 GMT</lastBuildDate><item><title><![CDATA[Promise.all和Promise.allSettled的区别]]></title><description><![CDATA[不管你是否还学的动，JS语言依然在以自己的节奏飞快的进化。转眼间，Promise的工具包里又多了一个方法Promise.allSettled供你选择，它看起来像是对Promise.all的一种补充，缓解了使用Promise.all碰到reject…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/2020-07-29-the-diff-between-promise-all-and-promise-allsettled/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/2020-07-29-the-diff-between-promise-all-and-promise-allsettled/</guid><pubDate>Wed, 29 Jul 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;不管你是否还学的动，JS语言依然在以自己的节奏飞快的进化。转眼间，Promise的工具包里又多了一个方法Promise.allSettled供你选择，它看起来像是对Promise.all的一种补充，缓解了使用Promise.all碰到reject的痛点问题。&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[上线前夕]]></title><description><![CDATA[A starter blog demonstrating what Gatsby can do.]]></description><link>https://gatsby-starter-blog-demo.netlify.com</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 03 Aug 2020 03:06:51 GMT</lastBuildDate><item><title><![CDATA[Promise.all和Promise.allSettled的区别]]></title><description><![CDATA[不管你是否还学的动，JS语言依然在以自己的节奏飞快的进化。转眼间，Promise的工具包里又多了一个方法Promise.allSettled供你选择，它看起来像是对Promise.all的一种补充，缓解了使用Promise.all碰到reject…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/2020-07-29-the-diff-between-promise-all-and-promise-allsettled/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/2020-07-29-the-diff-between-promise-all-and-promise-allsettled/</guid><pubDate>Wed, 29 Jul 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;不管你是否还学的动，JS语言依然在以自己的节奏飞快的进化。转眼间，Promise的工具包里又多了一个方法Promise.allSettled供你选择，它看起来像是对Promise.all的一种补充，缓解了使用Promise.all碰到reject的痛点问题。&lt;/p&gt;
 &lt;p&gt;一句话概括Promise.allSettled和Promise.all的最大不同：&lt;strong&gt;Promise.allSettled永远不会被reject&lt;/strong&gt;。&lt;/p&gt;
 &lt;h3&gt;解决Promise.all的痛点&lt;/h3&gt;
 &lt;p&gt;当需要处理多个Promise并行时，大多数情况下Promise.all用起来是非常顺手的，比如下面这样&lt;/p&gt;
@@ -1652,7 +1652,38 @@ title: &apos;&apos;
 &lt;li&gt;自定制对文件的保存方法，确保异常终止时也能将未传完文件保存下来&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/twomeetings/resumable-upload-demo&quot;&gt;demo可以在此处下载&lt;/a&gt;，另外，推荐使用chrome本身的网络限速来方便的测试断点续传功能。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/6/11/172a060c655071e1?w=1338&amp;#x26;h=510&amp;#x26;f=png&amp;#x26;s=179173&quot; alt=&quot;chrome网络限速&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/baad1dc580a3f654979a4e1862b7fac0/878c2/resumable-upload-1.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 37.83783783783784%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wgARCAAIABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAMG/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEAMQAAAB3UwoD//EABkQAAIDAQAAAAAAAAAAAAAAAAASAQIDEf/aAAgBAQABBQJCMuWU/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAFhABAQEAAAAAAAAAAAAAAAAAABEx/9oACAEBAAY/Ala//8QAGBAAAwEBAAAAAAAAAAAAAAAAABFxAVH/2gAIAQEAAT8hTo4bVSx//9oADAMBAAIAAwAAABADz//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8QP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8QP//EABoQAQADAAMAAAAAAAAAAAAAAAEAETEhcaH/2gAIAQEAAT8QuKV2FTRtnJ8yFCgCf//Z&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;chrome网络限速&quot;
+        title=&quot;chrome网络限速&quot;
+        src=&quot;/static/baad1dc580a3f654979a4e1862b7fac0/625aa/resumable-upload-1.jpg&quot;
+        srcset=&quot;/static/baad1dc580a3f654979a4e1862b7fac0/c4d45/resumable-upload-1.jpg 148w,
+/static/baad1dc580a3f654979a4e1862b7fac0/1f0d7/resumable-upload-1.jpg 295w,
+/static/baad1dc580a3f654979a4e1862b7fac0/625aa/resumable-upload-1.jpg 590w,
+/static/baad1dc580a3f654979a4e1862b7fac0/f8367/resumable-upload-1.jpg 885w,
+/static/baad1dc580a3f654979a4e1862b7fac0/fab84/resumable-upload-1.jpg 1180w,
+/static/baad1dc580a3f654979a4e1862b7fac0/878c2/resumable-upload-1.jpg 1338w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;h3&gt;前端部分&lt;/h3&gt;
 &lt;p&gt;框架选择上用了React作前端呈现，利用axois做网络请求，用js-md5来获取文件唯一性标识。&lt;/p&gt;
 &lt;h4&gt;先说断点&lt;/h4&gt;
