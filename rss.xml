@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[上线前夕]]></title><description><![CDATA[A starter blog demonstrating what Gatsby can do.]]></description><link>https://gatsby-starter-blog-demo.netlify.com</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 03 Aug 2020 02:55:06 GMT</lastBuildDate><item><title><![CDATA[Promise.all和Promise.allSettled的区别]]></title><description><![CDATA[不管你是否还学的动，JS语言依然在以自己的节奏飞快的进化。转眼间，Promise的工具包里又多了一个方法Promise.allSettled供你选择，它看起来像是对Promise.all的一种补充，缓解了使用Promise.all碰到reject…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/2020-07-29-the-diff-between-promise-all-and-promise-allsettled/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/2020-07-29-the-diff-between-promise-all-and-promise-allsettled/</guid><pubDate>Wed, 29 Jul 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;不管你是否还学的动，JS语言依然在以自己的节奏飞快的进化。转眼间，Promise的工具包里又多了一个方法Promise.allSettled供你选择，它看起来像是对Promise.all的一种补充，缓解了使用Promise.all碰到reject的痛点问题。&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[上线前夕]]></title><description><![CDATA[A starter blog demonstrating what Gatsby can do.]]></description><link>https://gatsby-starter-blog-demo.netlify.com</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 03 Aug 2020 03:03:17 GMT</lastBuildDate><item><title><![CDATA[Promise.all和Promise.allSettled的区别]]></title><description><![CDATA[不管你是否还学的动，JS语言依然在以自己的节奏飞快的进化。转眼间，Promise的工具包里又多了一个方法Promise.allSettled供你选择，它看起来像是对Promise.all的一种补充，缓解了使用Promise.all碰到reject…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/2020-07-29-the-diff-between-promise-all-and-promise-allsettled/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/2020-07-29-the-diff-between-promise-all-and-promise-allsettled/</guid><pubDate>Wed, 29 Jul 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;不管你是否还学的动，JS语言依然在以自己的节奏飞快的进化。转眼间，Promise的工具包里又多了一个方法Promise.allSettled供你选择，它看起来像是对Promise.all的一种补充，缓解了使用Promise.all碰到reject的痛点问题。&lt;/p&gt;
 &lt;p&gt;一句话概括Promise.allSettled和Promise.all的最大不同：&lt;strong&gt;Promise.allSettled永远不会被reject&lt;/strong&gt;。&lt;/p&gt;
 &lt;h3&gt;解决Promise.all的痛点&lt;/h3&gt;
 &lt;p&gt;当需要处理多个Promise并行时，大多数情况下Promise.all用起来是非常顺手的，比如下面这样&lt;/p&gt;
@@ -1543,13 +1543,73 @@ export default Toggle;&lt;/code&gt;
 &lt;h3&gt;定高&lt;/h3&gt;
 &lt;p&gt;为了防止列表高度变化带来的滚动体验问题，需要在大列表呈现时就先计算好高度。也就是说当要呈现10万条数据时，即使只先呈现前1000条，10W条数据的总高度要先被算好并设置在最外层的容器上。目的是当滑动时，呈现的数据变化，但容器总高度不变，这样体验起来才会和普通滚动条一致。&lt;/p&gt;
 &lt;p&gt;给10万条数据定高，就意味着你需要知道每一条数据呈现出来的高度是多少，在代码实现层面，可以拿出其中一条数据展示出来获取其高度。如此一来，不但总容器的高度能确定，每一条数据在纵坐标的起始位置也能定下，为后续的滑动展示提供基础。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/6/18/172c4af4d55a1686?w=1124&amp;#x26;h=948&amp;#x26;f=png&amp;#x26;s=40550&quot; alt=&quot;通过单项定高&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/8d0de108ece3883208850a15d8d27150/c9069/big-list-1.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 84.45945945945947%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wgARCAARABQDASIAAhEBAxEB/8QAGAABAAMBAAAAAAAAAAAAAAAAAAEDBAb/xAAYAQADAQEAAAAAAAAAAAAAAAAAAwQBAv/aAAwDAQACEAMQAAAB7qjZhjZqQo4tDMAP/8QAGRABAQEBAQEAAAAAAAAAAAAAAQIDEQAQ/9oACAEBAAEFAnSR1tKh7HtZW8zkff/EABsRAAAHAQAAAAAAAAAAAAAAAAABAhAREiEx/9oACAEDAQE/AUVnQfX/AP/EAB4RAAAEBwAAAAAAAAAAAAAAAAEDETEABBASEyJh/9oACAECAQE/AZnMBej8gtbAV6//xAAZEAEAAgMAAAAAAAAAAAAAAAABABEQICH/2gAIAQEABj8CqUQccIaf/8QAGhABAQACAwAAAAAAAAAAAAAAAREAIRAgMf/aAAgBAQABPyHYGU5qYzHvFciTEEken//aAAwDAQACAAMAAAAQOOg8/8QAGBEBAAMBAAAAAAAAAAAAAAAAEQAQUWH/2gAIAQMBAT8QTLsKL//EABsRAQEAAQUAAAAAAAAAAAAAABEBcQAQIZHB/9oACAECAQE/EGLSoCp3fNY2jk53/8QAGxABAQADAAMAAAAAAAAAAAAAAREAECExcZH/2gAIAQEAAT8QqSWxTwYcgg8Ux+ahv3XKUChjdgtH3p1//9k=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;通过单项定高&quot;
+        title=&quot;通过单项定高&quot;
+        src=&quot;/static/8d0de108ece3883208850a15d8d27150/625aa/big-list-1.jpg&quot;
+        srcset=&quot;/static/8d0de108ece3883208850a15d8d27150/c4d45/big-list-1.jpg 148w,
+/static/8d0de108ece3883208850a15d8d27150/1f0d7/big-list-1.jpg 295w,
+/static/8d0de108ece3883208850a15d8d27150/625aa/big-list-1.jpg 590w,
+/static/8d0de108ece3883208850a15d8d27150/f8367/big-list-1.jpg 885w,
+/static/8d0de108ece3883208850a15d8d27150/c9069/big-list-1.jpg 1124w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;h3&gt;分组&lt;/h3&gt;
 &lt;p&gt;一旦高度定下，就可以根据滚动条的的位置展示或隐藏列表数据，但具体的代码实现却不得不考虑性能问题，因为需要遍历整个列表逐个判断，10W条数据遍历一次也是特别大的运算，更糟糕的是，滚动条滑动的事件触发是非常频繁的。&lt;/p&gt;
 &lt;p&gt;解决方案就是分组，即将100个或1000个划分为一组，以组为单位进行判断，同时，需要在定高时根据每一项高度计算出组的纵坐标起始位置。如此一来，遍历时以组为单位大大减少了计算量，10W条数据，1000个为1组，遍历起来也就只有100组而已。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/6/18/172c4b072b03ad1e?w=1104&amp;#x26;h=832&amp;#x26;f=png&amp;#x26;s=42233&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/6b617981183c6ba40139498670c9efb8/8f888/big-list-2.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 75.67567567567568%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wgARCAAPABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAMEBv/EABYBAQEBAAAAAAAAAAAAAAAAAAIDBP/aAAwDAQACEAMQAAAB3CLJcjcBc//EABkQAAMBAQEAAAAAAAAAAAAAAAECAxESAP/aAAgBAQABBQI1G1YhpHU5X1ULNMcp/8QAGREAAQUAAAAAAAAAAAAAAAAAAAECERIx/9oACAEDAQE/AW1kXT//xAAaEQACAwEBAAAAAAAAAAAAAAABAwAREjGh/9oACAECAQE/AWh2DXkXeBrs/8QAGBABAAMBAAAAAAAAAAAAAAAAAAERITH/2gAIAQEABj8CY1yGKl//xAAaEAEBAQEAAwAAAAAAAAAAAAABABFBIVHR/9oACAEBAAE/IQZjInMkNXbb5Q1HjPc/Q2//2gAMAwEAAgADAAAAEEzv/8QAGBEBAQADAAAAAAAAAAAAAAAAEQABMaH/2gAIAQMBAT8QyB7FGr//xAAbEQEAAgIDAAAAAAAAAAAAAAABABEhMUFxsf/aAAgBAgEBPxB4LNlaPsJHgL7n/8QAGRABAQEBAQEAAAAAAAAAAAAAAREAQSEx/9oACAEBAAE/EEzGDFxSUXxnXPAURXKFUX6xiDoJx1xwAoy3f//Z&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;big list 2&quot;
+        title=&quot;big list 2&quot;
+        src=&quot;/static/6b617981183c6ba40139498670c9efb8/625aa/big-list-2.jpg&quot;
+        srcset=&quot;/static/6b617981183c6ba40139498670c9efb8/c4d45/big-list-2.jpg 148w,
+/static/6b617981183c6ba40139498670c9efb8/1f0d7/big-list-2.jpg 295w,
+/static/6b617981183c6ba40139498670c9efb8/625aa/big-list-2.jpg 590w,
+/static/6b617981183c6ba40139498670c9efb8/f8367/big-list-2.jpg 885w,
+/static/6b617981183c6ba40139498670c9efb8/8f888/big-list-2.jpg 1104w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;分组后，滑动展示时便可以灵活制定展示规则，比如滚动条划过当前组高度一大半以后展示下一组等。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/6/18/172c4ad0f7b9b623?w=824&amp;#x26;h=970&amp;#x26;f=gif&amp;#x26;s=549313&quot; alt=&quot;分组后的滑动展示预览图&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/538832524e510d1242a0e68c853458e1/big-list-3.gif&quot; alt=&quot;分组后的滑动展示预览图&quot;&gt;&lt;/p&gt;
 &lt;h3&gt;分组算法&lt;/h3&gt;
 &lt;p&gt;因为看了国外一篇写大数据列表的文章有感，才写了此文。值得一提的是，那篇文章中的分组方式很特别，利用二叉树算法，一个简洁递归就把数据分好了。&lt;/p&gt;
 
@@ -1572,7 +1632,7 @@ export default Toggle;&lt;/code&gt;
         &lt;/deckgo-highlight-code&gt;
       
 &lt;p&gt;作者最终Demo的效果如图，相关链接我已贴在文章底部。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/6/18/172c4b635d38056a?w=1204&amp;#x26;h=963&amp;#x26;f=gif&amp;#x26;s=2218960&quot; alt=&quot;demo效果展示图&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/c624386ba3fb8f16eb0eeda4a2015237/big-list-4.gif&quot; alt=&quot;demo效果展示图&quot;&gt;&lt;/p&gt;
 &lt;h3&gt;结语&lt;/h3&gt;
 &lt;p&gt;处理大数据列表的呈现，关键点有两个，一是定高，二是分组。定高保证了选择性呈现数据时滚动条的正常体验，分组则处理了频繁遍历带来的性能消耗。&lt;/p&gt;
 &lt;h5&gt;参考资料：&lt;/h5&gt;
