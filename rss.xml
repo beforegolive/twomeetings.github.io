@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[上线前夕]]></title><description><![CDATA[A starter blog demonstrating what Gatsby can do.]]></description><link>https://gatsby-starter-blog-demo.netlify.com</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 03 Aug 2020 02:32:43 GMT</lastBuildDate><item><title><![CDATA[Promise.all和Promise.allSettled的区别]]></title><description><![CDATA[不管你是否还学的动，JS语言依然在以自己的节奏飞快的进化。转眼间，Promise的工具包里又多了一个方法Promise.allSettled供你选择，它看起来像是对Promise.all的一种补充，缓解了使用Promise.all碰到reject…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/2020-07-29-the-diff-between-promise-all-and-promise-allsettled/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/2020-07-29-the-diff-between-promise-all-and-promise-allsettled/</guid><pubDate>Wed, 29 Jul 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;不管你是否还学的动，JS语言依然在以自己的节奏飞快的进化。转眼间，Promise的工具包里又多了一个方法Promise.allSettled供你选择，它看起来像是对Promise.all的一种补充，缓解了使用Promise.all碰到reject的痛点问题。&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[上线前夕]]></title><description><![CDATA[A starter blog demonstrating what Gatsby can do.]]></description><link>https://gatsby-starter-blog-demo.netlify.com</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 03 Aug 2020 02:52:49 GMT</lastBuildDate><item><title><![CDATA[Promise.all和Promise.allSettled的区别]]></title><description><![CDATA[不管你是否还学的动，JS语言依然在以自己的节奏飞快的进化。转眼间，Promise的工具包里又多了一个方法Promise.allSettled供你选择，它看起来像是对Promise.all的一种补充，缓解了使用Promise.all碰到reject…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/2020-07-29-the-diff-between-promise-all-and-promise-allsettled/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/2020-07-29-the-diff-between-promise-all-and-promise-allsettled/</guid><pubDate>Wed, 29 Jul 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;不管你是否还学的动，JS语言依然在以自己的节奏飞快的进化。转眼间，Promise的工具包里又多了一个方法Promise.allSettled供你选择，它看起来像是对Promise.all的一种补充，缓解了使用Promise.all碰到reject的痛点问题。&lt;/p&gt;
 &lt;p&gt;一句话概括Promise.allSettled和Promise.all的最大不同：&lt;strong&gt;Promise.allSettled永远不会被reject&lt;/strong&gt;。&lt;/p&gt;
 &lt;h3&gt;解决Promise.all的痛点&lt;/h3&gt;
 &lt;p&gt;当需要处理多个Promise并行时，大多数情况下Promise.all用起来是非常顺手的，比如下面这样&lt;/p&gt;
@@ -700,13 +700,106 @@ fas_secure_enabled 0&lt;/code&gt;
 &lt;p&gt;&lt;a href=&quot;https://pimylifeup.com/raspberry-pi-captive-portal/&quot;&gt;树莓派搭建captive-portal&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;</content:encoded></item><item><title><![CDATA[试了就戒不掉的CI工具-dangerjs]]></title><description><![CDATA[在开源社区中，danger的使用尤其普遍，它可以拿来自动判断每个人提交的代码合并请求（github中叫Pull Request，下文简称PR，gitlab中叫Merge Request，下文简称MR…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/2020-07-14-the-addicting-ci-tool-dangerjs/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/2020-07-14-the-addicting-ci-tool-dangerjs/</guid><pubDate>Tue, 14 Jul 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;在开源社区中，danger的使用尤其普遍，它可以拿来自动判断每个人提交的代码合并请求（github中叫Pull Request，下文简称PR，gitlab中叫Merge Request，下文简称MR）是否符合规范，自动化一些费时费力的人工检查，从而保证代码质量，是项目管理的利器。&lt;/p&gt;
 &lt;p&gt;比如开源项目&lt;a href=&quot;https://github.com/styled-components/styled-components&quot;&gt;styled-componet&lt;/a&gt;的这个自动回复机器人就是用danger实现的。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/7/13/1734543bf6969c3a?w=777&amp;#x26;h=199&amp;#x26;f=png&amp;#x26;s=33630&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/1be170cd1107e06582b6cd6ab6d9837a/36d41/dangerjs-1.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 25.675675675675674%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAzElEQVQY031QWa6DMAzk/hfhQhyhIrSE7ISszIsDrdqfZ2nkJeOxnWEcR0zTBK015nkGmxkYY1j5Cs451vXy27ZBCAHvPY7j+CCEAGttB+UDiS3LglQK9i8yEWOMDZenGjXlnFHKBYpTSjcv9njAbXV3KNTciukmvMWpkfzz+Wr1BB9yRyonvu08K4ZaKyoJKoFoDaRS0Er3L5BSQbXcGAPnHNx9mnIBXHu8hOlfkNrbHtuAXK4N36K/8/633C5RUsJIgf3xwGbbRW37P58hgwnNThBYAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;dangerjs 1&quot;
+        title=&quot;dangerjs 1&quot;
+        src=&quot;/static/1be170cd1107e06582b6cd6ab6d9837a/102e5/dangerjs-1.png&quot;
+        srcset=&quot;/static/1be170cd1107e06582b6cd6ab6d9837a/83276/dangerjs-1.png 148w,
+/static/1be170cd1107e06582b6cd6ab6d9837a/ba02f/dangerjs-1.png 295w,
+/static/1be170cd1107e06582b6cd6ab6d9837a/102e5/dangerjs-1.png 590w,
+/static/1be170cd1107e06582b6cd6ab6d9837a/74549/dangerjs-1.png 885w,
+/static/1be170cd1107e06582b6cd6ab6d9837a/7213b/dangerjs-1.png 1180w,
+/static/1be170cd1107e06582b6cd6ab6d9837a/36d41/dangerjs-1.png 1554w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;Danger最初是由ruby社区发展起来，之后增加了对js语言的支持，衍生出DangerJs。从它的标语中即可看出此工具存在的意义：&lt;strong&gt;Stop saying “you forgot to …” in code review&lt;/strong&gt;，实际上，此工具可做的事情要远比标语中描述的多。&lt;/p&gt;
 &lt;p&gt;在整个代码合并流程中，danger的位置通常在测试和代码规范化检查的后一步，人工检查的前一步，相当于是足球中的清道夫的角色，&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/7/13/1734559a0448b54a?w=2060&amp;#x26;h=360&amp;#x26;f=png&amp;#x26;s=38537&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/58c881844bb1c1068e57cfe8d3ad1648/291a5/dangerjs-2.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 17.567567567567565%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wgARCAAEABQDASIAAhEBAxEB/8QAFwABAAMAAAAAAAAAAAAAAAAAAAIEBv/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/9oADAMBAAIQAxAAAAHZQKuiP//EABgQAQEAAwAAAAAAAAAAAAAAAAIBABIy/9oACAEBAAEFAkrFtcPP/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAFhABAQEAAAAAAAAAAAAAAAAAAQAQ/9oACAEBAAY/Akwv/8QAGBABAQEBAQAAAAAAAAAAAAAAAQAhMVH/2gAIAQEAAT8hNDhLY3d7f//aAAwDAQACAAMAAAAQiA//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/ED//xAAVEQEBAAAAAAAAAAAAAAAAAAABEP/aAAgBAgEBPxAn/8QAGRABAQEBAQEAAAAAAAAAAAAAAREhAEHB/9oACAEBAAE/ENKQS75w62NMU+81Qqitb3//2Q==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;dangerjs 2&quot;
+        title=&quot;dangerjs 2&quot;
+        src=&quot;/static/58c881844bb1c1068e57cfe8d3ad1648/625aa/dangerjs-2.jpg&quot;
+        srcset=&quot;/static/58c881844bb1c1068e57cfe8d3ad1648/c4d45/dangerjs-2.jpg 148w,
+/static/58c881844bb1c1068e57cfe8d3ad1648/1f0d7/dangerjs-2.jpg 295w,
+/static/58c881844bb1c1068e57cfe8d3ad1648/625aa/dangerjs-2.jpg 590w,
+/static/58c881844bb1c1068e57cfe8d3ad1648/f8367/dangerjs-2.jpg 885w,
+/static/58c881844bb1c1068e57cfe8d3ad1648/fab84/dangerjs-2.jpg 1180w,
+/static/58c881844bb1c1068e57cfe8d3ad1648/291a5/dangerjs-2.jpg 2060w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;danger常见的使用场景是：通过自定制的脚本自动化处理一些费神的人工检查。我以前在项目中使用dangerjs在gitlab上实现过这样的检查：合并代码时有没有勾选“合并后删除远端分支”的复选框，有没有勾选“合并时压缩git节点”的复选框，有没有在合并标题中写上对应电子看板的任务卡ID等等，如果没有操作这些则禁止代码合并，及其方便的规范了整个团队的git开发流程。&lt;/p&gt;
 &lt;p&gt;在上篇&lt;a href=&quot;https://juejin.im/post/6847902224794943495&quot;&gt;介绍lerna的文章&lt;/a&gt;里，用dangerjs实现了子项目权限检查：判定当前提交人是否满足某个目录的提交权限，不满足则不允许代码合并，效果如下图所示。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/7/13/1734543212ec650e?w=2018&amp;#x26;h=912&amp;#x26;f=png&amp;#x26;s=288646&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/eb130139d1c77bc7a2e2f33b60db9bc7/cf0ec/dangerjs-3.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 45.27027027027027%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wgARCAAJABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAgAG/8QAFQEBAQAAAAAAAAAAAAAAAAAAAQD/2gAMAwEAAhADEAAAAdywxpUf/8QAGRAAAgMBAAAAAAAAAAAAAAAAABEBECEx/9oACAEBAAEFAsbGT2v/xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/AT//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAVEAEBAAAAAAAAAAAAAAAAAAAgUf/aAAgBAQAGPwKL/8QAGRAAAgMBAAAAAAAAAAAAAAAAAREAEDFR/9oACAEBAAE/IQhaRLidpvQyf//aAAwDAQACAAMAAAAQC/8A/8QAFhEBAQEAAAAAAAAAAAAAAAAAABEh/9oACAEDAQE/EJWP/8QAFREBAQAAAAAAAAAAAAAAAAAAEBH/2gAIAQIBAT8Qp//EAB0QAQABAwUAAAAAAAAAAAAAAAEAESFhEEFRkbH/2gAIAQEAAT8QCAIEVLvMALVuazMep5Jtpf/Z&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;dangerjs 3&quot;
+        title=&quot;dangerjs 3&quot;
+        src=&quot;/static/eb130139d1c77bc7a2e2f33b60db9bc7/625aa/dangerjs-3.jpg&quot;
+        srcset=&quot;/static/eb130139d1c77bc7a2e2f33b60db9bc7/c4d45/dangerjs-3.jpg 148w,
+/static/eb130139d1c77bc7a2e2f33b60db9bc7/1f0d7/dangerjs-3.jpg 295w,
+/static/eb130139d1c77bc7a2e2f33b60db9bc7/625aa/dangerjs-3.jpg 590w,
+/static/eb130139d1c77bc7a2e2f33b60db9bc7/f8367/dangerjs-3.jpg 885w,
+/static/eb130139d1c77bc7a2e2f33b60db9bc7/fab84/dangerjs-3.jpg 1180w,
+/static/eb130139d1c77bc7a2e2f33b60db9bc7/cf0ec/dangerjs-3.jpg 2018w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;h3&gt;安装Dangerjs&lt;/h3&gt;
 &lt;p&gt;Dangerjs支持github和gitlab两大代码托管平台，也支持私有gitlab服务器，不过它对github的支持最好，简单几步在即可在一个github项目中加入danger检查。&lt;/p&gt;
 &lt;p&gt;在你的项目中，dangerjs用起来就像其他任何npm包一样，一行命令即可安装。（注意包名没有js后缀）&lt;/p&gt;
@@ -717,11 +810,73 @@ fas_secure_enabled 0&lt;/code&gt;
       
 &lt;h3&gt;设置github的token&lt;/h3&gt;
 &lt;p&gt;danger需要使用你的token授权来做相应操作，比如添加评论到对应的PR下方给出提示。你可以点击&lt;a href=&quot;https://github.com/settings/tokens/new&quot;&gt;此链接&lt;/a&gt;在github上生成对应token，token的名称可以随便起，权限要记得给足。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/7/13/173456ceceb894c1?w=1400&amp;#x26;h=790&amp;#x26;f=jpeg&amp;#x26;s=132923&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/ed5a1644509555ca22c6fdee8b49ca82/e3000/dangerjs-4.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 56.75675675675676%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wgARCAALABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAECAwb/xAAVAQEBAAAAAAAAAAAAAAAAAAAAAf/aAAwDAQACEAMQAAAB7fRUlDF//8QAGBAAAgMAAAAAAAAAAAAAAAAAAAECIDH/2gAIAQEAAQUCSpHD/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAFxAAAwEAAAAAAAAAAAAAAAAAAAIQMf/aAAgBAQAGPwI2Nf/EABsQAAIBBQAAAAAAAAAAAAAAAAABERAhQVFh/9oACAEBAAE/IZJb2K+ZHRqo/9oADAMBAAIAAwAAABB/D//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8QP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8QP//EAB4QAAIBBAMBAAAAAAAAAAAAAAABESExQXFRYcHh/9oACAEBAAE/EEyrVWI8Fld0/goK57YiG5ayUx7Gf//Z&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;dangerjs 4&quot;
+        title=&quot;dangerjs 4&quot;
+        src=&quot;/static/ed5a1644509555ca22c6fdee8b49ca82/625aa/dangerjs-4.jpg&quot;
+        srcset=&quot;/static/ed5a1644509555ca22c6fdee8b49ca82/c4d45/dangerjs-4.jpg 148w,
+/static/ed5a1644509555ca22c6fdee8b49ca82/1f0d7/dangerjs-4.jpg 295w,
+/static/ed5a1644509555ca22c6fdee8b49ca82/625aa/dangerjs-4.jpg 590w,
+/static/ed5a1644509555ca22c6fdee8b49ca82/f8367/dangerjs-4.jpg 885w,
+/static/ed5a1644509555ca22c6fdee8b49ca82/fab84/dangerjs-4.jpg 1180w,
+/static/ed5a1644509555ca22c6fdee8b49ca82/e3000/dangerjs-4.jpg 1400w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;h3&gt;将token保存到环境变量中&lt;/h3&gt;
 &lt;p&gt;需要把token的变量名命名为&lt;code&gt;DANGER_GITHUB_API_TOKEN&lt;/code&gt;，并且保存在CI的配置里，比如我在github中使用了circleci作为持续集成的工具，token就需要保存到如下位置，见截图：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/7/14/1734a263655eea6e?w=2686&amp;#x26;h=1102&amp;#x26;f=png&amp;#x26;s=262091&quot;&gt;&lt;/p&gt;
-&lt;p&gt;注意，如果是gitlab公网上的项目，那变量名就不一样了，需设置为&lt;code&gt;DANGER_GITLAB_API_TOKEN&lt;/code&gt;, 如果是私有gitlab服务器，还需要添加另外一个变量&lt;code&gt;DANGER_GITLAB_HOST&lt;/code&gt;将地址指向你自己的服务器，详情可参考&lt;a href=&quot;https://danger.systems/js/usage/gitlab.html&quot;&gt;官网链接&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/aa4ca4072fa1ce4f9d8dc5cf6a163ea0/330a3/dangerjs-5.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 41.21621621621622%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wgARCAAIABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAIG/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAH/2gAMAwEAAhADEAAAAdzYAn//xAAWEAEBAQAAAAAAAAAAAAAAAAAAIRH/2gAIAQEAAQUCyI//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/AT//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAWEAADAAAAAAAAAAAAAAAAAAAAEDH/2gAIAQEABj8CUP/EAB0QAAECBwAAAAAAAAAAAAAAAAEAUREhMUFhcZH/2gAIAQEAAT8hiFomyA1xCrJl/9oADAMBAAIAAwAAABD0L//EABcRAQEBAQAAAAAAAAAAAAAAAAEAEUH/2gAIAQMBAT8Q5sLf/8QAFREBAQAAAAAAAAAAAAAAAAAAAAH/2gAIAQIBAT8QV//EABsQAQEAAwADAAAAAAAAAAAAABEBADFBIWGx/9oACAEBAAE/EJCH6V+5Zi4c2yaDgPO3uZ//2Q==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;dangerjs 5&quot;
+        title=&quot;dangerjs 5&quot;
+        src=&quot;/static/aa4ca4072fa1ce4f9d8dc5cf6a163ea0/625aa/dangerjs-5.jpg&quot;
+        srcset=&quot;/static/aa4ca4072fa1ce4f9d8dc5cf6a163ea0/c4d45/dangerjs-5.jpg 148w,
+/static/aa4ca4072fa1ce4f9d8dc5cf6a163ea0/1f0d7/dangerjs-5.jpg 295w,
+/static/aa4ca4072fa1ce4f9d8dc5cf6a163ea0/625aa/dangerjs-5.jpg 590w,
+/static/aa4ca4072fa1ce4f9d8dc5cf6a163ea0/f8367/dangerjs-5.jpg 885w,
+/static/aa4ca4072fa1ce4f9d8dc5cf6a163ea0/fab84/dangerjs-5.jpg 1180w,
+/static/aa4ca4072fa1ce4f9d8dc5cf6a163ea0/330a3/dangerjs-5.jpg 2686w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;注意，如果是gitlab公网上的项目，那变量名就不一样了，需设置为&lt;code&gt;DANGER_GITLAB_API_TOKEN&lt;/code&gt;, 如果是私有gitlab服务器，还需要添加另外一个变量&lt;code&gt;DANGER_GITLAB_HOST&lt;/code&gt;将地址指向你自己的服务器，详情可参考&lt;a href=&quot;https://danger.systems/js/usage/gitlab.html&quot;&gt;官网配置文档&lt;/a&gt;。&lt;/p&gt;
 &lt;h3&gt;创建dangerfile.js文件&lt;/h3&gt;
 &lt;p&gt;项目根目录下创建dangerfile.js文件用于编写对应的脚本，比如下面几行代码就是最常用的写法。&lt;/p&gt;
 
@@ -746,7 +901,38 @@ if (!title.startsWith(&amp;#39;feature/&amp;#39;)) {
         &lt;/deckgo-highlight-code&gt;
       
 &lt;p&gt;此时，你可能会碰到下面这样的提示，这是因为还没有在本地设置token变量。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/7/14/1734a3ec4d88347d?w=1760&amp;#x26;h=214&amp;#x26;f=png&amp;#x26;s=79558&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/f6af9fe4189a62e4f569a4ce5ea7fc8f/52586/dangerjs-6.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 12.162162162162163%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wgARCAACABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAMG/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAH/2gAMAwEAAhADEAAAAcZAWIT/xAAXEAADAQAAAAAAAAAAAAAAAAAAATFB/9oACAEBAAEFAscP/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAFBABAAAAAAAAAAAAAAAAAAAAEP/aAAgBAQAGPwJ//8QAFxAAAwEAAAAAAAAAAAAAAAAAAAEREP/aAAgBAQABPyFK4Kf/2gAMAwEAAgADAAAAEPPP/8QAFhEBAQEAAAAAAAAAAAAAAAAAARAx/9oACAEDAQE/EHCf/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPxA//8QAGBABAQEBAQAAAAAAAAAAAAAAASEAETH/2gAIAQEAAT8QBVBbXQkjzdPqu//Z&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;dangerjs 6&quot;
+        title=&quot;dangerjs 6&quot;
+        src=&quot;/static/f6af9fe4189a62e4f569a4ce5ea7fc8f/625aa/dangerjs-6.jpg&quot;
+        srcset=&quot;/static/f6af9fe4189a62e4f569a4ce5ea7fc8f/c4d45/dangerjs-6.jpg 148w,
+/static/f6af9fe4189a62e4f569a4ce5ea7fc8f/1f0d7/dangerjs-6.jpg 295w,
+/static/f6af9fe4189a62e4f569a4ce5ea7fc8f/625aa/dangerjs-6.jpg 590w,
+/static/f6af9fe4189a62e4f569a4ce5ea7fc8f/f8367/dangerjs-6.jpg 885w,
+/static/f6af9fe4189a62e4f569a4ce5ea7fc8f/fab84/dangerjs-6.jpg 1180w,
+/static/f6af9fe4189a62e4f569a4ce5ea7fc8f/52586/dangerjs-6.jpg 1760w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;本地直接执行一下命令来声明变量即可。&lt;/p&gt;
 
         &lt;deckgo-highlight-code  &gt;
@@ -754,12 +940,74 @@ if (!title.startsWith(&amp;#39;feature/&amp;#39;)) {
         &lt;/deckgo-highlight-code&gt;
       
 &lt;p&gt;设置token变量后重新执行&lt;code&gt;danger pr&lt;/code&gt;的命令。访问对应的PR地址，如果看到下图这样的效果，说明你写的dangerjs脚本生效了。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/7/14/1734a46cfe487cf1?w=1886&amp;#x26;h=822&amp;#x26;f=png&amp;#x26;s=164780&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/d437f8ce08ac8bfcdc7abaa3b281249c/a9c5d/dangerjs-7.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 43.91891891891892%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wgARCAAJABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAgADBv/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/9oADAMBAAIQAxAAAAHudEEUY//EABgQAAMBAQAAAAAAAAAAAAAAAAABAhEg/9oACAEBAAEFAlOcUI//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/AT//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAUEAEAAAAAAAAAAAAAAAAAAAAg/9oACAEBAAY/Al//xAAZEAACAwEAAAAAAAAAAAAAAAAAARARMaH/2gAIAQEAAT8hQ1JdKKjCMn//2gAMAwEAAgADAAAAEAQ//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPxA//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPxA//8QAHRABAAEDBQAAAAAAAAAAAAAAAQARMaEhQXGB4f/aAAgBAQABPxCsZQsoXMBrfsgA8JtMiXeZ/9k=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;dangerjs 7&quot;
+        title=&quot;dangerjs 7&quot;
+        src=&quot;/static/d437f8ce08ac8bfcdc7abaa3b281249c/625aa/dangerjs-7.jpg&quot;
+        srcset=&quot;/static/d437f8ce08ac8bfcdc7abaa3b281249c/c4d45/dangerjs-7.jpg 148w,
+/static/d437f8ce08ac8bfcdc7abaa3b281249c/1f0d7/dangerjs-7.jpg 295w,
+/static/d437f8ce08ac8bfcdc7abaa3b281249c/625aa/dangerjs-7.jpg 590w,
+/static/d437f8ce08ac8bfcdc7abaa3b281249c/f8367/dangerjs-7.jpg 885w,
+/static/d437f8ce08ac8bfcdc7abaa3b281249c/fab84/dangerjs-7.jpg 1180w,
+/static/d437f8ce08ac8bfcdc7abaa3b281249c/a9c5d/dangerjs-7.jpg 1886w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;最后，把&lt;code&gt;yarn danger ci&lt;/code&gt;或者&lt;code&gt;npm danger ci&lt;/code&gt;放在你的CI文件中的合适位置，这样danger就添加完成了。&lt;/p&gt;
 &lt;p&gt;另外，你可以申请一个github账号名为’xxxx-bot’，再贴一张机器人图片作为头像，并用此账号的token作为变量来自动回复，最终能让整个效果更显技术含量。 &lt;/p&gt;
 &lt;h3&gt;能获取到的数据&lt;/h3&gt;
 &lt;p&gt;除了标题之外，danger能获取当前PR中的各种信息字段，比如用户信息、修改的文件、代码审核人、代码合并的配置等等，从下面的截图里包含了一些常用字段。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/7/14/1734a52d35926ddb?w=2268&amp;#x26;h=1670&amp;#x26;f=png&amp;#x26;s=430546&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/c57eb4091a0bfd0e9609e9edc587d859/ddb8a/dangerjs-8.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 73.64864864864865%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wgARCAAPABQDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAMBAgb/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIQAxAAAAHd3WwkA//EABUQAQEAAAAAAAAAAAAAAAAAAAEQ/9oACAEBAAEFAil//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAFxAAAwEAAAAAAAAAAAAAAAAAAAEQMf/aAAgBAQAGPwKs2f/EABsQAAEEAwAAAAAAAAAAAAAAAAEAEBEhMVFx/9oACAEBAAE/IbTZyh1h2i1BZ//aAAwDAQACAAMAAAAQY8//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/ED//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/ED//xAAcEAEAAQQDAAAAAAAAAAAAAAABABEhMXEQkbH/2gAIAQEAAT8Q0pFtwUMnfDLQrvsCcupef//Z&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;dangerjs 8&quot;
+        title=&quot;dangerjs 8&quot;
+        src=&quot;/static/c57eb4091a0bfd0e9609e9edc587d859/625aa/dangerjs-8.jpg&quot;
+        srcset=&quot;/static/c57eb4091a0bfd0e9609e9edc587d859/c4d45/dangerjs-8.jpg 148w,
+/static/c57eb4091a0bfd0e9609e9edc587d859/1f0d7/dangerjs-8.jpg 295w,
+/static/c57eb4091a0bfd0e9609e9edc587d859/625aa/dangerjs-8.jpg 590w,
+/static/c57eb4091a0bfd0e9609e9edc587d859/f8367/dangerjs-8.jpg 885w,
+/static/c57eb4091a0bfd0e9609e9edc587d859/fab84/dangerjs-8.jpg 1180w,
+/static/c57eb4091a0bfd0e9609e9edc587d859/ddb8a/dangerjs-8.jpg 2268w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;除此之外，&lt;a href=&quot;https://danger.systems/js/reference.html&quot;&gt;dangerjs的官网&lt;/a&gt;也给出了详细的类型数据，你可以根据需要定制符合自己项目需求的检查脚本。&lt;/p&gt;
 &lt;h3&gt;结语&lt;/h3&gt;
 &lt;p&gt;danger可以在合并代码时提供自定义的合并规则，能规范整个项目的开发流程，把它整合到CI中能帮你自动化很多繁琐的人工检查，无论是开源项目还是日常开发项目，danger都是项目流程管理的利器，一旦试过你就再也戒不掉。&lt;/p&gt;
@@ -776,14 +1024,107 @@ if (!title.startsWith(&amp;#39;feature/&amp;#39;)) {
 &lt;p&gt;&lt;a href=&quot;https://github.com/twomeetings/lerna-example/pull/3&quot;&gt;文章中的PR地址&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;</content:encoded></item><item><title><![CDATA[大前端项目代码重用，也许lerna是最好的选择]]></title><description><![CDATA[我前段时间参与了一个react为主的大前端项目，覆盖Web、Android、Ios三个平台。由于整个业务逻辑侧重在手机端，且Web端也是到了项目中期才开始启动，我分别以react-native和react分开建了两个项目。 可是，后端微服务集群是同一个，两个项目调用的API…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/2020-07-10-you-should-use-lerna-for-sharing-code/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/2020-07-10-you-should-use-lerna-for-sharing-code/</guid><pubDate>Fri, 10 Jul 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;我前段时间参与了一个&lt;code&gt;react&lt;/code&gt;为主的大前端项目，覆盖Web、Android、Ios三个平台。由于整个业务逻辑侧重在手机端，且Web端也是到了项目中期才开始启动，我分别以&lt;code&gt;react-native&lt;/code&gt;和&lt;code&gt;react&lt;/code&gt;分开建了两个项目。&lt;/p&gt;
 &lt;p&gt;可是，后端微服务集群是同一个，两个项目调用的API大多一样，导致两个项目中不可避免的出现了一些重复逻辑。比如说写在redux中的业务逻辑代码，写在http拦截器中的请求处理代码等等，这些重复的部分从目录名和文件名即可肉眼看出。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/7/13/173452607adea86e?w=1584&amp;#x26;h=1050&amp;#x26;f=png&amp;#x26;s=270873&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/7/13/17345627a10f22a2?w=1864&amp;#x26;h=1128&amp;#x26;f=png&amp;#x26;s=352870&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/a9f94d7c2a05226ee95097d466845f6c/500f0/lerna-1.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 66.21621621621621%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wgARCAANABQDASIAAhEBAxEB/8QAGQAAAgMBAAAAAAAAAAAAAAAAAAQBAgMF/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEAMQAAAB26tXyBgP/8QAGBABAAMBAAAAAAAAAAAAAAAABAEDBQL/2gAIAQEAAQUCRpKrdqrtNzmIsSO3H4tU4MNgZYGf/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAHRAAAgIDAAMAAAAAAAAAAAAAAREAAgMSEyExUf/aAAgBAQAGPwI0rYadNfUx8im2xBkyF2Zhz9rAm2yUoDc11+Cchbby3P/EABsQAQEBAQADAQAAAAAAAAAAAAERADEhQVHx/9oACAEBAAE/IQmzEnlNHtsKvJgRQqEyg4Cft3l5r2W/mINIqE7v/9oADAMBAAIAAwAAABB4z//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8QP//EABURAQEAAAAAAAAAAAAAAAAAABAh/9oACAECAQE/EIf/xAAaEAEBAQEBAQEAAAAAAAAAAAABEQAxIVGB/9oACAEBAAE/EKBBhuJLbY9ziC4KhEvOuYtWjMGHhvESDQGIv5ja7YhwfciDjNerIb//2Q==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;lerna 1&quot;
+        title=&quot;lerna 1&quot;
+        src=&quot;/static/a9f94d7c2a05226ee95097d466845f6c/625aa/lerna-1.jpg&quot;
+        srcset=&quot;/static/a9f94d7c2a05226ee95097d466845f6c/c4d45/lerna-1.jpg 148w,
+/static/a9f94d7c2a05226ee95097d466845f6c/1f0d7/lerna-1.jpg 295w,
+/static/a9f94d7c2a05226ee95097d466845f6c/625aa/lerna-1.jpg 590w,
+/static/a9f94d7c2a05226ee95097d466845f6c/f8367/lerna-1.jpg 885w,
+/static/a9f94d7c2a05226ee95097d466845f6c/fab84/lerna-1.jpg 1180w,
+/static/a9f94d7c2a05226ee95097d466845f6c/500f0/lerna-1.jpg 1584w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/b28ebcf115bd83a12640ff733b813eb7/3ed5c/lerna-2.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 60.810810810810814%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wgARCAAMABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAABAAFBv/EABQBAQAAAAAAAAAAAAAAAAAAAAH/2gAMAwEAAhADEAAAAT9EXfQs+H//xAAXEAEBAQEAAAAAAAAAAAAAAAAEAwUC/9oACAEBAAEFAtJSJu0k1gXLvRAmAlZFyTTIxuCy/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAHxAAAgICAQUAAAAAAAAAAAAAAQIAAxESIRMxQVGR/9oACAEBAAY/ArQl7qoPYGVGp8MTz8m9rbNsZYzFsk+IiWbYX0Z06865zzP/xAAbEAADAQEAAwAAAAAAAAAAAAABESEAMUFRYf/aAAgBAQABPyFcaQgEGnWokC+sKSA0pgBbRYeh8xcOgSPFvJ+UZu//2gAMAwEAAgADAAAAEMQP/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPxA//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPxA//8QAHBABAAMAAgMAAAAAAAAAAAAAAQARIVFxQWGB/9oACAEBAAE/EBiQVmth9jRRLk7A9y5e5/BwoCAZhUQastcQMChdbkPTAmB5HK3Z/9k=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;lerna 2&quot;
+        title=&quot;lerna 2&quot;
+        src=&quot;/static/b28ebcf115bd83a12640ff733b813eb7/625aa/lerna-2.jpg&quot;
+        srcset=&quot;/static/b28ebcf115bd83a12640ff733b813eb7/c4d45/lerna-2.jpg 148w,
+/static/b28ebcf115bd83a12640ff733b813eb7/1f0d7/lerna-2.jpg 295w,
+/static/b28ebcf115bd83a12640ff733b813eb7/625aa/lerna-2.jpg 590w,
+/static/b28ebcf115bd83a12640ff733b813eb7/f8367/lerna-2.jpg 885w,
+/static/b28ebcf115bd83a12640ff733b813eb7/fab84/lerna-2.jpg 1180w,
+/static/b28ebcf115bd83a12640ff733b813eb7/3ed5c/lerna-2.jpg 1864w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;我尝试了将重复部分封装成独立的&lt;code&gt;npm&lt;/code&gt;包供两个项目引用，但这个做法仅适用于变化频率较小的工具类代码，一旦封装了变化频繁的业务逻辑代码，用起来也麻烦不断。首先，抽出到项目之外但不易开发和调试，其次，在项目开发过程中业务代码更新太频繁，常常要不断升级版本。权衡利弊，最终得不偿失。&lt;/p&gt;
 &lt;p&gt;那么，有没有办法更好的重用这部分代码逻辑呢？有没有办法把这两个项目的通用代码抽取成独立项目，但是又能避开封装成独立&lt;code&gt;npm&lt;/code&gt;包的弊端呢？&lt;/p&gt;
 &lt;p&gt;我最近尝试引入&lt;a href=&quot;https://github.com/lerna/lerna&quot;&gt;lerna框架&lt;/a&gt;，把这个大前端项目架构作为参照物来改造，惊喜的发现它不但能解决当时项目的痛点，还能额外带来一些多项目管理相关的好处。&lt;/p&gt;
 &lt;p&gt;事实上，开源社区早已有很多项目使用了这种多项目合而为一的方案，且采用了lerna框架的代码库也大多耳熟能详，比如国外的有&lt;a href=&quot;https://github.com/babel/babel&quot;&gt;babel&lt;/a&gt;、&lt;a href=&quot;https://github.com/facebook/create-react-app&quot;&gt;create-react-app&lt;/a&gt;、&lt;a href=&quot;https://github.com/ReactTraining/react-router&quot;&gt;react-router&lt;/a&gt;、&lt;a href=&quot;https://github.com/facebook/jest&quot;&gt;jest&lt;/a&gt;、以及国内跨端小程序框架&lt;a href=&quot;https://github.com/NervJS/taro&quot;&gt;Taro&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;最后经过改造，两个项目合并成一个，重复的代码逻辑也被抽取成另一个独立项目，整个项目结构变成了下面图示这样。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/7/13/17345266371693e2?w=1666&amp;#x26;h=1130&amp;#x26;f=png&amp;#x26;s=246949&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/a00b9f7759849d407b42c09f9035d496/b807f/lerna-3.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 67.56756756756756%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wgARCAAOABQDASIAAhEBAxEB/8QAGQAAAgMBAAAAAAAAAAAAAAAAAAIBAwQG/8QAFgEBAQEAAAAAAAAAAAAAAAAAAwEC/9oADAMBAAIQAxAAAAHrLI002HMp/8QAGhABAQEBAAMAAAAAAAAAAAAAAgMBEgQTFP/aAAgBAQABBQKft+i9EdnvQHj6bORek8n/xAAXEQEAAwAAAAAAAAAAAAAAAAACARAR/9oACAEDAQE/ATCyv//EABcRAAMBAAAAAAAAAAAAAAAAAAMQITL/2gAIAQIBAT8BJcr/xAAaEAACAgMAAAAAAAAAAAAAAAAAARESEyJx/9oACAEBAAY/AnZ69FDE2ZLEsg//xAAbEAEAAgMBAQAAAAAAAAAAAAABACERMUFRgf/aAAgBAQABPyHaDesPlQGxVyLtDHaCK1j2AuEAjon/2gAMAwEAAgADAAAAEOsv/8QAGBEBAAMBAAAAAAAAAAAAAAAAAQARIUH/2gAIAQMBAT8QAzRvrcJ//8QAGREAAwEBAQAAAAAAAAAAAAAAAREhADFB/9oACAECAQE/EJUGh4sOXf/EABoQAQEBAQADAAAAAAAAAAAAAAERAEFxgcH/2gAIAQEAAT8QJaomqHkuXsGmL8c11KuViDLH2vNUmiGsLwu//9k=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;lerna 3&quot;
+        title=&quot;lerna 3&quot;
+        src=&quot;/static/a00b9f7759849d407b42c09f9035d496/625aa/lerna-3.jpg&quot;
+        srcset=&quot;/static/a00b9f7759849d407b42c09f9035d496/c4d45/lerna-3.jpg 148w,
+/static/a00b9f7759849d407b42c09f9035d496/1f0d7/lerna-3.jpg 295w,
+/static/a00b9f7759849d407b42c09f9035d496/625aa/lerna-3.jpg 590w,
+/static/a00b9f7759849d407b42c09f9035d496/f8367/lerna-3.jpg 885w,
+/static/a00b9f7759849d407b42c09f9035d496/fab84/lerna-3.jpg 1180w,
+/static/a00b9f7759849d407b42c09f9035d496/b807f/lerna-3.jpg 1666w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;h3&gt;引入lerna&lt;/h3&gt;
 &lt;p&gt;&lt;code&gt;lerna&lt;/code&gt;的名字来源于希腊神话中的九头蛇海德拉（Lernaean Hydra），拿它形容多项目工程是再贴切不过了。&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;lerna&lt;/code&gt;的引入比想象中简单，其实，与其说引入&lt;code&gt;lerna&lt;/code&gt;，倒不如说是导入到&lt;code&gt;lerna&lt;/code&gt;更合适，因为具体的做法是通过命令行创建了一个新的&lt;code&gt;lerna&lt;/code&gt;项目，然后把所有项目导入进去。而且在导入的同时，每个项目的git提交记录也都合并在了一起。&lt;/p&gt;
@@ -794,7 +1135,36 @@ lerna import 你本地的项目路径&lt;/code&gt;
         &lt;/deckgo-highlight-code&gt;
       
 &lt;p&gt;每个被导入的项目都会被存放在根路径的packages目录下，下面是我demo项目的截图，一共引入了三个子项目：rntest, web-app, shared。分别代表mobile，web和可重用的逻辑代码。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/7/10/17336c236f9a7a04?w=726&amp;#x26;h=850&amp;#x26;f=png&amp;#x26;s=97041&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/0fd05fdb5e3aa37b6e88431c17443eec/e52ee/lerna-4.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 116.89189189189189%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wgARCAAXABQDASIAAhEBAxEB/8QAGQABAQADAQAAAAAAAAAAAAAAAAMBAgQG/8QAFwEAAwEAAAAAAAAAAAAAAAAAAAECA//aAAwDAQACEAMQAAAB83z9EGbplVolZ4A//8QAGxAAAgMAAwAAAAAAAAAAAAAAAAECERIQIjL/2gAIAQEAAQUC11siyN5bNMj5b4//xAAXEQADAQAAAAAAAAAAAAAAAAAAARAS/9oACAEDAQE/ATSv/8QAFxEAAwEAAAAAAAAAAAAAAAAAAAEQEf/aAAgBAgEBPwEx3//EABcQAQADAAAAAAAAAAAAAAAAABAgITH/2gAIAQEABj8ChrR//8QAHRAAAgMAAgMAAAAAAAAAAAAAAAERITFRYYGR8P/aAAgBAQABPyFMl2pWk5qhjWv2O93uEGN5OwfgIbpCJ+g//9oADAMBAAIAAwAAABC36MD/xAAXEQEBAQEAAAAAAAAAAAAAAAABABAh/9oACAEDAQE/EFIE6Rn/xAAYEQACAwAAAAAAAAAAAAAAAAAAARARMf/aAAgBAgEBPxBDs2f/xAAcEAEAAgIDAQAAAAAAAAAAAAABABEhMUFhcVH/2gAIAQEAAT8QojoFmn3uBWAulidqzwop0DT1uWkajTQgOnDE0cN49llH4QHNEf/Z&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;lerna 4&quot;
+        title=&quot;lerna 4&quot;
+        src=&quot;/static/0fd05fdb5e3aa37b6e88431c17443eec/625aa/lerna-4.jpg&quot;
+        srcset=&quot;/static/0fd05fdb5e3aa37b6e88431c17443eec/c4d45/lerna-4.jpg 148w,
+/static/0fd05fdb5e3aa37b6e88431c17443eec/1f0d7/lerna-4.jpg 295w,
+/static/0fd05fdb5e3aa37b6e88431c17443eec/625aa/lerna-4.jpg 590w,
+/static/0fd05fdb5e3aa37b6e88431c17443eec/e52ee/lerna-4.jpg 726w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;h3&gt;使用lerna来管理项目依赖&lt;/h3&gt;
 &lt;p&gt;引入&lt;code&gt;lerna&lt;/code&gt;后，第一件事就是要处理安装依赖的问题，我们需要用&lt;code&gt;lerna add&lt;/code&gt; 命令来代替我们习惯的&lt;code&gt;npm&lt;/code&gt;或&lt;code&gt;yarn&lt;/code&gt;，比如说给rntest项目安装&lt;code&gt;lodash&lt;/code&gt;，就要执行下面的命令。&lt;/p&gt;
 
@@ -803,7 +1173,38 @@ lerna import 你本地的项目路径&lt;/code&gt;
         &lt;/deckgo-highlight-code&gt;
       
 &lt;p&gt;不过，执行后你会发现其他项目中package-lock.json都发生了变化，让人非常困惑，这背后的原因是跟添加依赖后自动执行的安装命令&lt;code&gt;lerna bootstrap&lt;/code&gt;有关。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/7/10/17336ce90943c4c5?w=1590&amp;#x26;h=692&amp;#x26;f=png&amp;#x26;s=306642&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/c63110d7e76ed344c29f3da1115fd19e/4be3c/lerna-5.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 43.24324324324324%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wgARCAAJABQDASIAAhEBAxEB/8QAGQAAAgMBAAAAAAAAAAAAAAAAAAQBAgMG/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEAMQAAAB4ejihkQH/8QAGBAAAgMAAAAAAAAAAAAAAAAAEBEAAUH/2gAIAQEAAQUCcVDR/8QAFhEAAwAAAAAAAAAAAAAAAAAAARAR/9oACAEDAQE/AaF//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAFhABAQEAAAAAAAAAAAAAAAAAEAFB/9oACAEBAAY/AtY//8QAGxABAQACAwEAAAAAAAAAAAAAAQARMUFxkfD/2gAIAQEAAT8hco8mfJAn47nbO7//2gAMAwEAAgADAAAAENfP/8QAFhEBAQEAAAAAAAAAAAAAAAAAARAx/9oACAEDAQE/EBDJ/8QAFxEAAwEAAAAAAAAAAAAAAAAAARARUf/aAAgBAgEBPxCHV//EAB4QAAICAQUBAAAAAAAAAAAAAAABESFBMWFxgaGx/9oACAEBAAE/EKsuUZeB67dkGkJvtQeZD7jU5P/Z&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;lerna 5&quot;
+        title=&quot;lerna 5&quot;
+        src=&quot;/static/c63110d7e76ed344c29f3da1115fd19e/625aa/lerna-5.jpg&quot;
+        srcset=&quot;/static/c63110d7e76ed344c29f3da1115fd19e/c4d45/lerna-5.jpg 148w,
+/static/c63110d7e76ed344c29f3da1115fd19e/1f0d7/lerna-5.jpg 295w,
+/static/c63110d7e76ed344c29f3da1115fd19e/625aa/lerna-5.jpg 590w,
+/static/c63110d7e76ed344c29f3da1115fd19e/f8367/lerna-5.jpg 885w,
+/static/c63110d7e76ed344c29f3da1115fd19e/fab84/lerna-5.jpg 1180w,
+/static/c63110d7e76ed344c29f3da1115fd19e/4be3c/lerna-5.jpg 1590w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;h4&gt;lerna的依赖提升&lt;/h4&gt;
 &lt;p&gt;&lt;code&gt;lerna&lt;/code&gt;可以通过&lt;code&gt;lerna bootstrap&lt;/code&gt;一行命令安装所有子项目的依赖包，而且在安装依赖时还有依赖提升功能，所谓“依赖提升”，就是把所有项目npm依赖文件都提升到根目录下，这样能避免相同依赖包在不同项目安装多次。比如多个项目都用了&lt;code&gt;redux&lt;/code&gt;，通过依赖提升，多个项目一共只需要下载一次即可。不过，需要额外的参数&lt;code&gt;--hoist&lt;/code&gt;让依赖提升生效。&lt;/p&gt;
 
@@ -813,11 +1214,39 @@ lerna import 你本地的项目路径&lt;/code&gt;
       
 &lt;p&gt;但是自动执行&lt;code&gt;lerna bootstrap&lt;/code&gt;命令是不带依赖提升参数的，这就导致上面每个项目的lock文件都会被修改的原因。&lt;/p&gt;
 &lt;p&gt;当然，要解决这个问题也容易，可以通过&lt;code&gt;lerna&lt;/code&gt;的配置来避免npm对lock文件的修改即可，写法如下：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/7/10/17336dd6146615f4?w=574&amp;#x26;h=610&amp;#x26;f=png&amp;#x26;s=45981&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 574px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/cf95002c4ecaaca9b376b2ac4a6af039/74b23/lerna-6.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 106.08108108108108%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wgARCAAVABQDASIAAhEBAxEB/8QAGAABAAMBAAAAAAAAAAAAAAAAAAECAwb/xAAVAQEBAAAAAAAAAAAAAAAAAAAAAf/aAAwDAQACEAMQAAAB5iLKzWUCQK//xAAZEAADAAMAAAAAAAAAAAAAAAAAAREQICH/2gAIAQEAAQUCRMJw5r//xAAWEQEBAQAAAAAAAAAAAAAAAAAAERD/2gAIAQMBAT8BRc//xAAWEQADAAAAAAAAAAAAAAAAAAAAEBH/2gAIAQIBAT8BK//EABUQAQEAAAAAAAAAAAAAAAAAACBB/9oACAEBAAY/AhD/AP/EAB0QAAIBBAMAAAAAAAAAAAAAAAABESExQVEQcYH/2gAIAQEAAT8hRO6fg8knHGkogbfMuiES4uV2V2f/2gAMAwEAAgADAAAAEDjA/P/EABgRAAMBAQAAAAAAAAAAAAAAAAABETFR/9oACAEDAQE/EGlNLK6Vn//EABcRAAMBAAAAAAAAAAAAAAAAAAABERD/2gAIAQIBAT8QrxERH//EAB8QAQACAQMFAAAAAAAAAAAAAAEAESEQMWFBUXHR8f/aAAgBAQABPxAq3dLhg8jTTYuAXGYVdHBeopSU8hUwAwDtL+BG28f/2Q==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;lerna 6&quot;
+        title=&quot;lerna 6&quot;
+        src=&quot;/static/cf95002c4ecaaca9b376b2ac4a6af039/74b23/lerna-6.jpg&quot;
+        srcset=&quot;/static/cf95002c4ecaaca9b376b2ac4a6af039/c4d45/lerna-6.jpg 148w,
+/static/cf95002c4ecaaca9b376b2ac4a6af039/1f0d7/lerna-6.jpg 295w,
+/static/cf95002c4ecaaca9b376b2ac4a6af039/74b23/lerna-6.jpg 574w&quot;
+        sizes=&quot;(max-width: 574px) 100vw, 574px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;h4&gt;yarn是lerna的最佳搭档&lt;/h4&gt;
 &lt;p&gt;&lt;code&gt;lerna&lt;/code&gt;默认使用&lt;code&gt;npm&lt;/code&gt;作为安装依赖包工具，但也可以选择其他工具。&lt;code&gt;yarn&lt;/code&gt;在1.0版本之后提供了workspaces的功能，该功能从更底层的地方提供了依赖提升，做的事情跟&lt;code&gt;lerna&lt;/code&gt;如出一辙。把它跟&lt;code&gt;lerna&lt;/code&gt;放在一起看，简直就像是为&lt;code&gt;lerna&lt;/code&gt;量身定做一样。因此，推荐在lerna中搭配yarn一起使用。&lt;/p&gt;
 &lt;p&gt;把npm替换成yarn只需在lerna的配置文件添加两行代码即可，配置完以后立刻顺畅百倍。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/7/10/17336e46c6eed674?w=538&amp;#x26;h=386&amp;#x26;f=png&amp;#x26;s=35002&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./lerna-7.jpeg&quot;&gt;&lt;/p&gt;
 &lt;h3&gt;高效的代码重用&lt;/h3&gt;
 &lt;p&gt;在我参与的这个大前端项目里，多端之间代码重复的部分包含&lt;code&gt;redux&lt;/code&gt;中的业务逻辑、http请求的处理、代码规范工具的检查、&lt;code&gt;git&lt;/code&gt;钩子中的自定义脚本等等。在&lt;code&gt;lerna&lt;/code&gt;架构下，前两者可直接抽取到一个独立的项目，然后被其他项目引用，比如在我的demo中，可以像其他依赖包一样直接引入&lt;code&gt;shared&lt;/code&gt;项目, lerna会自动识别并把它导向内部项目。&lt;/p&gt;
 
@@ -833,15 +1262,138 @@ lerna import 你本地的项目路径&lt;/code&gt;
 &lt;p&gt;不得不说，即便不用&lt;code&gt;lerna&lt;/code&gt;框架我们也可以这么做，只不过在&lt;code&gt;lerna&lt;/code&gt;框架下修改立刻可见，方便了调试和开发。&lt;/p&gt;
 &lt;h3&gt;lerna框架下的CI/CD&lt;/h3&gt;
 &lt;p&gt;多项目的结构无疑给&lt;code&gt;CI/CD&lt;/code&gt;带来挑战，好在主流的CI框架能完美解决这个问题。比如在gitlab上，&lt;code&gt;only/changes&lt;/code&gt;参数完全满足了我们的需求，让我们可以为每一个子项目设置单独的pipeline，比如现在我们设置一个pipeline，只当rntest项目下的文件被修改时才会触发：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/7/10/1733709cb0553f09?w=1022&amp;#x26;h=470&amp;#x26;f=png&amp;#x26;s=56019&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/e0646ac9b9bd05b8934c3287f9db05aa/1a8b3/lerna-8.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 45.94594594594595%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wgARCAAJABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAIBBv/EABYBAQEBAAAAAAAAAAAAAAAAAAEAAv/aAAwDAQACEAMQAAAB5mdNAc//xAAXEAADAQAAAAAAAAAAAAAAAAAAARAR/9oACAEBAAEFAkZEOf/EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8BP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8BP//EABQQAQAAAAAAAAAAAAAAAAAAACD/2gAIAQEABj8CX//EABwQAAEEAwEAAAAAAAAAAAAAAAEAECFBUWFxof/aAAgBAQABPyGQmdIhnxqq3G//2gAMAwEAAgADAAAAECg//8QAFREBAQAAAAAAAAAAAAAAAAAAEBH/2gAIAQMBAT8Qh//EABYRAAMAAAAAAAAAAAAAAAAAABARIf/aAAgBAgEBPxB0f//EAB4QAAIBAwUAAAAAAAAAAAAAAAERADFRgRAhQXGx/9oACAEBAAE/EBCnsYwJnYLNCBwXiVZyvo90/9k=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;lerna 8&quot;
+        title=&quot;lerna 8&quot;
+        src=&quot;/static/e0646ac9b9bd05b8934c3287f9db05aa/625aa/lerna-8.jpg&quot;
+        srcset=&quot;/static/e0646ac9b9bd05b8934c3287f9db05aa/c4d45/lerna-8.jpg 148w,
+/static/e0646ac9b9bd05b8934c3287f9db05aa/1f0d7/lerna-8.jpg 295w,
+/static/e0646ac9b9bd05b8934c3287f9db05aa/625aa/lerna-8.jpg 590w,
+/static/e0646ac9b9bd05b8934c3287f9db05aa/f8367/lerna-8.jpg 885w,
+/static/e0646ac9b9bd05b8934c3287f9db05aa/1a8b3/lerna-8.jpg 1022w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;在lerna框架下，所有项目都合在一个工程里，但&lt;code&gt;CI/CD&lt;/code&gt;并不必这样。通过把脚本中的关键参数配置到&lt;code&gt;CI/CD&lt;/code&gt;的项目内里，共用同一份&lt;code&gt;.gitlab-ci.yml&lt;/code&gt;文件，从而能够实现每个子项目对应一个独立的&lt;code&gt;CI/CD&lt;/code&gt;项目，最终&lt;code&gt;CI/CD&lt;/code&gt;结构如下图：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/7/10/1733717fab7eb8e3?w=1332&amp;#x26;h=846&amp;#x26;f=png&amp;#x26;s=175590&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/cee6feb33bff357788ebc3b536c730d1/5dd07/lerna-9.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 63.51351351351351%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wgARCAANABQDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAIDBAb/xAAVAQEBAAAAAAAAAAAAAAAAAAACA//aAAwDAQACEAMQAAAB11hZ1JwDX//EAB0QAAEDBQEAAAAAAAAAAAAAAAECAxQAERITITH/2gAIAQEAAQUClJL3ih0R29uJvX//xAAXEQADAQAAAAAAAAAAAAAAAAACEBJC/9oACAEDAQE/AQvS/8QAFxEAAwEAAAAAAAAAAAAAAAAAAxASIf/aAAgBAgEBPwEk5K//xAAdEAABBAIDAAAAAAAAAAAAAAARAAIQEwExIjKB/9oACAEBAAY/Aqg7YK7Y9dFg5Ercf//EABwQAQACAwADAAAAAAAAAAAAAAEAESFBUTFxgf/aAAgBAQABPyHxuZlOZpIslnyB+yL3GwlTlECjLc//2gAMAwEAAgADAAAAELzP/8QAGBEAAwEBAAAAAAAAAAAAAAAAAREhEFH/2gAIAQMBAT8QEW4Ni5n/xAAYEQEAAwEAAAAAAAAAAAAAAAABEBFhcf/aAAgBAgEBPxBNpd7H/8QAHRABAQACAgMBAAAAAAAAAAAAAREAITFBUWFxgf/aAAgBAQABPxBrHVGBT3bNYoYaQJ3eTj5kynyul+5GXu2ZXLP3GIUAKpL24wlB3Jc//9k=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;lerna 9&quot;
+        title=&quot;lerna 9&quot;
+        src=&quot;/static/cee6feb33bff357788ebc3b536c730d1/625aa/lerna-9.jpg&quot;
+        srcset=&quot;/static/cee6feb33bff357788ebc3b536c730d1/c4d45/lerna-9.jpg 148w,
+/static/cee6feb33bff357788ebc3b536c730d1/1f0d7/lerna-9.jpg 295w,
+/static/cee6feb33bff357788ebc3b536c730d1/625aa/lerna-9.jpg 590w,
+/static/cee6feb33bff357788ebc3b536c730d1/f8367/lerna-9.jpg 885w,
+/static/cee6feb33bff357788ebc3b536c730d1/fab84/lerna-9.jpg 1180w,
+/static/cee6feb33bff357788ebc3b536c730d1/5dd07/lerna-9.jpg 1332w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;h3&gt;lerna框架下的子项目权限&lt;/h3&gt;
 &lt;p&gt;由于所有的项目都归并到了一个&lt;code&gt;lerna&lt;/code&gt;工程下，一旦有了访问权限意味着你可以修改所有子项目中的代码，在实际的开发工作中多多少少会带来一些麻烦。比如说，开发web和开发mobile平台的是两个不同的团队，假如我作为web组的一员，一不小心修改了或删除了mobile项目的文件该怎么办？假如不加入任何限制，这种事情迟早会发生，我想这可能是&lt;code&gt;lerna&lt;/code&gt;框架与生俱来的的痛点。&lt;/p&gt;
 &lt;p&gt;不幸的是，在&lt;code&gt;lerna&lt;/code&gt;框架下，gitlab或github这类第三方代码托管平台，本身的权限管理功能无法解决这问题。但好在有其他工具的帮助可以缓解这种痛，我尝试用来约束开源贡献者提交PR规范的工具&lt;code&gt;dangerjs&lt;/code&gt;来完成权限分隔，利用的信息就是当前gitlab账号的用户名，看起来效果还不错。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/7/13/1734528ea00cdce7?w=2134&amp;#x26;h=1834&amp;#x26;f=png&amp;#x26;s=479655&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/ce54120a40a9fa827663c495958e2268/1a428/lerna-10.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 85.8108108108108%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wgARCAARABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAIDBv/EABYBAQEBAAAAAAAAAAAAAAAAAAABAv/aAAwDAQACEAMQAAAB7LS7MW4zsmrFz//EABwQAAAGAwAAAAAAAAAAAAAAAAACAxARExQxQf/aAAgBAQABBQLGRmhIUJDssbbf/8QAFBEBAAAAAAAAAAAAAAAAAAAAIP/aAAgBAwEBPwEf/8QAFREBAQAAAAAAAAAAAAAAAAAAESD/2gAIAQIBAT8BY//EABkQAAIDAQAAAAAAAAAAAAAAAAIzACCSkf/aAAgBAQAGPwJQcigzFBm//8QAHRABAAEDBQAAAAAAAAAAAAAAAQAQETEhcYGx8f/aAAgBAQABPyEBdGA4PhPPTQbdLzdeDVMT/9oADAMBAAIAAwAAABBL6AH/xAAWEQEBAQAAAAAAAAAAAAAAAAAAARH/2gAIAQMBAT8QxiK//8QAFxEAAwEAAAAAAAAAAAAAAAAAAAEREP/aAAgBAgEBPxCisef/xAAeEAEAAQQCAwAAAAAAAAAAAAABABEhMUGB8GGxwf/aAAgBAQABPxBYGKqC56g1VnNn5Bc1OmpYSlW966gKYrviClxOJk4mpin/2Q==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;lerna 10&quot;
+        title=&quot;lerna 10&quot;
+        src=&quot;/static/ce54120a40a9fa827663c495958e2268/625aa/lerna-10.jpg&quot;
+        srcset=&quot;/static/ce54120a40a9fa827663c495958e2268/c4d45/lerna-10.jpg 148w,
+/static/ce54120a40a9fa827663c495958e2268/1f0d7/lerna-10.jpg 295w,
+/static/ce54120a40a9fa827663c495958e2268/625aa/lerna-10.jpg 590w,
+/static/ce54120a40a9fa827663c495958e2268/f8367/lerna-10.jpg 885w,
+/static/ce54120a40a9fa827663c495958e2268/fab84/lerna-10.jpg 1180w,
+/static/ce54120a40a9fa827663c495958e2268/1a428/lerna-10.jpg 2134w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;可以看到，此工具会在合并MR时，判断出我gitlab账号没有权限修改rntest子项目内的文件，从而禁止合并此MR，并将这些信息自动添加到MR的评论里。当然，脚本判断是自己写的仅用作演示，逻辑比较简陋，脚本代码如下：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://user-gold-cdn.xitu.io/2020/7/13/17345291a0c5b1f1?w=2838&amp;#x26;h=988&amp;#x26;f=png&amp;#x26;s=631394&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/fdb43cba05b84a81cd4f10becf712e4e/133b2/lerna-11.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 35.13513513513513%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wgARCAAHABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAMG/8QAFQEBAQAAAAAAAAAAAAAAAAAAAQD/2gAMAwEAAhADEAAAAc0EmG//xAAXEAADAQAAAAAAAAAAAAAAAAABECEx/9oACAEBAAEFAhkX/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAFBABAAAAAAAAAAAAAAAAAAAAEP/aAAgBAQAGPwJ//8QAGBABAQEBAQAAAAAAAAAAAAAAAQAhUXH/2gAIAQEAAT8hQ6dk6n2//9oADAMBAAIAAwAAABD/AO//xAAVEQEBAAAAAAAAAAAAAAAAAAAQMf/aAAgBAwEBPxCn/8QAFREBAQAAAAAAAAAAAAAAAAAAARD/2gAIAQIBAT8QZ//EABsQAAICAwEAAAAAAAAAAAAAAAERACFRYZHR/9oACAEBAAE/EAC/ZwhlLw/ICNF2f//Z&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;lerna 11&quot;
+        title=&quot;lerna 11&quot;
+        src=&quot;/static/fdb43cba05b84a81cd4f10becf712e4e/625aa/lerna-11.jpg&quot;
+        srcset=&quot;/static/fdb43cba05b84a81cd4f10becf712e4e/c4d45/lerna-11.jpg 148w,
+/static/fdb43cba05b84a81cd4f10becf712e4e/1f0d7/lerna-11.jpg 295w,
+/static/fdb43cba05b84a81cd4f10becf712e4e/625aa/lerna-11.jpg 590w,
+/static/fdb43cba05b84a81cd4f10becf712e4e/f8367/lerna-11.jpg 885w,
+/static/fdb43cba05b84a81cd4f10becf712e4e/fab84/lerna-11.jpg 1180w,
+/static/fdb43cba05b84a81cd4f10becf712e4e/133b2/lerna-11.jpg 2838w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;关于&lt;code&gt;dangerjs&lt;/code&gt;的部分我会另写一篇文章详细介绍。&lt;/p&gt;
 &lt;h3&gt;结语&lt;/h3&gt;
 &lt;p&gt;大前端项目将会是前端发展的趋势，如何更好的管理大前端项目是每一位前端开发躲不开的课题。&lt;code&gt;lerna&lt;/code&gt;框架通过合而为一的理念提供了一种解决方案，通过扬长避短，我们可以发挥出&lt;code&gt;lerna&lt;/code&gt;的最大效用。假如你还没有用过，也许，下一个项目就可以试试看。&lt;/p&gt;
