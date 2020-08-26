@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[上线前夕]]></title><description><![CDATA[A starter blog demonstrating what Gatsby can do.]]></description><link>https://gatsby-starter-blog-demo.netlify.com</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 03 Aug 2020 03:11:10 GMT</lastBuildDate><item><title><![CDATA[Promise.all和Promise.allSettled的区别]]></title><description><![CDATA[不管你是否还学的动，JS语言依然在以自己的节奏飞快的进化。转眼间，Promise的工具包里又多了一个方法Promise.allSettled供你选择，它看起来像是对Promise.all的一种补充，缓解了使用Promise.all碰到reject…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/2020-07-29-the-diff-between-promise-all-and-promise-allsettled/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/2020-07-29-the-diff-between-promise-all-and-promise-allsettled/</guid><pubDate>Wed, 29 Jul 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;不管你是否还学的动，JS语言依然在以自己的节奏飞快的进化。转眼间，Promise的工具包里又多了一个方法Promise.allSettled供你选择，它看起来像是对Promise.all的一种补充，缓解了使用Promise.all碰到reject的痛点问题。&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[上线前夕]]></title><description><![CDATA[A starter blog demonstrating what Gatsby can do.]]></description><link>https://gatsby-starter-blog-demo.netlify.com</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 26 Aug 2020 09:15:32 GMT</lastBuildDate><item><title><![CDATA[Promise.all和Promise.allSettled的区别]]></title><description><![CDATA[不管你是否还学的动，JS语言依然在以自己的节奏飞快的进化。转眼间，Promise的工具包里又多了一个方法Promise.allSettled供你选择，它看起来像是对Promise.all的一种补充，缓解了使用Promise.all碰到reject…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/2020-07-29-the-diff-between-promise-all-and-promise-allsettled/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/2020-07-29-the-diff-between-promise-all-and-promise-allsettled/</guid><pubDate>Wed, 29 Jul 2020 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;不管你是否还学的动，JS语言依然在以自己的节奏飞快的进化。转眼间，Promise的工具包里又多了一个方法Promise.allSettled供你选择，它看起来像是对Promise.all的一种补充，缓解了使用Promise.all碰到reject的痛点问题。&lt;/p&gt;
 &lt;p&gt;一句话概括Promise.allSettled和Promise.all的最大不同：&lt;strong&gt;Promise.allSettled永远不会被reject&lt;/strong&gt;。&lt;/p&gt;
 &lt;h3&gt;解决Promise.all的痛点&lt;/h3&gt;
 &lt;p&gt;当需要处理多个Promise并行时，大多数情况下Promise.all用起来是非常顺手的，比如下面这样&lt;/p&gt;
@@ -3916,4 +3916,86 @@ ReactDOM.render(
 &lt;li&gt;&lt;a href=&quot;http://www.ruanyifeng.com/blog/2015/03/react.html&quot;&gt;http://www.ruanyifeng.com/blog/2015/03/react.html&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/React_(JavaScript_library&quot;&gt;https://en.wikipedia.org/wiki/React_(JavaScript_library&lt;/a&gt;)&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://medium.com/react-tutorials/react-state-14a6d4f736f5#.ox10voa3x&quot;&gt;https://medium.com/react-tutorials/react-state-14a6d4f736f5#.ox10voa3x&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;</content:encoded></item></channel></rss>
+&lt;/ol&gt;</content:encoded></item><item><title><![CDATA[[博客园旧文] 随心所欲的DateTime续]]></title><description><![CDATA[上篇提到DateTime的显示格式，忽略了一个重要元素—时区。多时区用户的项目的时间显示问题常常被人诟病，一旦时间跟金钱挂钩，出了问题就不是客服投诉骂两句那么简单了。那么究竟怎样才能构建一个满足多时区用户的项目呢？这要先从时区说起。 时区知多少 timezones-map…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/2012-12-21-learn-to-use-datetime/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/2012-12-21-learn-to-use-datetime/</guid><pubDate>Fri, 21 Dec 2012 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;a href=&quot;http://www.cnblogs.com/hkncd/archive/2012/12/06/2805165.html&quot;&gt;上篇提到DateTime的显示格式&lt;/a&gt;，忽略了一个重要元素—时区。多时区用户的项目的时间显示问题常常被人诟病，一旦时间跟金钱挂钩，出了问题就不是客服投诉骂两句那么简单了。那么究竟怎样才能构建一个满足多时区用户的项目呢？这要先从时区说起。&lt;/p&gt;
+&lt;h3&gt;时区知多少&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;/1c84a9418a3b2b056bcb3fc58865443c/datetime-1.gif&quot; alt=&quot;timezones-map&quot;&gt;&lt;/p&gt;
+&lt;p&gt;如图，全球被划分为24个时区，0时区为基准，每个时区相隔1小时，往东则加时间，往西则减时间，这种记时方式成为UTC（协调世界时）。比如北京在东边第八个时区，简称东八区，而东八区可简写为“UTC +8”。&lt;/p&gt;
+&lt;p&gt;在人类科技尚不发达的早期，人们用天文学知识计算时区时间，称为GMT（格林威治时间）。这种方式略有误差，但日常生活并不影响，后来随着科技的进步渐渐被UTC取代，但依然有人习惯性称GMT时间，因此，对我们来说，UTC和GMT意思等同。&lt;/p&gt;
+&lt;p&gt;在.Net中，用DateTime的UtcNow属性可快速获取0时区的时间，以我们所处的“UTC +8”为例，两者相差8小时：&lt;/p&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;Console.WriteLine(DateTime.Now);  // 2012/12/21 11:50:37
+Console.WriteLine(DateTime.UtcNow); // 2012/12/21 3:50:37&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
+&lt;h3&gt;可定义时区的时间类— DateTimeOffSet&lt;/h3&gt;
+&lt;p&gt;DateTime类没有时区信息，默认当前机器的时区。如果想指定时区，可使用DateTimeOffset类，时差用TimeSpan表示。比如，以下代码分别获取当前“UTC +2”和“UTC -5”的时间：&lt;/p&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;DateTimeOffset dt = new DateTimeOffset(DateTimeOffset.UtcNow.DateTime, TimeSpan.FromMinutes(120));
+DateTimeOffset dt2 = new DateTimeOffset(DateTimeOffset.UtcNow.DateTime, TimeSpan.FromMinutes(-300));&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
+&lt;p&gt;为了方便，我用小时计算时差，但更准确的的单位应该用分钟。因为时区虽按小时划分，但有些城市地区所在的时区并不是整数，比如印度的新德里在&lt;strong&gt;东5.5区&lt;/strong&gt;，加拿大的纽芬兰在&lt;strong&gt;西3.5区&lt;/strong&gt;，还有一个逆天的尼泊尔在&lt;strong&gt;东5.45区&lt;/strong&gt;，因此把时差换算为分钟更为准确。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注：本来第一个参数使用DateTime.UtcNow，结果会抛出异常。因为第一个参数必须是时区为0的 DataTime ，而通过DateTime类属性获取的时间会默认当前机器的时区，因此，改成 DateTimeOffset.UtcNow.DateTime 就没有问题。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;DateTime虽然默认了时区值，但无法获取，如要访问，需使用DateTimeOffset类的Offset属性，代码如下：&lt;/p&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;DateTimeOffset dt = new DateTimeOffset(DateTimeOffset.UtcNow.DateTime, TimeSpan.FromMinutes(120));
+Console.WriteLine(dt.Offset); // 02:00:00&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
+&lt;h3&gt;获取用户的时区信息&lt;/h3&gt;
+&lt;p&gt;上面所述都是获取服务器时区的相关信息，那么，如何获取访问我们网站的用户的时区信息呢？很可惜，浏览器发送请求的时候并不带自身的时区，不过幸运的是，javascript提供了用户的时区信息。代码如下，运行结果如图。&lt;/p&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;var date = new Date();
+alert(date);&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 362px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/af0f078a34ef855b6d22b0934a3122d3/793f7/datetime-2.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 43.91891891891892%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAAA7DAAAOwwHHb6hkAAACAUlEQVQoz22Q208TQRjF95/1zScNMSqJMaaJISipsRgVIhCQOwTkJpZCS4i90CAhXLrd+y603e4WlLZofPj5dUMTTXz45cw538yZySjPXgySGBphYGyV+OgS8bFPvBxZJvZ2hqeJaXr6R7j3fIgHA5Pc7//IndgEd/um6InP05tYpPf9Gu+exFh53MPUo4cor6fnWE2nWEwVmVnPMLv5VcjxYWmboYUdBqe/8KbD7BbxySSx0SR94ykS83sMr+QY3Sgyu7DJyuQcMxOLKOncEX7FR1PL2LaDrukYuo5a0lAlM3QDUzcpnZxFM1u8Y1no5TLmrdc1k1rjiovwCiWT/0aj7mNoBq7rYlu2FNuROo4Tqee40dyStWs5WKaNYZjRZZ7jYRsWtWqVStVH2cjs025fU5YDmuGhai5q2UPTPc5UR3K5xL6gbJxzcmqh6i5nomWZ67L/+MREl3mr1cT2Kihr6QI/2y2CIIyo10PCsCEaUPMDQsnCKA/wxXc0uM26BJI1r7/jnldRlpJZbm4LG5eXXApd7a7/9l08KbdrAaaUWJU6rh9Sss6lcCsL/KbV/CEvbf6XdqvDNTeiHX7JAw7l8IFhk8oWyR+XxHscyPcor8bXyB9p7BSOyeyf/kvxlLTkm+kcyd08O9nDiEzhiM97ByxvF1jfLbKa6bDPcirPH8ZFbpooQfGxAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;alert&quot;
+        title=&quot;alert&quot;
+        src=&quot;/static/af0f078a34ef855b6d22b0934a3122d3/793f7/datetime-2.png&quot;
+        srcset=&quot;/static/af0f078a34ef855b6d22b0934a3122d3/83276/datetime-2.png 148w,
+/static/af0f078a34ef855b6d22b0934a3122d3/ba02f/datetime-2.png 295w,
+/static/af0f078a34ef855b6d22b0934a3122d3/793f7/datetime-2.png 362w&quot;
+        sizes=&quot;(max-width: 362px) 100vw, 362px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;如果你想获取用户在哪个时区，只能从字符串中拆分，不过javascript提供了函数可以直接获取时差，单位为分钟。&lt;/p&gt;
+
+        &lt;deckgo-highlight-code  &gt;
+          &lt;code slot=&quot;code&quot;&gt;var offset = date.getTimezoneOffset(); //-480&lt;/code&gt;
+        &lt;/deckgo-highlight-code&gt;
+      
+&lt;h3&gt;如何应对多时区的用户&lt;/h3&gt;
+&lt;p&gt;一个多时区的项目，如果在设计初考虑到时区，应将时间存为DateTime.UtcNow，这样结合时差可得任意时区时间。如果一个项目已存成了DateTime.Now，结果半路杀出多时区问题，除了骂娘以外，只能将时间切换为0时区，再根据时差计算。通常获取用户时区的做法是—javascript获取时差存入表单，并提交到服务器。&lt;/p&gt;
+&lt;p&gt;可是，并不是每次页面访问都有提交表单操作，如访问首页。如此一来必须要面对两个选择：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;将时间获取到页面上，通过javascript根据时差换算。&lt;/li&gt;
+&lt;li&gt;将用户时差保存在数据库。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;第一种麻烦且难以维护，容易造成重复代码；第二种一旦碰到用户时差改变，数据就没了意义。最重要一点是数据真实性，因为javascript获取的时间取自当前电脑，即该时间可随意更改。且要命的是，我们通过时区获取时差，时差得到时间，这个过程本身是不准确的，因为有&lt;a href=&quot;http://baike.baidu.com/view/100246.htm&quot;&gt;夏令时&lt;/a&gt;的存在。&lt;/p&gt;
+&lt;p&gt;也就是说，如果时间显示无关轻重，可采用以上应对方法。一旦时间和利益挂钩，就会造成很大的问题。那么，究竟该如何应对多时区用户的问题呢？下篇解答，未完待续。 ^_^&lt;/p&gt;</content:encoded></item></channel></rss>
